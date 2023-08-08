@@ -1,25 +1,92 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Input from 'components/Input';
+import Select from 'components/Select';
+import { setAppSize } from 'features';
+import { useAppDispatch, useDebounce } from 'hooks';
+import { useCallback, useEffect, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Outlet } from 'react-router-dom';
+import { api } from 'utils';
+
+type TFormData = {
+  status: string;
+};
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    window.addEventListener('resize', () =>
+      dispatch(
+        setAppSize({ width: window.innerWidth, height: window.innerHeight }),
+      ),
+    );
+    return () => {
+      window.removeEventListener('resize', () =>
+        dispatch(
+          setAppSize({ width: window.innerWidth, height: window.innerHeight }),
+        ),
+      );
+    };
+  }, []);
+
+  const [keyword, setKeyword] = useState('');
+  const [todos, setTodos] = useState<any[]>([]);
+
+  const fetchTodos = useCallback(async (params?) => {
+    console.log('Params:', params);
+
+    const res = await api.get(
+      'https://jsonplaceholder.typicode.com/users',
+      params,
+    );
+
+    setTodos(res);
+  }, []);
+
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos]);
+
+  const debounceValue = useDebounce(todos, 500);
+
+  const {
+    control,
+    watch,
+    resetField,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<TFormData>({
+    defaultValues: {
+      status: undefined,
+    },
+  });
+  const onSubmit: SubmitHandler<TFormData> = (data) => {};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Input
+        value={keyword}
+        onChange={(e) => setKeyword(e.currentTarget.value)}
+      />
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            label="Trạng thái"
+            options={debounceValue.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            onSearch={(keyword) => {
+              fetchTodos(keyword && { id: keyword });
+            }}
+            {...field}
+          />
+        )}
+      />
+      <Outlet />
+    </>
   );
 }
 
