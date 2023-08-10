@@ -1,13 +1,15 @@
-import axios, { AxiosRequestConfig, Method } from 'axios';
+import axios, { AxiosRequestConfig, HttpStatusCode, Method } from 'axios';
 import { Tail } from 'types';
 
 const defaults = {
-  headers: () => ({ 'Content-Type': 'application/json' }),
+  headers: (): AxiosRequestConfig['headers'] => ({
+    'Content-Type': 'application/json',
+  }),
   error: {
-    code: 'INTERNAL_ERROR',
+    code: 'INTERNAL_SERVER_ERROR',
     message:
       'Something went wrong. Please check your internet connection or contact our support.',
-    status: 503,
+    status: HttpStatusCode.ServiceUnavailable,
     data: {},
   },
 };
