@@ -18,24 +18,29 @@ type RenderContentProps = {
 type Props = {
   placement?: Placement;
   offset?: Offset;
+  onClose?: () => void;
   renderLink?: React.FC<RenderLinkProps>;
   renderContent?: React.FC<RenderContentProps>;
 } & React.HTMLAttributes<HTMLElement>;
 
 const Popover: React.FC<Props> = ({
   className,
+  onClose: tellParentToClose,
   placement = 'bottom',
   offset = { top: 0, left: 0 },
   renderLink,
   renderContent,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setStateOpen] = useState(false);
 
   const $linkRef = useRef<HTMLElement>(null);
   const $popoverRef = useRef<HTMLDivElement>(null);
 
-  const onOpen = () => setIsOpen(true);
-  const onClose = () => setIsOpen(false);
+  const onOpen = () => setStateOpen(true);
+  const onClose = () => {
+    setStateOpen(false);
+    tellParentToClose?.();
+  };
 
   useOutsideClick([$popoverRef, $linkRef], isOpen, onClose);
 

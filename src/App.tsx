@@ -1,4 +1,7 @@
 import Input from 'components/Input';
+import Range from 'components/Input/Range';
+import Switch from 'components/Input/Switch';
+import Modal from 'components/Modal';
 import Select from 'components/Select';
 import { setAppSize } from 'features';
 import { useAppDispatch, useDebounce } from 'hooks';
@@ -8,6 +11,7 @@ import { Outlet } from 'react-router-dom';
 import { api } from 'utils';
 
 type TFormData = {
+  keyword: string;
   status: string;
 };
 
@@ -47,7 +51,7 @@ function App() {
     fetchTodos();
   }, [fetchTodos]);
 
-  const debounceValue = useDebounce(todos, 500);
+  const debounceValue = useDebounce(keyword, 300);
 
   const {
     control,
@@ -57,16 +61,59 @@ function App() {
     formState: { isSubmitting },
   } = useForm<TFormData>({
     defaultValues: {
+      keyword: '',
       status: undefined,
     },
   });
   const onSubmit: SubmitHandler<TFormData> = (data) => {};
 
+  useEffect(() => {
+    fetchTodos({ q: debounceValue });
+  }, [debounceValue]);
+
   return (
     <>
-      <Input
-        value={keyword}
-        onChange={(e) => setKeyword(e.currentTarget.value)}
+      <Modal
+        renderLink={({ onOpen }) => (
+          <div className="" onClick={onOpen}>
+            Open Modal
+          </div>
+        )}
+        renderHeader={() => <h4>Title</h4>}
+        renderContent={() => <div>Content</div>}
+        renderFooter={() => <div>Footer</div>}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => <Input label="AA" {...field} />}
+      />
+
+      <Switch />
+
+      <div className="my-20">
+        <Range />
+      </div>
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            isMultiple
+            label="Trạng thái"
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            keyword={keyword}
+            onSearch={(keyword) => {
+              setKeyword(keyword);
+            }}
+            {...field}
+          />
+        )}
       />
       <Controller
         name="status"
@@ -74,13 +121,10 @@ function App() {
         render={({ field }) => (
           <Select
             label="Trạng thái"
-            options={debounceValue.map((e) => ({
+            options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
             }))}
-            onSearch={(keyword) => {
-              fetchTodos(keyword && { id: keyword });
-            }}
             {...field}
           />
         )}

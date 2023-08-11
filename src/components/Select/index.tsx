@@ -48,7 +48,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     error,
     helperText,
     onChange,
-    keyword,
+    keyword: propsKeyword = '',
     onSearch,
   },
   $ref,
@@ -57,15 +57,15 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
   const [searchValue, setSearchValue] = useState('');
 
   const isControlled = !!onSearch;
-  const debounceValue = useDebounce(isControlled ? keyword : searchValue, 300);
+  const keyword = isControlled ? propsKeyword : searchValue;
+  const debounceValue = useDebounce(keyword, 300);
+  const options = [...selected, ...propsOptions];
 
   useEffect(() => {
     let defaultSelected: Option[] = [];
     const isArray = Array.isArray(value);
 
     if (propsOptions.length) {
-      const options = [...selected, ...propsOptions];
-
       const opts = isArray
         ? value.map((e) => options.find((x) => x.value === e))
         : [options.find((x) => x.value === value)];
@@ -96,6 +96,8 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     onChange(restSelected.map((e) => e.value));
   };
 
+  const onChangeKeyword = isControlled ? onSearch : setSearchValue;
+
   return (
     <div
       className={`select${isMultiple ? ' multiple' : ''}${
@@ -108,6 +110,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       <Popover
         className="!p-2 border rounded-lg"
         placement={placement}
+        onClose={() => onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
           <>
             <div
@@ -131,7 +134,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
 
                           {isMultiple && (
                             <Icon
-                              className="select-value__remove items-center justify-center w-3 h-3"
+                              className="select-value__remove"
                               tag="div"
                               icon={<Times />}
                               onClick={(e) => removeSelected(e, s)}
@@ -168,12 +171,12 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
             onChange={selectOption}
             deactivateDropdown={() => {
               onClose();
-              setSearchValue('');
+              onChangeKeyword('');
             }}
             isLoading={isLoading}
             isFilterSearch={isFilterSearch}
-            searchValue={debounceValue}
-            setSearchValue={isControlled ? onSearch : setSearchValue}
+            searchValue={keyword}
+            setSearchValue={onChangeKeyword}
           />
         )}
       />

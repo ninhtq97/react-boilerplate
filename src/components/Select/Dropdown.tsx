@@ -1,7 +1,7 @@
 import { ReactComponent as Search } from 'assets/icons/search.svg';
 import { ReactComponent as Spinner } from 'assets/icons/spinner.svg';
 import Icon from 'components/Icon';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { Option } from '.';
 import Input from '../Input';
 
@@ -28,8 +28,6 @@ const Dropdown: React.FC<Props> = ({
   searchValue,
   setSearchValue,
 }) => {
-  const [keyword, setKeyword] = useState('');
-
   const selectOptionValue = (optionValue: Option) => {
     onChange(optionValue);
     deactivateDropdown();
@@ -64,11 +62,10 @@ const Dropdown: React.FC<Props> = ({
       {isFilterSearch && (
         <Input
           placeholder="Tìm kiếm..."
-          value={keyword}
+          value={searchValue}
           icon={<Search className="text-gray-7" />}
           onChange={(e) => {
             const newValue = e.currentTarget.value;
-            setKeyword(newValue);
             onChangeKeyword(newValue);
           }}
         />

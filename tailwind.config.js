@@ -86,22 +86,6 @@ module.exports = {
           DEFAULT: '1rem',
         },
       },
-      textColor: {},
-      fontFamily: {},
-      display: {
-        none: 'none',
-        block: 'block',
-        table: 'table',
-        flex: 'flex',
-        grid: 'grid',
-      },
-      position: {
-        top: 'top',
-        bottom: 'bottom',
-        left: 'left',
-        right: 'right',
-        center: 'center',
-      },
       borderColor: {
         DEFAULT: '#EAEBED',
       },
@@ -131,7 +115,6 @@ module.exports = {
               'rgba(54, 215, 183, 0.75) 20px -10px, rgba(54, 215, 183, 0.75) -20px 10px',
           },
         },
-
         'spinners-after': {
           '0%': {
             height: '10px',
@@ -183,92 +166,69 @@ module.exports = {
         },
 
         '.modal': {
-          position: 'fixed',
-          inset: `${theme('translate.0')} ${theme('translate.0')}`,
-          overflow: 'auto',
-          zIndex: '999',
+          '@apply fixed overflow-auto z-[999] inset-0': {},
 
           '&-overlay': {
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            justifyContent: theme('position.center'),
-            minHeight: theme('height.full'),
-            background: 'rgba(5,5,27,.6)',
+            '@apply flex items-center justify-center min-h-full bg-black/50':
+              {},
             padding: `0 ${theme('spacing.3')}`,
           },
 
           '&-container': {
-            position: 'relative',
+            '@apply relative w-full bg-white rounded-lg': {},
             margin: `${theme('spacing.8')} auto`,
-            width: theme('width.full'),
-            backgroundColor: theme('colors.white'),
-            borderRadius: theme('borderRadius.lg'),
           },
 
           '&-close': {
-            color: theme('colors.gray.7'),
-            width: theme('width.6'),
-            height: theme('height.6'),
-            zIndex: 1,
+            '@apply text-gray-7 w-6 h-6 z-[1]': {},
+          },
+
+          '&-header, &-content, &-footer': {
+            '@apply relative p-3': {},
+
+            '@screen md': {
+              padding: `${theme('spacing.4')} ${theme('spacing.5')}`,
+            },
           },
 
           '&-header': {
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: theme('spacing.3'),
-            borderBottomWidth: '1px',
+            '@apply flex justify-between border-b': {},
 
             '@screen md': {
-              padding: `${theme('spacing.4')} ${theme('spacing.3')} ${theme(
-                'spacing.3',
-              )} ${theme('spacing.5')}`,
+              '@apply pb-3': {},
             },
           },
 
           '&-content': {
-            position: 'relative',
-            padding: theme('spacing.3'),
-
             '@screen md': {
-              padding: `${theme('spacing.4')} ${theme('spacing.5')} ${theme(
-                'spacing.8',
-              )}`,
+              '@apply pb-8': {},
             },
           },
 
           '&-footer': {
-            position: 'relative',
+            '@apply border-t': {},
           },
         },
 
         '.tbl-wrapper': {
-          position: 'relative',
-          overflowX: 'auto',
-          width: theme('width.full'),
-          borderWidth: '1px',
-          borderRadius: '8px',
+          '@apply relative w-full border rounded-lg overflow-x-auto': {},
         },
 
         'table.tbl': {
-          width: theme('width.full'),
+          '@apply w-full': {},
 
           'th, td': {
-            fontSize: '15px',
-            lineHeight: '22px',
+            '@apply text-[15px] leading-[22px]': {},
           },
 
           thead: {
             tr: {
-              fontWeight: theme('fontWeight.semibold'),
-              fontSize: '15px',
-              lineHeight: theme('lineHeight.5'),
+              '@apply font-semibold text-[15px] leading-5': {},
             },
 
             th: {
-              backgroundColor: theme('colors.gray.15.3'),
+              '@apply bg-gray-15-3 whitespace-nowrap': {},
               padding: `${theme('spacing.3')} ${theme('spacing.4')}`,
-              whiteSpace: 'nowrap',
 
               '&:first-child': {
                 paddingLeft: theme('spacing.4'),
@@ -282,175 +242,83 @@ module.exports = {
 
           tbody: {
             tr: {
-              position: 'relative',
+              '@apply relative z-0': {},
               transition: '.5s',
-              zIndex: 0,
 
               '&:nth-child(even)': {
                 '&::after': {
+                  '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full bg-gray-15-7 rounded -z-[1]':
+                    {},
                   content: '""',
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%,-50%)',
                   width: 'calc(100% - 16px)',
-                  height: '100%',
-                  backgroundColor: theme('colors.gray.15.7'),
-                  borderRadius: '4px',
-                  zIndex: '-1',
                 },
               },
             },
 
             td: {
+              '@apply whitespace-nowrap select-text': {},
               padding: `10.5px ${theme('spacing.4')}`,
-              whiteSpace: 'nowrap',
-              userSelect: 'text',
-            },
-          },
-
-          '&-notification': {
-            tbody: {
-              td: {
-                maxWidth: '300px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              },
-            },
-          },
-
-          '&-decentralization': {
-            'th,td': {
-              borderBottomWidth: '1px',
-
-              '&:not(:first-child)': {
-                borderLeftWidth: '1px',
-              },
-            },
-
-            thead: {
-              th: {
-                textAlign: 'center',
-                backgroundColor: theme('colors.gray.15.7'),
-              },
-            },
-
-            tbody: {
-              tr: {
-                '&:nth-child(even)': {
-                  td: {
-                    backgroundColor: theme('colors.gray.15.7'),
-                  },
-
-                  '&::after': {
-                    display: 'none',
-                  },
-                },
-              },
-              td: {
-                position: 'relative',
-                zIndex: '1',
-              },
             },
           },
         },
 
         '.pagination': {
-          position: 'relative',
-          display: theme('display.flex'),
-          alignItems: theme('position.center'),
-          justifyContent: theme('position.center'),
-          flexWrap: 'wrap',
-          gap: theme('spacing.2'),
-          zIndex: 1,
+          '@apply relative flex flex-wrap items-center justify-center gap-2 z-[1]':
+            {},
 
           '@screen lg': {
-            justifyContent: 'space-between',
-            flexWrap: 'nowrap',
+            '@apply flex-nowrap justify-between': {},
           },
 
           '&-size': {
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            gap: theme('spacing.3'),
-            flex: theme('width.full'),
-            justifyContent: theme('position.center'),
+            '@apply flex basis-full items-center justify-center gap-3': {},
 
             '@screen lg': {
-              justifyContent: 'flex-start',
-              flex: 'auto',
+              '@apply flex-auto justify-start': {},
             },
 
             '&__label': {
-              color: theme('colors.gray.7'),
-              fontSize: theme('fontSize.sm'),
-              lineHeight: '21px',
+              '@apply text-sm text-gray-7': {},
             },
 
             '.select': {
               '&-container': {
-                backgroundColor: theme('colors.gray.15.2'),
-                fontSize: '15px',
+                '@apply text-[15px] bg-gray-15-2': {},
                 padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
               },
 
               '&-values': {
-                padding: '0 !important',
+                '@apply !p-0': {},
               },
             },
           },
 
           '&-container': {
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            justifyContent: theme('position.center'),
-            flexWrap: 'wrap',
-            gap: theme('spacing.3'),
+            '@apply flex flex-wrap items-center justify-center gap-3': {},
           },
 
           '&-item': {
-            position: 'relative',
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            justifyContent: theme('position.center'),
-            width: theme('width.8'),
-            height: theme('height.8'),
-            fontSize: '15px',
-            lineHeight: '22px',
-            backgroundColor: theme('colors.gray.15.2'),
-            borderRadius: theme('borderRadius.lg'),
-            transition: theme('transitionDuration.200'),
-            color: theme('colors.gray.7'),
-            overflow: 'hidden',
-            zIndex: theme('zIndex.0'),
+            '@apply relative flex items-center justify-center w-8 h-8 text-[15px] leading-[22px] bg-gray-15-2 rounded-lg duration-200 text-gray-7 overflow-hidden z-0':
+              {},
 
             '&:not(&--active)': {
-              cursor: theme('cursor.pointer'),
-              pointerEvents: 'auto',
+              '@apply cursor-pointer pointer-events-auto': {},
 
               '&:hover': {
-                backgroundColor: theme('colors.green.0.DEFAULT'),
-                color: theme('colors.white'),
+                '@apply bg-green-0 text-white': {},
               },
             },
 
             '&--active': {
-              cursor: theme('cursor.default'),
-              pointerEvents: 'none',
-              backgroundColor: theme('colors.green.0.DEFAULT'),
-              color: theme('colors.white'),
+              '@apply cursor-default pointer-events-none bg-green-0 text-white':
+                {},
             },
           },
         },
 
         '.select': {
-          position: 'relative',
-          display: theme('display.flex'),
-          flexDirection: 'column',
-          gap: theme('spacing.1'),
-          width: theme('width.full'),
-          userSelect: 'none',
-          cursor: theme('cursor.pointer'),
+          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer':
+            {},
           transition: '.5s ease',
 
           '&:not(.multiple)': {
@@ -465,10 +333,7 @@ module.exports = {
           '&.multiple': {
             '.select': {
               '&-value': {
-                cursor: 'pointer',
-                padding: '0.5px 6px',
-                borderRadius: theme('borderRadius.DEFAULT'),
-                backgroundColor: theme('colors.gray.15.7'),
+                '@apply cursor-pointer bg-gray-15-7 rounded': {},
 
                 '&__content': {
                   fontSize: '14px',
@@ -502,9 +367,8 @@ module.exports = {
             '&:not(.no-label)': {
               '.select': {
                 '&-label': {
-                  top: '0',
+                  '@apply top-0 text-xs': {},
                   transform: 'unset',
-                  fontSize: theme('fontSize.xs'),
                   lineHeight: '18px',
                 },
 
@@ -516,89 +380,61 @@ module.exports = {
           },
 
           '&-label': {
-            position: 'absolute',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            color: theme('colors.gray.10'),
+            '@apply absolute top-1/2 -translate-y-1/2 text-gray-10 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+              {},
             transition: '.5s ease',
             fontSize: '15px',
             lineHeight: '22px',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-            maxWidth: theme('width.full'),
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
           },
 
           '&-values': {
-            display: theme('display.flex'),
-            flexWrap: 'wrap',
-            gap: theme('spacing.1'),
+            '@apply flex flex-wrap gap-1': {},
           },
 
           '&-value': {
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            gap: theme('spacing.2'),
+            '@apply relative flex items-center gap-2': {},
             transition: '.25s ease',
 
             '&__content': {
-              display: theme('display.flex'),
-              alignItems: 'center',
-              gap: theme('spacing.2'),
+              '@apply flex items-center gap-2': {},
             },
 
-            '&__remove': {},
+            '&__remove': {
+              '@apply items-center justify-center w-3 h-3': {},
+            },
           },
 
           '&-container': {
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            justifyContent: theme('position.center'),
-            gap: '6px',
-            borderWidth: '1px',
+            '@apply flex items-center justify-center gap-1.5 border rounded bg-white':
+              {},
             padding: `3px ${theme('spacing.2')}`,
-            borderRadius: theme('borderRadius.DEFAULT'),
-            background: theme('colors.white'),
             transition: '.5s ease',
           },
 
           '&-placeholder': {
-            color: theme('colors.gray.10'),
-            whiteSpace: 'nowrap',
+            '@apply text-gray-10 whitespace-nowrap': {},
             fontSize: '15px',
             lineHeight: '22px',
           },
 
           '&-dropdown': {
-            display: theme('display.flex'),
-            flexDirection: 'column',
-            gap: theme('spacing.3'),
+            '@apply flex flex-col gap-3': {},
 
             '.options': {
-              display: theme('display.flex'),
-              flexDirection: 'column',
-              maxHeight: theme('height.60'),
-              overflow: 'auto',
+              '@apply flex flex-col gap-3 max-h-60 overflow-auto': {},
             },
 
             '.option': {
-              fontSize: theme('fontSize.base'),
-              lineHeight: theme('lineHeight.6'),
-              padding: `${theme('spacing.2')} 6px`,
-              borderRadius: theme('borderRadius.DEFAULT'),
-              cursor: theme('cursor.pointer'),
+              '@apply text-base rounded cursor-pointer bg-white': {},
+              padding: `${theme('spacing.2')} ${theme('spacing.[1.5]')}`,
               transition: '.5s ease',
-              backgroundColor: theme('colors.white'),
 
               '&:hover': {
-                backgroundColor: 'rgba(15, 183, 122, 0.05)',
+                '@apply bg-green-0/5': {},
 
                 '.option': {
                   '&-value': {
-                    fontWeight: theme('fontWeight.medium'),
-                    color: theme('colors.green.0.DEFAULT'),
+                    '@apply font-medium text-green-0': {},
                   },
                 },
               },
@@ -612,56 +448,33 @@ module.exports = {
         },
 
         '.ipt': {
-          width: theme('width.full'),
-          whiteSpace: 'nowrap',
+          '@apply w-full whitespace-nowrap': {},
         },
 
         '.form-field': {
-          position: 'relative',
-          display: theme('display.flex'),
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: theme('width.full'),
-          gap: theme('spacing.1'),
-          borderWidth: '1px',
-          borderStyle: 'solid',
-          borderRadius: theme('borderRadius.DEFAULT'),
-          overflow: 'hidden',
+          '@apply relative flex items-center justify-between gap-1 w-full border rounded overflow-hidden bg-white':
+            {},
           padding: `0 ${theme('spacing.2')}`,
-          backgroundColor: theme('colors.white'),
           transition: '.25s ease',
 
           '&:focus-within': {
-            borderColor: theme('colors.green.0.DEFAULT'),
+            '@apply border-green-0': {},
           },
 
           '.label-field': {
-            position: 'absolute',
-            top: theme('translate.1/2'),
-            left: theme('translate.0'),
-            transform: `translateY(-${theme('translate.1/2')})`,
-            fontSize: '15px',
-            lineHeight: '22px',
-            color: theme('colors.gray.10'),
+            '@apply absolute top-1/2 left-0 -translate-y-1/2 text-[15px] leading-[22px] text-gray-10 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+              {},
             transition: 'all .2s ease',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-            maxWidth: theme('width.full'),
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
           },
 
           '&:not(.no-label)': {
             '.text-field': {
               '.ipt': {
                 '&:focus': {
-                  paddingTop: '19px',
-                  paddingBottom: '3px',
+                  '@apply pt-[19px] pb-[3px]': {},
 
                   '& ~ .label-field': {
-                    fontSize: theme('fontSize.xs'),
-                    top: '3px',
-                    transform: 'translateY(0)',
+                    '@apply text-xs top-[3px] translate-y-0': {},
                   },
                 },
               },
@@ -669,353 +482,230 @@ module.exports = {
           },
 
           '.icon-field': {
-            display: 'flex',
-            gap: theme('spacing.1'),
-            color: theme('colors.gray.10'),
+            '@apply flex gap-1 text-gray-10': {},
           },
 
           '.text-field': {
-            position: 'relative',
-            display: theme('display.flex'),
-            alignItems: theme('position.center'),
-            gap: '2px',
-            flex: '1',
-            height: '100%',
-            color: theme('colors.black.2'),
-            cursor: 'text',
+            '@apply relative flex flex-1 items-center gap-0.5 h-full text-black-2 cursor-text':
+              {},
 
             '&__prefix': {
-              marginTop: '19px',
-              padding: '2px 6px',
-              backgroundColor: theme('colors.gray.15.2'),
-              borderRadius: '4px',
-              fontSize: '12px',
-              lineHeight: '18px',
-              pointerEvents: 'none',
+              '@apply mt-[19px] p-[2px_6px] bg-gray-15-2 rounded text-xs leading-[18px] pointer-events-none':
+                {},
             },
 
             '.ipt': {
-              fontSize: '15px',
-              lineHeight: '22px',
-              fontWeight: theme('fontWeight.sm'),
+              '@apply text-[15px] leading-[22px] border-none bg-transparent text-current min-h-[46px] resize-none':
+                {},
               padding: '11px 0',
-              border: 'none',
-              backgroundColor: theme('colors.transparent'),
               outline: 'none',
-              color: 'currentColor',
               textAlign: 'inherit',
               transition: 'all .2s ease',
-              minHeight: '46px',
-              resize: 'none',
 
               '&::placehoder': {
-                color: theme('colors.gray.10'),
+                '@apply text-gray-10': {},
               },
             },
           },
 
           '&.has-value': {
             '.label-field': {
-              fontSize: theme('fontSize.xs'),
-              top: '3px',
-              transform: 'translateY(0)',
+              '@apply text-xs top-[3px] translate-y-0': {},
             },
 
             '&:not(.no-label)': {
               '.ipt': {
-                paddingTop: '19px',
-                paddingBottom: '3px',
+                '@apply pt-[19px] pb-[3px]': {},
               },
             },
           },
 
           '&.disabled': {
-            backgroundColor: theme('colors.gray.15.2'),
+            '@apply bg-gray-15-2': {},
 
             '.ipt': {
-              cursor: 'default',
+              '@apply cursor-default': {},
             },
           },
         },
 
         '.form-file': {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme('spacing.1'),
-          width: theme('width.full'),
-          height: theme('height.full'),
+          '@apply flex flex-col gap-1 w-full h-full': {},
 
           '&:not(.disabled)': {
             '.file-container': {
-              cursor: 'pointer',
-              border: `1px dashed ${theme('colors.green.0.DEFAULT')}`,
+              '@apply border border-dashed border-green-0 cursor-pointer': {},
             },
           },
 
           '.file-container': {
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '4px',
-            overflow: 'hidden',
+            '@apply relative flex items-center justify-center rounded overflow-hidden h-full':
+              {},
             padding: '14px 18px',
-            height: theme('height.full'),
           },
 
           '.file-field': {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '4px',
-            pointerEvents: 'none',
+            '@apply flex flex-col items-center justify-center gap-1 pointer-events-none':
+              {},
           },
 
           '.file-preview': {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: '100%',
-            height: '100%',
+            '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full':
+              {},
 
             '.preview-img': {
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              '@apply w-full h-full object-cover': {},
             },
           },
 
           '.ipt-file': {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: '100%',
-            height: '100%',
-            visibility: 'hidden',
+            '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full invisible':
+              {},
           },
 
           '.placeholder-file': {
-            fontSize: '12px',
-            lineHeight: '18px',
-            color: theme('colors.gray.10'),
-            textAlign: 'center',
+            '@apply text-xs leading-[18px] text-gray-10 text-center': {},
           },
 
           '.label-file': {
-            fontSize: '15px',
-            lineHeight: '22px',
-            color: theme('colors.gray.10'),
+            '@apply text-[15px] leading-[22px] text-gray-10': {},
           },
         },
 
         '.form-picker': {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme('spacing.1'),
+          '@apply flex flex-col gap-1': {},
 
           '&.disabled': {
             '.picker-field': {
-              backgroundColor: theme('colors.gray.15.2'),
+              '@apply bg-gray-15-2': {},
             },
           },
 
           '&.has-value': {
             '.label-picker': {
-              top: '0',
+              '@apply top-0 text-xs leading-[18px] opacity-100': {},
               transform: 'unset',
-              fontSize: theme('fontSize.xs'),
-              lineHeight: '18px',
-              opacity: theme('opacity.100'),
             },
           },
 
           '.picker-field': {
-            display: 'flex',
-            position: 'relative',
-            borderWidth: '1px',
-            borderRadius: '4px',
+            '@apply relative flex border rounded cursor-pointer select-none':
+              {},
             padding: '3px 0',
-            cursor: 'pointer',
-            userSelect: 'none',
             transition: '.25s ease',
 
             '&:focus-within': {
-              borderColor: theme('colors.green.0.DEFAULT'),
+              '@apply border-green-0': {},
             },
           },
 
           '.label-picker': {
-            position: 'absolute',
-            top: '50%',
-            left: theme('spacing.2'),
-            transform: 'translateY(-50%)',
-            color: theme('colors.gray.10'),
+            '@apply absolute top-1/2 left-2 -translate-y-1/2 text-gray-10 pointer-events-none opacity-0 text-[15px] leading-[22px]':
+              {},
             transition: '.5s ease',
-            pointerEvents: 'none',
-            opacity: theme('opacity.0'),
-            fontSize: '15px',
-            lineHeight: '22px',
           },
         },
 
         '.checkbox': {
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: theme('spacing.2'),
-          cursor: 'pointer',
+          '@apply inline-flex items-center gap-2 cursor-pointer': {},
 
           '&__container': {
-            display: 'inline-block',
-            verticalAlign: 'middle',
+            '@apply inline-block align-middle': {},
           },
 
           '&__ipt': {
-            border: '0',
+            '@apply absolute border-0 w-px h-px -m-px overflow-hidden p-0 whitespace-nowrap':
+              {},
             clip: 'rect(0 0 0 0)',
             clipPath: 'inset(50%)',
-            height: '1px',
-            margin: '-1px',
-            overflow: 'hidden',
-            padding: '0',
-            position: 'absolute',
-            whiteSpace: 'nowrap',
-            width: '1px',
           },
 
           '&__box': {
-            position: 'relative',
-            width: '16px',
-            height: '16px',
-            borderWidth: '2px',
-            borderRadius: '4px',
+            '@apply relative w-4 h-4 border-2 rounded cursor-pointer': {},
             transition: '.25s ease',
-            cursor: 'pointer',
           },
 
           '&__label': {
-            fontSize: theme('fontSize.sm'),
-            lineHeight: '21px',
-            color: theme('colors.gray.7'),
+            '@apply text-sm text-gray-7': {},
           },
 
           '&__icon': {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: theme('colors.white'),
+            '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white':
+              {},
           },
         },
 
         '.switch': {
-          display: 'inline-flex',
-          borderRadius: '22px',
-          width: '38px',
-          height: theme('height.6'),
-          padding: '1px',
+          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-14': {},
           transition: '.25s ease',
-          backgroundColor: theme('colors.gray.14'),
 
           '&.active': {
             '.switch': {
               '&__thumb': {
-                left: '100%',
-                transform: 'translate(-100%,-50%)',
+                '@apply left-full -translate-x-full -translate-y-1/2': {},
               },
             },
           },
 
           '&:not(.disabled)': {
-            cursor: 'pointer',
-            pointerEvents: 'auto',
+            '@apply cursor-pointer pointer-events-auto': {},
 
             '&.active': {
-              backgroundColor: theme('colors.green.0.DEFAULT'),
+              '@apply bg-green-0': {},
             },
           },
 
           '&.disabled': {
             '&.active': {
-              backgroundColor: theme('colors.gray.11'),
+              '@apply bg-gray-11': {},
             },
           },
 
           '&__container': {
-            position: 'relative',
-            display: 'flex',
-            width: theme('width.full'),
+            '@apply relative flex w-full': {},
           },
 
           '&__ipt': {
-            border: '0',
+            '@apply absolute border-0 w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap':
+              {},
             clip: 'rect(0 0 0 0)',
             clipPath: 'inset(50%)',
-            height: '1px',
-            margin: '-1px',
-            overflow: 'hidden',
-            padding: '0',
-            position: 'absolute',
-            whiteSpace: 'nowrap',
-            width: '1px',
           },
 
           '&__thumb': {
-            position: 'absolute',
-            top: '50%',
-            left: '0',
-            transform: 'translateY(-50%)',
-            width: '22px',
-            height: '100%',
-            backgroundColor: theme('colors.white'),
-            borderRadius: theme('borderRadius.full'),
+            '@apply absolute top-1/2 left-0 -translate-y-1/2 w-[22px] h-full bg-white rounded-full':
+              {},
             transition: '.25s ease',
           },
         },
 
         '.range': {
+          '@apply relative flex': {},
+
           '[type="range"]': {
-            appearance: 'none',
-            borderRadius: theme('borderRadius.DEFAULT'),
+            '@apply appearance-none rounded': {},
 
             '&::-webkit-slider-thumb': {
-              appearance: 'none',
-              width: '10px',
-              height: '10px',
-              marginTop: `-1.55px`,
-              backgroundColor: theme('colors.orange.400'),
-              border: 0,
-              borderRadius: theme('borderRadius.full'),
+              '@apply appearance-none w-2.5 h-2.5 -mt-[1.55px] bg-orange-400 border-0 rounded-full':
+                {},
               boxShadow: `0 0 0 5px rgba(255, 255, 255, 0.1)`,
             },
 
             '&::-webkit-slider-runnable-track': {
-              appearance: 'none',
-              height: '6px',
-              cursor: theme('cursor.pointer'),
+              '@apply appearance-none h-1.5 cursor-pointer': {},
             },
           },
 
-          '.bubble': {
-            position: 'absolute',
+          '&__bubble': {
+            '@apply absolute left-1/2 -translate-x-1/2 text-center bg-red-15 rounded-md text-white':
+              {},
             top: `calc(${theme('translate.full')} + 13.76px)`,
-            left: theme('translate.1/2'),
-            transform: `translateX(-${theme('translate.1/2')})`,
             padding: `${theme('spacing.[0.5]')} ${theme('spacing.2')}`,
             minWidth: theme('width.10'),
-            textAlign: theme('position.center'),
-            backgroundColor: theme('colors.red.15'),
-            borderRadius: theme('borderRadius.md'),
-            color: theme('colors.white'),
 
             '&::before': {
-              content: theme('content.DEFAULT'),
-              position: 'absolute',
-              bottom: theme('translate.full'),
-              left: theme('translate.1/2'),
-              transform: `translateX(-${theme('translate.1/2')})`,
+              '@apply absolute bottom-full left-1/2 -translate-x-1/2': {},
+              content: '""',
               borderWidth: '0 8px 5px',
               borderColor: `${theme('backgroundColor.transparent')} ${theme(
                 'backgroundColor.transparent',
@@ -1027,242 +717,118 @@ module.exports = {
         },
 
         '.btn': {
-          position: 'relative',
-          display: theme('display.flex'),
-          alignItems: theme('position.center'),
-          justifyContent: theme('position.center'),
+          '@apply relative flex items-center justify-center font-medium text-[15px] leading-[22px] z-0 border rounded border-current overflow-hidden min-h-[48px]':
+            {},
           padding: `10.5px ${theme('spacing.4')}`,
-          fontWeight: theme('fontWeight.medium'),
-          fontSize: '15px',
-          lineHeight: '22px',
           transition: '.5s',
-          zIndex: 0,
-          borderWidth: '1px',
-          borderRadius: theme('borderRadius.DEFAULT'),
-          borderColor: 'currentColor',
-          overflow: 'hidden',
-          minHeight: '48px',
 
           '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: theme('width.full'),
-            height: theme('height.full'),
-            backgroundColor: 'currentColor',
-            opacity: theme('opacity.5'),
+            '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current opacity-5':
+              {},
           },
 
           '&:not(.outlined)': {
-            borderColor: 'transparent',
+            '@apply border-transparent': {},
 
             '&::before': {
-              opacity: theme('opacity.100'),
+              '@apply opacity-100': {},
             },
 
             '.btn__content': {
-              color: theme('colors.white'),
+              '@apply text-white': {},
             },
           },
 
           '&:disabled': {
-            pointerEvents: 'none',
+            '@apply pointer-events-none': {},
 
             '&::before': {
-              backgroundColor: theme('colors.gray.10'),
+              '@apply bg-gray-10': {},
             },
           },
 
           '&__content': {
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            gap: theme('spacing.2'),
-            color: 'currentColor',
+            '@apply relative flex items-center gap-2 text-current': {},
           },
         },
 
         '.typography': {
-          position: 'relative',
-          borderRadius: '4px',
+          '@apply relative rounded': {},
 
           '&:hover': {
-            color: theme('colors.green.0.DEFAULT'),
+            '@apply text-green-0': {},
 
             '&::before': {
-              content: '""',
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'currentColor',
-              borderRadius: '4px',
-              opacity: theme('opacity.5'),
+              '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current rounded opacity-5':
+                {},
             },
 
             '.typography__text': {
-              fontWeight: '500',
+              '@apply font-medium': {},
             },
           },
 
           '&__text': {
-            display: 'flex',
-            padding: theme('spacing.2'),
-            color: 'currentColor',
+            '@apply flex p-2 text-current': {},
           },
         },
 
         '.alert': {
-          position: 'relative',
-          display: 'inline-flex',
-          justifyContent: 'center',
+          '@apply relative inline-flex justify-center border border-current rounded min-w-[80px]':
+            {},
           padding: '4.5px 12px',
-          borderWidth: '1px',
-          borderColor: 'currentColor',
-          borderRadius: '4px',
-          minWidth: '80px',
 
           '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: theme('width.full'),
-            height: theme('height.full'),
-            backgroundColor: 'currentColor',
-            opacity: theme('opacity.5'),
+            '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current opacity-5':
+              {},
           },
-        },
-
-        '.grid': {
-          '&__box': {
-            borderWidth: '1px',
-            borderRadius: '8px',
-            overflow: 'auto',
-          },
-
-          '&__row': {
-            display: 'flex',
-            fontSize: '15px',
-            lineHeight: '22px',
-
-            '&:not(:last-child)': {
-              '.grid__cell': {
-                borderBottomWidth: '1px',
-              },
-            },
-          },
-
-          '&__title': {
-            color: theme('colors.gray.7'),
-            borderRightWidth: '1px',
-            flexShrink: '0',
-            minWidth: theme('width.1/3'),
-          },
-
-          '&__content': {
-            flex: '1',
-            whiteSpace: 'nowrap',
-          },
-
-          '&__cell': {
-            display: 'flex',
-            alignItems: 'center',
-            padding: theme('spacing.3'),
-          },
-        },
-
-        '.bubble': {
-          position: 'absolute',
-          background:
-            'linear-gradient(35.25deg, #61CAA4 13.5%, #FFFFFF 85.62%)',
-          boxShadow: `-9px 14px 41px ${theme('colors.gray.15.7')}`,
-          filter: 'blur(2px)',
-          borderRadius: '100%',
-          pointerEvents: 'none',
         },
 
         '.tooltip': {
-          display: 'inline-flex',
+          '@apply inline-flex': {},
 
           '&__link': {},
 
           '&__popper': {
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            display: 'flex',
-            background: theme('colors.gray.7'),
+            '@apply absolute top-0 left-0 flex bg-gray-7 rounded text-white text-xs leading-[18px] z-[1]':
+              {},
             padding: '2px 12px',
-            borderRadius: '4px',
-            color: theme('colors.white'),
-            fontSize: '12px',
-            lineHeight: '18px',
-            zIndex: '1',
           },
         },
 
         '.tabs': {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: theme('spacing.5'),
+          '@apply flex flex-col gap-5': {},
 
           '&-header': {
-            display: 'flex',
-            borderBottomWidth: '1px',
-            overflow: 'auto',
+            '@apply flex border-b overflow-auto': {},
           },
 
           '&-content': {},
 
           '.tab': {
             '&-btn': {
+              '@apply text-black-2 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
+                {},
               padding: '6px 8px',
-              color: theme('colors.black.2'),
-              borderBottomWidth: '1px',
-              borderColor: 'transparent',
-              borderTopLeftRadius: theme('borderRadius.lg'),
-              borderTopRightRadius: theme('borderRadius.lg'),
-              backgroundColor: 'transparent',
               transition: '.25s ease',
-              fontSize: '15px',
-              lineHeight: '22px',
-              whiteSpace: 'nowrap',
 
               '&.active': {
-                backgroundColor: theme('colors.green.14'),
-                color: theme('colors.green.0.DEFAULT'),
-                borderColor: theme('colors.green.0.DEFAULT'),
+                '@apply bg-green-14 text-green-0 border-green-0': {},
               },
             },
 
             '&-pane': {
               '&:not(.active)': {
-                pointerEvents: 'none',
+                '@apply pointer-events-none': {},
               },
             },
           },
         },
 
         '.sidebar': {
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          transform: 'translateX(-100%)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '67px',
+          '@apply fixed top-0 left-0 -translate-x-full flex flex-shrink-0 flex-col gap-16 bg-white h-screen overflow-auto z-[999]':
+            {},
           padding: `30px ${theme('spacing.4')}`,
-          flexShrink: '0',
-          backgroundColor: theme('colors.white'),
-          height: '100vh',
-          overflow: 'auto',
-          zIndex: '999',
           transition: '.25s ease',
 
           '&.active': {
@@ -1270,95 +836,66 @@ module.exports = {
           },
 
           '&__item': {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: theme('spacing.2'),
+            '@apply flex flex-col gap-2': {},
           },
 
           '&__nav': {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: theme('spacing.2'),
+            '@apply flex flex-col gap-2': {},
 
             '.nav': {
               '&__item': {
-                display: 'flex',
-                flexDirection: 'column',
-                gap: theme('spacing.1'),
-                cursor: 'pointer',
+                '@apply flex flex-col gap-1 cursor-pointer': {},
               },
 
               '&__icon': {
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: '0',
-                width: theme('width.6'),
-                height: theme('height.6'),
+                '@apply flex-shrink-0 items-center justify-center w-6 h-6': {},
                 transition: '.25s ease',
               },
 
               '&__control': {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: theme('spacing.2'),
-                flex: '1',
+                '@apply flex items-center justify-between gap-2 flex-1 text-black-2':
+                  {},
                 padding: '12px 0',
-                color: theme('colors.black.2'),
 
                 '&:hover': {
-                  color: theme('colors.green.0.DEFAULT'),
+                  '@apply text-green-0': {},
                 },
 
                 '&.active': {
-                  color: theme('colors.green.0.DEFAULT'),
+                  '@apply text-green-0': {},
 
                   '.nav__title': {
-                    fontWeight: theme('fontWeight.medium'),
+                    '@apply font-medium': {},
                   },
                 },
               },
 
               '&__title': {
-                alignSelf: 'center',
+                '@apply self-center': {},
               },
 
               '&__left': {
-                display: 'flex',
-                gap: theme('spacing.2'),
+                '@apply flex gap-2': {},
               },
 
               '&__dropdown': {
-                marginLeft: theme('spacing.3'),
-                paddingLeft: theme('spacing.2'),
-                borderLeftWidth: '1px',
-                transformOrigin: 'top',
+                '@apply ml-3 pl-2 border-l origin-top': {},
 
                 '.dropdown': {
                   '&__link': {
-                    fontSize: '14px',
-                    lineHeight: '21px',
-                    borderRadius: '4px',
+                    '@apply text-sm rounded': {},
 
                     '&.active': {
-                      color: theme('colors.green.0.DEFAULT'),
+                      '@apply text-green-0': {},
 
                       '.typography': {
                         '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          width: '100%',
-                          height: '100%',
-                          backgroundColor: 'currentColor',
-                          borderRadius: '4px',
-                          opacity: theme('opacity.5'),
+                          '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current rounded opacity-5':
+                            {},
                         },
 
                         '.typography__text': {
-                          fontWeight: '500',
+                          '@apply font-medium': {},
                         },
                       },
                     },

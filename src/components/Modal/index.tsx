@@ -44,7 +44,6 @@ const Modal: React.FC<Props> = ({
   const $clickableOverlayRef = useRef<HTMLDivElement>(null);
 
   const onOpen = useCallback(() => setStateOpen(true), []);
-
   const onClose = useCallback(() => {
     if (!isControlled) {
       setStateOpen(false);
