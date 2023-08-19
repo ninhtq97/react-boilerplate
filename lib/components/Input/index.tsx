@@ -111,8 +111,6 @@ export const InputPassword = forwardRef<
   );
 });
 
-export default InputPassword;
-
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
 export { default as Range } from './Range';
