@@ -3,10 +3,7 @@ const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [
-    './src/**/*.{jsx,tsx}',
-    './node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
-  ],
+  content: [],
   theme: {
     extend: {
       colors: {
