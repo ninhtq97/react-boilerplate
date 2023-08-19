@@ -1,4 +1,5 @@
-import { forwardRef } from 'react';
+import { Eye, EyeOff } from 'components/Icon';
+import { forwardRef, useState } from 'react';
 import { End, Start } from 'types';
 import { Icon } from '../Icon';
 
@@ -86,8 +87,33 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   },
 );
 
+export const InputPassword = forwardRef<
+  HTMLInputElement,
+  React.ComponentProps<typeof Input>
+>((props, $ref) => {
+  const [hide, setHide] = useState(true);
+  const onToggleHide = () => setHide(!hide);
+
+  return (
+    <Input
+      type={hide ? 'password' : 'text'}
+      {...props}
+      ref={$ref}
+      iconPosition={props.iconPosition || 'end'}
+      icon={
+        props.icon || hide ? (
+          <Eye className="cursor-pointer fill-none" onClick={onToggleHide} />
+        ) : (
+          <EyeOff className="cursor-pointer fill-none" onClick={onToggleHide} />
+        )
+      }
+    />
+  );
+});
+
+export default InputPassword;
+
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
-export { default as Password } from './Password';
 export { default as Range } from './Range';
 export { default as Switch } from './Switch';
