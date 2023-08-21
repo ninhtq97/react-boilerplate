@@ -24,6 +24,14 @@ module.exports = {
       inlineDynamicImports: true,
     },
   ],
-  external: ['react'],
+  external: [
+    'react',
+    'axios',
+    'date-fns',
+    'framer-motion',
+    'react-tailwindcss-datepicker',
+    'slugify',
+    'sweetalert2',
+  ],
   plugins: [typescript(options.compilerOptions), json(), resolve(), commonjs()],
 };
