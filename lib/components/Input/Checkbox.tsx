@@ -45,7 +45,9 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
           />
           <div
             className={`checkbox__box ${
-              checked ? 'bg-green-0 border-green-0' : 'bg-white border-gray-7'
+              checked
+                ? 'bg-emerald-500 border-emerald-500'
+                : 'bg-white border-gray-7'
             }`}
           >
             <Icon

@@ -85,7 +85,7 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
         {label && <span className="label-file">{label}</span>}
         <label
           className={`file-container ${className || ''} ${
-            error ? '!border-rose-500 text-rose-500' : 'text-black-2'
+            error ? '!border-rose-500 text-rose-500' : 'text-stone-800'
           }`}
         >
           {!disabled && (
@@ -94,7 +94,7 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
                 className={`items-center justify-center border rounded bg-opacity-10 p-1 max-w-[32px] max-h-8 ${
                   error
                     ? 'border-rose-500 bg-rose-500 text-rose-500'
-                    : 'border-green-0 bg-green-0 text-green-0'
+                    : 'border-emerald-500 bg-emerald-500 text-emerald-500'
                 }`}
                 icon={<Plus />}
               />

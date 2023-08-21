@@ -66,7 +66,7 @@ const Pagination: React.FC<Props> = ({
       {withChangeSize && (
         <div className="pagination-size">
           <p className="pagination-size__label">{sizeLable}</p>
-          <div className="max-w-[75px]">
+          <div className="pagination-size__select">
             <Select
               isFilterSearch={false}
               placement="top-start"

@@ -3,165 +3,74 @@ const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [],
-  theme: {
-    extend: {
-      colors: {
-        black: {
-          DEFAULT: '#000000',
-          2: '#29333B',
-        },
-        blue: {
-          1: '#176CDD',
-          4: '#4289DE',
-        },
-        gray: {
-          6: '#687188',
-          7: '#767C81',
-          8: '#828282',
-          10: '#AAADB1',
-          11: '#B3B3B3',
-          13: '#D3D6DA',
-          14: '#EBEBEB',
-          15: {
-            2: '#F2F2F2',
-            3: '#F3F7FE',
-            7: '#F7F7F7',
-            8: '#F8FAFF',
-          },
-        },
-        green: {
-          0: {
-            DEFAULT: '#0FB77A',
-            7: '#07AF17',
-          },
-          1: '#1DC3C3',
-          4: '#45B88D',
-          5: {
-            DEFAULT: '#52D1A3',
-            14: '#5EA54C',
-          },
-          6: '#6AB59A',
-          7: '#78DEB9',
-          14: '#E7F8F2',
-        },
-        yellow: {
-          14: '#E2BA38',
-        },
-        orange: {
-          14: '#E69E5A',
-          15: '#F89707',
-        },
-        pink: {
-          13: '#DC39D5',
-        },
-        purple: {
-          8: '#815CD1',
-          9: '#9156DA',
-          10: {
-            6: '#A663C6',
-            7: '#A749DE',
-          },
-        },
-        red: {
-          13: '#DA615C',
-          15: '#F01919',
-        },
-      },
-      screens: {
-        xs: '480px',
-        sm: '576px',
-        md: '768px',
-        lg: '992px',
-        xl: '1200px',
-        '2xl': '1536px',
-      },
-      container: {
-        center: true,
-        screens: {},
-        padding: {
-          DEFAULT: '1rem',
-        },
-      },
-      borderColor: {
-        DEFAULT: '#EAEBED',
-      },
-      backgroundImage: {},
-      backgroundSize: {
-        full: '100%',
-      },
-      keyframes: {
-        'spinners-before': {
-          '0%': {
-            width: '10px',
-            boxShadow:
-              'rgba(54, 215, 183, 0.75) 20px -10px, rgba(54, 215, 183, 0.75) -20px 10px',
-          },
-          '35%': {
-            width: '50px',
-            boxShadow:
-              'rgba(54, 215, 183, 0.75) 0px -10px, rgba(54, 215, 183, 0.75) 0px 10px',
-          },
-          '70%': {
-            width: '10px',
-            boxShadow:
-              'rgba(54, 215, 183, 0.75) -20px -10px, rgba(54, 215, 183, 0.75) 20px 10px',
-          },
-          '100%': {
-            boxShadow:
-              'rgba(54, 215, 183, 0.75) 20px -10px, rgba(54, 215, 183, 0.75) -20px 10px',
-          },
-        },
-        'spinners-after': {
-          '0%': {
-            height: '10px',
-            boxShadow:
-              'rgb(54, 215, 183) 10px 20px, rgb(54, 215, 183) -10px -20px',
-          },
-          '35%': {
-            height: '50px',
-            boxShadow:
-              'rgb(54, 215, 183) 10px 0px, rgb(54, 215, 183) -10px 0px',
-          },
-          '70%': {
-            height: '10px',
-            boxShadow:
-              'rgb(54, 215, 183) 10px -20px, rgb(54, 215, 183) -10px 20px',
-          },
-          '100%': {
-            boxShadow:
-              'rgb(54, 215, 183) 10px 20px, rgb(54, 215, 183) -10px -20px',
-          },
-        },
-      },
-      animation: {
-        'spinners-before':
-          '2s ease 0s infinite normal none running spinners-before',
-        'spinners-after':
-          '2s ease 0s infinite normal none running spinners-after',
-      },
-    },
-  },
+  content: ['./lib/**/*.{js,jsx,ts,tsx}'],
+  theme: {},
   plugins: [
-    plugin(function ({ addComponents, theme }) {
-      addComponents({
-        '.container': {
-          '&:not(.fluid)': {
-            '@screen sm': {
-              maxWidth: '540px',
-            },
-            '@screen md': {
-              maxWidth: '720px',
-            },
-            '@screen lg': {
-              maxWidth: '960px',
-            },
-            '@screen xl': {
-              maxWidth: '1202px',
-            },
+    plugin(function ({ addBase, addComponents, theme }) {
+      addBase({
+        '*': {
+          outline: 'none',
+          userSelect: 'none',
+
+          '&::-webkit-scrollbar': {
+            width: theme('width[1.5]'),
+            height: theme('width[1.5]'),
+            backgroundColor: theme('colors.neutral.100'),
+            borderRadius: theme('borderRadius.lg'),
+          },
+
+          '&::-webkit-scrollbar-thumb': {
+            background: '#aaa',
+            borderRadius: theme('borderRadius.lg'),
+          },
+
+          '&::-webkit-scrollbar-track': {
+            background: '#eee',
+            borderRadius: theme('borderRadius.lg'),
+          },
+
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: '#999',
+          },
+
+          '&::before, &::after': {
+            pointerEvents: 'none',
           },
         },
 
+        body: {
+          overflowX: 'hidden',
+          backgroundColor: theme('colors.gray.100'),
+          color: theme('colors.stone.800'),
+          minHeight: theme('minHeight.screen'),
+        },
+
+        input: {
+          '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+            '-webkit-appearance': 'none',
+            margin: theme('spacing.0'),
+          },
+
+          '&::-ms-reveal, &::-ms-clear': {
+            display: 'none',
+          },
+
+          '&[type="number"]': {
+            '-moz-appearance': 'textfield',
+          },
+        },
+
+        'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active, textarea:-webkit-autofill, textarea:-webkit-autofill:hover,textarea:-webkit-autofill:focus, textarea:-webkit-autofill:active, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus, select:-webkit-autofill:active':
+          {
+            '-webkit-text-fill-color': theme('colors.stone.800'),
+            '-webkit-box-shadow': `0 0 0px 1000px ${theme(
+              'colors.white',
+            )} inset !important`,
+            backgroundColor: `${theme('colors.transparent')} !important`,
+            transition: 'background-color 5000s ease-in-out 0s',
+          },
+      });
+      addComponents({
         '.modal': {
           '@apply fixed overflow-auto z-[999] inset-0': {},
 
@@ -177,7 +86,7 @@ module.exports = {
           },
 
           '&-close': {
-            '@apply text-gray-7 w-6 h-6 z-[1]': {},
+            '@apply text-neutral-500 w-6 h-6 z-[1]': {},
           },
 
           '&-header, &-content, &-footer': {
@@ -224,15 +133,15 @@ module.exports = {
             },
 
             th: {
-              '@apply bg-gray-15-3 whitespace-nowrap': {},
+              '@apply whitespace-nowrap': {},
               padding: `${theme('spacing.3')} ${theme('spacing.4')}`,
 
               '&:first-child': {
-                paddingLeft: theme('spacing.4'),
+                '@apply pl-4': {},
               },
 
               '&:last-child': {
-                paddingRight: theme('spacing.4'),
+                '@apply pr-4': {},
               },
             },
           },
@@ -244,7 +153,7 @@ module.exports = {
 
               '&:nth-child(even)': {
                 '&::after': {
-                  '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full bg-gray-15-7 rounded -z-[1]':
+                  '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full bg-slate-50 rounded -z-[1]':
                     {},
                   content: '""',
                   width: 'calc(100% - 16px)',
@@ -275,12 +184,16 @@ module.exports = {
             },
 
             '&__label': {
-              '@apply text-sm text-gray-7': {},
+              '@apply text-sm text-neutral-500': {},
+            },
+
+            '&__select': {
+              '@apply max-w-[75px]': {},
             },
 
             '.select': {
               '&-container': {
-                '@apply text-[15px] bg-gray-15-2': {},
+                '@apply text-[15px] bg-gray-100': {},
                 padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
               },
 
@@ -295,19 +208,19 @@ module.exports = {
           },
 
           '&-item': {
-            '@apply relative flex items-center justify-center w-8 h-8 text-[15px] leading-[22px] bg-gray-15-2 rounded-lg duration-200 text-gray-7 overflow-hidden z-0':
+            '@apply relative flex items-center justify-center w-8 h-8 text-[15px] leading-[22px] bg-gray-100 rounded-lg duration-200 text-neutral-500 overflow-hidden z-0':
               {},
 
             '&:not(&--active)': {
               '@apply cursor-pointer pointer-events-auto': {},
 
               '&:hover': {
-                '@apply bg-green-0 text-white': {},
+                '@apply bg-emerald-500 text-white': {},
               },
             },
 
             '&--active': {
-              '@apply cursor-default pointer-events-none bg-green-0 text-white':
+              '@apply cursor-default pointer-events-none bg-emerald-500 text-white':
                 {},
             },
           },
@@ -330,11 +243,10 @@ module.exports = {
           '&.multiple': {
             '.select': {
               '&-value': {
-                '@apply cursor-pointer bg-gray-15-7 rounded': {},
+                '@apply cursor-pointer bg-slate-50 rounded': {},
 
                 '&__content': {
-                  fontSize: '14px',
-                  lineHeight: '21px',
+                  '@apply text-sm': {},
                 },
               },
             },
@@ -377,7 +289,7 @@ module.exports = {
           },
 
           '&-label': {
-            '@apply absolute top-1/2 -translate-y-1/2 text-gray-10 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
               {},
             transition: '.5s ease',
             fontSize: '15px',
@@ -409,7 +321,7 @@ module.exports = {
           },
 
           '&-placeholder': {
-            '@apply text-gray-10 whitespace-nowrap': {},
+            '@apply text-zinc-400 whitespace-nowrap': {},
             fontSize: '15px',
             lineHeight: '22px',
           },
@@ -427,11 +339,11 @@ module.exports = {
               transition: '.5s ease',
 
               '&:hover': {
-                '@apply bg-green-0/5': {},
+                '@apply bg-emerald-500/5': {},
 
                 '.option': {
                   '&-value': {
-                    '@apply font-medium text-green-0': {},
+                    '@apply font-medium text-emerald-500': {},
                   },
                 },
               },
@@ -455,11 +367,11 @@ module.exports = {
           transition: '.25s ease',
 
           '&:focus-within': {
-            '@apply border-green-0': {},
+            '@apply border-emerald-500': {},
           },
 
           '.label-field': {
-            '@apply absolute top-1/2 left-0 -translate-y-1/2 text-[15px] leading-[22px] text-gray-10 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+            '@apply absolute top-1/2 left-0 -translate-y-1/2 text-[15px] leading-[22px] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
               {},
             transition: 'all .2s ease',
           },
@@ -479,15 +391,15 @@ module.exports = {
           },
 
           '.icon-field': {
-            '@apply flex gap-1 text-gray-10': {},
+            '@apply flex gap-1 text-zinc-400': {},
           },
 
           '.text-field': {
-            '@apply relative flex flex-1 items-center gap-0.5 h-full text-black-2 cursor-text':
+            '@apply relative flex flex-1 items-center gap-0.5 h-full text-stone-800 cursor-text':
               {},
 
             '&__prefix': {
-              '@apply mt-[19px] p-[2px_6px] bg-gray-15-2 rounded text-xs leading-[18px] pointer-events-none':
+              '@apply mt-[19px] p-[2px_6px] bg-gray-100 rounded text-xs leading-[18px] pointer-events-none':
                 {},
             },
 
@@ -500,7 +412,7 @@ module.exports = {
               transition: 'all .2s ease',
 
               '&::placehoder': {
-                '@apply text-gray-10': {},
+                '@apply text-zinc-400': {},
               },
             },
           },
@@ -518,7 +430,7 @@ module.exports = {
           },
 
           '&.disabled': {
-            '@apply bg-gray-15-2': {},
+            '@apply bg-gray-100': {},
 
             '.ipt': {
               '@apply cursor-default': {},
@@ -531,7 +443,8 @@ module.exports = {
 
           '&:not(.disabled)': {
             '.file-container': {
-              '@apply border border-dashed border-green-0 cursor-pointer': {},
+              '@apply border border-dashed border-emerald-500 cursor-pointer':
+                {},
             },
           },
 
@@ -561,11 +474,11 @@ module.exports = {
           },
 
           '.placeholder-file': {
-            '@apply text-xs leading-[18px] text-gray-10 text-center': {},
+            '@apply text-xs leading-[18px] text-zinc-400 text-center': {},
           },
 
           '.label-file': {
-            '@apply text-[15px] leading-[22px] text-gray-10': {},
+            '@apply text-[15px] leading-[22px] text-zinc-400': {},
           },
         },
 
@@ -574,7 +487,7 @@ module.exports = {
 
           '&.disabled': {
             '.picker-field': {
-              '@apply bg-gray-15-2': {},
+              '@apply bg-gray-100': {},
             },
           },
 
@@ -592,12 +505,12 @@ module.exports = {
             transition: '.25s ease',
 
             '&:focus-within': {
-              '@apply border-green-0': {},
+              '@apply border-emerald-500': {},
             },
           },
 
           '.label-picker': {
-            '@apply absolute top-1/2 left-2 -translate-y-1/2 text-gray-10 pointer-events-none opacity-0 text-[15px] leading-[22px]':
+            '@apply absolute top-1/2 left-2 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[15px] leading-[22px]':
               {},
             transition: '.5s ease',
           },
@@ -623,7 +536,7 @@ module.exports = {
           },
 
           '&__label': {
-            '@apply text-sm text-gray-7': {},
+            '@apply text-sm text-neutral-500': {},
           },
 
           '&__icon': {
@@ -633,7 +546,7 @@ module.exports = {
         },
 
         '.switch': {
-          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-14': {},
+          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-200': {},
           transition: '.25s ease',
 
           '&.active': {
@@ -648,13 +561,13 @@ module.exports = {
             '@apply cursor-pointer pointer-events-auto': {},
 
             '&.active': {
-              '@apply bg-green-0': {},
+              '@apply bg-emerald-500': {},
             },
           },
 
           '&.disabled': {
             '&.active': {
-              '@apply bg-gray-11': {},
+              '@apply bg-stone-400': {},
             },
           },
 
@@ -694,7 +607,7 @@ module.exports = {
           },
 
           '&__bubble': {
-            '@apply absolute left-1/2 -translate-x-1/2 text-center bg-red-15 rounded-md text-white':
+            '@apply absolute left-1/2 -translate-x-1/2 text-center bg-rose-600 rounded-md text-white':
               {},
             top: `calc(${theme('translate.full')} + 13.76px)`,
             padding: `${theme('spacing.[0.5]')} ${theme('spacing.2')}`,
@@ -740,7 +653,7 @@ module.exports = {
             '@apply pointer-events-none': {},
 
             '&::before': {
-              '@apply bg-gray-10': {},
+              '@apply bg-zinc-400': {},
             },
           },
 
@@ -753,7 +666,7 @@ module.exports = {
           '@apply relative rounded': {},
 
           '&:hover': {
-            '@apply text-green-0': {},
+            '@apply text-emerald-500': {},
 
             '&::before': {
               '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current rounded opacity-5':
@@ -773,7 +686,6 @@ module.exports = {
         '.alert': {
           '@apply relative inline-flex justify-center border border-current rounded min-w-[80px]':
             {},
-          padding: '4.5px 12px',
 
           '&::before': {
             '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current opacity-5':
@@ -787,7 +699,7 @@ module.exports = {
           '&__link': {},
 
           '&__popper': {
-            '@apply absolute top-0 left-0 flex bg-gray-7 rounded text-white text-xs leading-[18px] z-[1]':
+            '@apply absolute top-0 left-0 flex bg-neutral-500 rounded text-white text-xs leading-[18px] z-[1]':
               {},
             padding: '2px 12px',
           },
@@ -804,104 +716,19 @@ module.exports = {
 
           '.tab': {
             '&-btn': {
-              '@apply text-black-2 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
+              '@apply text-stone-800 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
                 {},
               padding: '6px 8px',
               transition: '.25s ease',
 
               '&.active': {
-                '@apply bg-green-14 text-green-0 border-green-0': {},
+                '@apply bg-emerald-50 text-emerald-500 border-emerald-500': {},
               },
             },
 
             '&-pane': {
               '&:not(.active)': {
                 '@apply pointer-events-none': {},
-              },
-            },
-          },
-        },
-
-        '.sidebar': {
-          '@apply fixed top-0 left-0 -translate-x-full flex flex-shrink-0 flex-col gap-16 bg-white h-screen overflow-auto z-[999]':
-            {},
-          padding: `30px ${theme('spacing.4')}`,
-          transition: '.25s ease',
-
-          '&.active': {
-            transform: 'translateX(0)',
-          },
-
-          '&__item': {
-            '@apply flex flex-col gap-2': {},
-          },
-
-          '&__nav': {
-            '@apply flex flex-col gap-2': {},
-
-            '.nav': {
-              '&__item': {
-                '@apply flex flex-col gap-1 cursor-pointer': {},
-              },
-
-              '&__icon': {
-                '@apply flex-shrink-0 items-center justify-center w-6 h-6': {},
-                transition: '.25s ease',
-              },
-
-              '&__control': {
-                '@apply flex items-center justify-between gap-2 flex-1 text-black-2':
-                  {},
-                padding: '12px 0',
-
-                '&:hover': {
-                  '@apply text-green-0': {},
-                },
-
-                '&.active': {
-                  '@apply text-green-0': {},
-
-                  '.nav__title': {
-                    '@apply font-medium': {},
-                  },
-                },
-              },
-
-              '&__title': {
-                '@apply self-center': {},
-              },
-
-              '&__left': {
-                '@apply flex gap-2': {},
-              },
-
-              '&__dropdown': {
-                '@apply ml-3 pl-2 border-l origin-top': {},
-
-                '.dropdown': {
-                  '&__link': {
-                    '@apply text-sm rounded': {},
-
-                    '&.active': {
-                      '@apply text-green-0': {},
-
-                      '.typography': {
-                        '&::before': {
-                          '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current rounded opacity-5':
-                            {},
-                        },
-
-                        '.typography__text': {
-                          '@apply font-medium': {},
-                        },
-                      },
-                    },
-
-                    '.typography__text': {
-                      padding: '6px 8px',
-                    },
-                  },
-                },
               },
             },
           },

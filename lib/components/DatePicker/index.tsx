@@ -19,7 +19,7 @@ const CustomDatePicker: React.FC<Props> = ({ error, helperText, ...props }) => {
             props.placeholder && props.value?.startDate ? '!pb-1 pt-4' : ''
           }${
             props.disabled
-              ? ' !bg-gray-15-2 disabled:!opacity-100 font-normal text-black-2'
+              ? ' !bg-gray-100 disabled:!opacity-100 font-normal text-stone-800'
               : ''
           }`}
           displayFormat={DATE_FORMAT.PICKER}

@@ -61,7 +61,7 @@ const Dropdown: React.FC<Props> = ({
         <Input
           placeholder="Tìm kiếm..."
           value={searchValue}
-          icon={<Search className="text-gray-7" />}
+          icon={<Search className="text-neutral-500" />}
           onChange={(e) => {
             const newValue = e.currentTarget.value;
             onChangeKeyword(newValue);
@@ -71,7 +71,7 @@ const Dropdown: React.FC<Props> = ({
 
       <div className="options">
         {isLoading ? (
-          <div className="flex items-center justify-center gap-2 py-2 text-gray-7">
+          <div className="flex items-center justify-center gap-2 py-2 text-neutral-500">
             <Icon icon={<Spinner className="animate-spin" />} />
             <span className="text-sm">Loading...</span>
           </div>
@@ -87,12 +87,12 @@ const Dropdown: React.FC<Props> = ({
                 <span className="option-value">{option.label}</span>
               </div>
               {option.suffix && (
-                <span className="text-xs text-gray-10">{option.suffix}</span>
+                <span className="text-xs text-zinc-400">{option.suffix}</span>
               )}
             </div>
           ))
         ) : (
-          <div className="flex items-center justify-center text-sm text-gray-7">
+          <div className="flex items-center justify-center text-sm text-neutral-500">
             Không tìm thấy dữ liệu
           </div>
         )}

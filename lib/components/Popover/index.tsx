@@ -83,19 +83,14 @@ const Popover: React.FC<Props> = ({
 
   return (
     <>
-      {renderLink?.({
-        ref: $linkRef,
-        onClick: isOpen ? onClose : onOpen,
-      })}
+      {renderLink?.({ ref: $linkRef, onClick: isOpen ? onClose : onOpen })}
 
       <AnimatePresence>
         {isOpen && renderContent && (
           <>
             {createPortal(
               <motion.div
-                className={`fixed p-5 bg-white rounded z-[999] shadow-md max-w-fit${
-                  className ? ` ${className}` : ''
-                }`}
+                className={`popover${className ? ` ${className}` : ''}`}
                 ref={$popoverRef}
                 initial={{ y: 8, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}

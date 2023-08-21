@@ -27,12 +27,12 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     $ref,
   ) => {
     const mapClassname = {
-      primary: 'text-blue-4',
-      secondary: 'text-gray-15-2',
-      success: 'text-green-0',
-      error: 'text-red-15',
-      info: 'text-blue-1',
-      warning: 'text-orange-15',
+      primary: 'text-blue-700',
+      secondary: 'text-gray-500',
+      success: 'text-emerald-500',
+      error: 'text-rose-600',
+      info: 'text-blue-600',
+      warning: 'text-orange-400',
     };
 
     return (
@@ -51,7 +51,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
               loading && variant === 'outlined'
                 ? mapClassname[color]
                 : color === 'secondary'
-                ? 'text-black-2'
+                ? 'text-stone-800'
                 : 'text-white'
             }`}
           >

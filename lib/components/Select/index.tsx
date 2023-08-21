@@ -113,7 +113,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
           <>
             <div
               className={`select-container ${
-                error ? 'text-rose-500 border-rose-500' : 'text-black-2'
+                error ? 'text-rose-500 border-rose-500' : 'text-stone-800'
               }${className ? ` ${className}` : ''}`}
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
@@ -150,7 +150,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
               <div className="flex gap-1">
                 <span className="border-l"></span>
                 <Icon
-                  className="text-gray-7 items-center justify-center text-base w-6 h-6"
+                  className="text-neutral-500 items-center justify-center text-base w-6 h-6"
                   tag="div"
                   icon={<ChevronDown />}
                 />

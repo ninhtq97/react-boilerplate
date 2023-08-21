@@ -2,6 +2,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import postcss from 'rollup-plugin-postcss';
 
 const packageJson = require('./package.json');
 const options = require('./tsconfig.json');
@@ -33,5 +34,18 @@ module.exports = {
     'slugify',
     'sweetalert2',
   ],
-  plugins: [typescript(options.compilerOptions), json(), resolve(), commonjs()],
+  plugins: [
+    typescript(options.compilerOptions),
+    json(),
+    resolve(),
+    commonjs(),
+    postcss({
+      config: {
+        path: './postcss.config.js',
+      },
+      extensions: ['.css'],
+      minimize: true,
+      inject: { insertAt: 'top' },
+    }),
+  ],
 };
