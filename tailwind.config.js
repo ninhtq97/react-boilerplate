@@ -226,6 +226,10 @@ module.exports = {
           },
         },
 
+        '.popover': {
+          '@apply fixed p-5 bg-white rounded z-[999] shadow-md max-w-fit': {},
+        },
+
         '.select': {
           '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer':
             {},
