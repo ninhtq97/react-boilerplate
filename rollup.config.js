@@ -40,9 +40,7 @@ module.exports = {
     resolve(),
     commonjs(),
     postcss({
-      config: {
-        path: './postcss.config.js',
-      },
+      config: { path: './postcss.config.js' },
       extensions: ['.css'],
       minimize: true,
       inject: { insertAt: 'top' },
