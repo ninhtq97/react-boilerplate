@@ -334,7 +334,7 @@ module.exports = {
             '@apply flex flex-col gap-3': {},
 
             '.options': {
-              '@apply flex flex-col gap-3 max-h-60 overflow-auto': {},
+              '@apply flex flex-col max-h-60 overflow-auto': {},
             },
 
             '.option': {
