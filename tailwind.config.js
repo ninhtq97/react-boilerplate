@@ -33,8 +33,7 @@ module.exports = {
         },
 
         body: {
-          '@apply overflow-x-hidden bg-gray-100 text-stone-800 min-h-screen':
-            {},
+          '@apply overflow-x-hidden text-stone-800 min-h-screen': {},
         },
 
         input: {
