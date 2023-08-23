@@ -9,40 +9,32 @@ module.exports = {
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         '*': {
-          outline: 'none',
-          userSelect: 'none',
+          '@apply outline-none select-none': {},
 
           '&::-webkit-scrollbar': {
-            width: theme('width[1.5]'),
-            height: theme('width[1.5]'),
-            backgroundColor: theme('colors.neutral.100'),
-            borderRadius: theme('borderRadius.lg'),
+            '@apply w-1.5 h-1.5 bg-neutral-100 rounded-lg': {},
           },
 
           '&::-webkit-scrollbar-thumb': {
-            background: '#aaa',
-            borderRadius: theme('borderRadius.lg'),
+            '@apply bg-[#AAA] rounded-lg': {},
           },
 
           '&::-webkit-scrollbar-track': {
-            background: '#eee',
-            borderRadius: theme('borderRadius.lg'),
+            '@apply bg-[#EEE] rounded-lg': {},
           },
 
           '&::-webkit-scrollbar-thumb:hover': {
-            background: '#999',
+            '@apply bg-[#999]': {},
           },
 
           '&::before, &::after': {
-            pointerEvents: 'none',
+            '@apply pointer-events-none': {},
           },
         },
 
         body: {
-          overflowX: 'hidden',
-          backgroundColor: theme('colors.gray.100'),
-          color: theme('colors.stone.800'),
-          minHeight: theme('minHeight.screen'),
+          '@apply overflow-x-hidden bg-gray-100 text-stone-800 min-h-screen':
+            {},
         },
 
         input: {
