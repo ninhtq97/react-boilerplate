@@ -16,7 +16,7 @@ const CustomDatePicker: React.FC<Props> = ({ error, helperText, ...props }) => {
       <label className={`picker-field ${error ? '!border-rose-500' : ''}`}>
         <Datepicker
           inputClassName={`placeholder:text-[15px] placeholder:leading-[22px] !pl-2 focus:ring-0 ${
-            props.placeholder && props.value?.startDate ? '!pb-1 pt-4' : ''
+            props.placeholder && props.value?.startDate ? '!pb-1 pt-3' : 'py-2'
           }${
             props.disabled
               ? ' !bg-gray-100 disabled:!opacity-100 font-normal text-stone-800'
