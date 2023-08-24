@@ -2,17 +2,21 @@ import { forwardRef } from 'react';
 
 type Props = {
   tag?: React.ElementType;
+  badged?: boolean;
   clickable?: boolean;
   icon: React.ReactNode;
 } & React.HTMLProps<HTMLDivElement>;
 
 export const Icon = forwardRef<HTMLElement, Props>(
-  ({ className, tag: Wrapper = 'span', clickable, icon, ...props }, $ref) => {
+  (
+    { className, tag: Wrapper = 'span', badged, clickable, icon, ...props },
+    $ref,
+  ) => {
     return (
       <Wrapper
-        className={`flex${clickable ? ' cursor-pointer select-none' : ''}${
-          className ? ` ${className}` : ''
-        }`}
+        className={`icon${badged ? ' badged' : ''}${
+          clickable ? ' cursor-pointer select-none' : ''
+        }${className ? ` ${className}` : ''}`}
         ref={$ref}
         {...props}
       >

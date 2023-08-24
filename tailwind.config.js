@@ -351,6 +351,14 @@ module.exports = {
           },
         },
 
+        '.icon': {
+          '@apply flex': {},
+
+          '&.badged': {
+            '@apply relative': {},
+          },
+        },
+
         '.ipt': {
           '@apply w-full whitespace-nowrap': {},
         },
