@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     return (
       <div className="flex flex-col gap-1 w-full">
         <div
-          className={`form-field ${className || ''}${
+          className={`form-field ${className || ''} ${
             error ? '!border-rose-500 text-rose-500' : 'text-stone-800'
           }${
             placeholder || prefix || props.value?.toString().length
