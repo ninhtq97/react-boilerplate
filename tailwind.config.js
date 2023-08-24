@@ -364,9 +364,9 @@ module.exports = {
         },
 
         '.form-field': {
-          '@apply relative flex items-center justify-between gap-1 w-full border rounded overflow-hidden bg-white':
+          '@apply relative flex items-center justify-between gap-3 w-full border rounded overflow-hidden bg-white':
             {},
-          padding: `0 ${theme('spacing.2')}`,
+          padding: `0 ${theme('spacing.3')}`,
           transition: '.25s ease',
 
           '&:focus-within': {
@@ -394,7 +394,7 @@ module.exports = {
           },
 
           '.icon-field': {
-            '@apply flex gap-1 text-zinc-400': {},
+            '@apply flex gap-2 text-zinc-400': {},
           },
 
           '.text-field': {

@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           {icon && iconPosition === 'start' && (
             <div className="icon-field">
               <Icon icon={icon} />
-              <span className="border-r"></span>
+              {/* <span className="border-r"></span> */}
             </div>
           )}
 
@@ -58,7 +58,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             ) : (
               <Wrapper
                 type="text"
-                className={`ipt ${inputClassName ? ` ${inputClassName}` : ''}`}
+                className={`ipt${inputClassName ? ` ${inputClassName}` : ''}`}
                 ref={$ref}
                 autoComplete="off"
                 placeholder={placeholder}
@@ -76,7 +76,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
           {icon && iconPosition === 'end' && (
             <div className="icon-field">
-              <span className="border-l"></span>
+              {/* <span className="border-l"></span> */}
               <Icon icon={icon} />
             </div>
           )}
