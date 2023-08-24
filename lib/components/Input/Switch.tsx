@@ -34,10 +34,10 @@ const Switch = forwardRef<HTMLInputElement, Props>(
       <label
         className={`switch${checked ? ' active' : ''}${
           disabled ? ' disabled' : ''
-        }`}
+        } ${className || ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`switch__container ${className || ''}`}>
+        <div className="switch__container bg">
           <input
             type="checkbox"
             className="switch__ipt"

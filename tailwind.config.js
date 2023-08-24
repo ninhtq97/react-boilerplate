@@ -90,16 +90,6 @@ module.exports = {
 
           '&-header': {
             '@apply flex justify-between border-b': {},
-
-            '@screen md': {
-              '@apply pb-3': {},
-            },
-          },
-
-          '&-content': {
-            '@screen md': {
-              '@apply pb-8': {},
-            },
           },
 
           '&-footer': {
@@ -564,7 +554,7 @@ module.exports = {
             '@apply cursor-pointer pointer-events-auto': {},
 
             '&.active': {
-              '@apply bg-emerald-500': {},
+              '@apply bg-current': {},
             },
           },
 
