@@ -66,7 +66,7 @@ module.exports = {
           '@apply fixed overflow-auto z-[999] inset-0': {},
 
           '&-overlay': {
-            '@apply flex items-center justify-center min-h-full bg-black/50':
+            '@apply flex items-center justify-center min-h-full bg-black/20':
               {},
             padding: `0 ${theme('spacing.3')}`,
           },
