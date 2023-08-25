@@ -603,9 +603,8 @@ module.exports = {
         },
 
         '.btn': {
-          '@apply relative flex items-center justify-center font-medium text-[15px] leading-[22px] z-0 border rounded border-current overflow-hidden min-h-[48px]':
+          '@apply relative flex items-center justify-center font-medium text-[15px] leading-[22px] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px]':
             {},
-          padding: `10.5px ${theme('spacing.4')}`,
           transition: '.5s',
 
           '&::before': {
