@@ -18,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       loadingIndicator,
       children,
       variant = 'contained',
-      color = 'success',
+      color = 'primary',
       onClick,
       ...props
     },
