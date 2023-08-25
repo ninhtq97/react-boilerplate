@@ -208,7 +208,7 @@ module.exports = {
         },
 
         '.popover': {
-          '@apply fixed p-5 bg-white rounded z-[999] shadow-md max-w-fit': {},
+          '@apply fixed p-2 bg-white rounded z-[999] shadow-md max-w-fit': {},
         },
 
         '.select': {
