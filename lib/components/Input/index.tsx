@@ -32,25 +32,29 @@ export const Input = forwardRef<HTMLInputElement, Props>(
     $ref,
   ) => {
     return (
-      <div className="flex flex-col gap-1 w-full">
-        <div
-          className={`form-field ${className || ''} ${
-            error ? '!border-rose-500 text-rose-500' : 'text-stone-800'
-          }${
-            placeholder || prefix || props.value?.toString().length
-              ? ' has-value'
-              : ''
-          }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}`}
-        >
+      <div
+        className={`form-field ${className || ''}${error ? ' has-error' : ''}${
+          placeholder || prefix || props.value?.toString().length
+            ? ' has-value'
+            : ''
+        }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}`}
+      >
+        {label && (
+          <span className="label-field">
+            {label}
+            {props.required && <span className="text-rose-500">*</span>}
+          </span>
+        )}
+
+        <div className="text-field">
           {icon && iconPosition === 'start' && (
             <div className="icon-field">
               <Icon icon={icon} />
-              {/* <span className="border-r"></span> */}
             </div>
           )}
 
-          <label className={`text-field`}>
-            {prefix && <div className="text-field__prefix">{prefix}</div>}
+          <label className="ipt-field">
+            {prefix && <div className="ipt-field__prefix">{prefix}</div>}
             {disabled ? (
               <p className="ipt" ref={$ref}>
                 {props.value}
@@ -65,18 +69,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(
                 {...props}
               />
             )}
-
-            {label && (
-              <span className="label-field">
-                {label}
-                {props.required && <span className="text-red-15">*</span>}
-              </span>
-            )}
           </label>
 
           {icon && iconPosition === 'end' && (
             <div className="icon-field">
-              {/* <span className="border-l"></span> */}
               <Icon icon={icon} />
             </div>
           )}

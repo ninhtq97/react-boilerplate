@@ -2,7 +2,6 @@ import { ComponentProps, forwardRef } from 'react';
 import { Icon, Spinner } from '../Icon';
 
 type Props = {
-  icon?: React.ReactNode;
   loading?: boolean;
   loadingPosition?: 'start' | 'end' | 'center';
   loadingIndicator?: string;
@@ -14,7 +13,6 @@ const Button = forwardRef<HTMLButtonElement, Props>(
   (
     {
       className,
-      icon,
       loading = false,
       loadingPosition = 'start',
       loadingIndicator,
@@ -27,7 +25,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     $ref,
   ) => {
     const mapClassname = {
-      primary: 'text-blue-700',
+      primary: 'text-blue-500',
       secondary: 'text-gray-500',
       success: 'text-emerald-500',
       error: 'text-rose-600',
@@ -59,10 +57,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
             {loadingIndicator}
           </div>
         ) : (
-          <span className="btn__content">
-            {icon && <span className="btn__icon">{icon}</span>}
-            <span className="btn__text">{children}</span>
-          </span>
+          <span className="btn__content">{children}</span>
         )}
       </button>
     );
