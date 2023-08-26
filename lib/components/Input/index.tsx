@@ -4,6 +4,7 @@ import { End, Start } from 'types';
 import { Icon } from '../Icon';
 
 type Props = {
+  floating?: boolean;
   inputClassName?: string;
   tag?: React.ElementType;
   error?: boolean;
@@ -17,6 +18,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       className,
+      floating,
       inputClassName,
       tag: Wrapper = 'input',
       label,
@@ -37,9 +39,11 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           placeholder || prefix || props.value?.toString().length
             ? ' has-value'
             : ''
-        }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}`}
+        }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}${
+          floating ? ' floating' : ''
+        }`}
       >
-        {label && (
+        {!floating && label && (
           <span className="label-field">
             {label}
             {props.required && <span className="text-rose-500">*</span>}
@@ -68,6 +72,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(
                 placeholder={placeholder}
                 {...props}
               />
+            )}
+
+            {floating && label && (
+              <span className="label-field">
+                {label}
+                {props.required && <span className="text-rose-500">*</span>}
+              </span>
             )}
           </label>
 

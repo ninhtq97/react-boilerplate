@@ -41,6 +41,7 @@
     "sweetalert2": "^11.7.20"
   },
   "scripts": {
+    "watch": "rollup -c -w",
     "prebuild": "rimraf ./build/dist",
     "build": "rollup -c",
     "format": "prettier --write \"lib/**/*.ts\" \"test/**/*.ts\"",

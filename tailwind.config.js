@@ -354,7 +354,41 @@ module.exports = {
         },
 
         '.form-field': {
-          '@apply flex flex-col gap-2 w-full': {},
+          '@apply relative flex flex-col gap-2 w-full': {},
+          padding: `0 ${theme('spacing.3')}`,
+          transition: '.25s ease',
+
+          '&.floating': {
+            '.label-field': {
+              '@apply absolute top-1/2 left-0 -translate-y-1/2 text-[15px] leading-[22px] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+                {},
+              transition: 'all .25s ease',
+            },
+
+            '&.has-value': {
+              '.label-field': {
+                '@apply text-xs top-1.5 translate-y-0': {},
+              },
+            },
+
+            '&:not(.no-label)': {
+              '.text-field': {
+                '.ipt': {
+                  '&:focus': {
+                    '& ~ .label-field': {
+                      '@apply text-xs top-1.5 translate-y-0': {},
+                    },
+                  },
+                },
+              },
+            },
+
+            '.ipt-field': {
+              '.ipt': {
+                '@apply pt-6 pb-[0.625rem]': {},
+              },
+            },
+          },
 
           '&.has-error': {
             '@apply text-rose-500': {},
@@ -363,8 +397,6 @@ module.exports = {
               '@apply text-current': {},
             },
           },
-
-          '&.has-value': {},
 
           '&.disabled': {
             '@apply bg-gray-100': {},
@@ -383,32 +415,30 @@ module.exports = {
           '.text-field': {
             '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100':
               {},
-            padding: `0 ${theme('spacing.3')}`,
-            transition: '.25s ease',
+          },
 
-            '.icon-field': {
-              '@apply flex gap-2 text-current': {},
+          '.icon-field': {
+            '@apply flex gap-2 text-current': {},
+          },
+
+          '.ipt-field': {
+            '@apply relative flex flex-1 items-center gap-0.5 h-full cursor-text':
+              {},
+
+            '&__prefix': {
+              '@apply py-0.5 px-1.5 bg-white rounded text-xs pointer-events-none':
+                {},
             },
 
-            '.ipt-field': {
-              '@apply relative flex flex-1 items-center gap-0.5 h-full cursor-text':
+            '.ipt': {
+              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current min-h-[calc(3.25rem_+_4px)] py-[1.0625rem] resize-none':
                 {},
+              outline: 'none',
+              textAlign: 'inherit',
+              transition: 'all .2s ease',
 
-              '&__prefix': {
-                '@apply py-0.5 px-1.5 bg-white rounded text-xs pointer-events-none':
-                  {},
-              },
-
-              '.ipt': {
-                '@apply text-[15px] leading-[22px] border-none bg-transparent text-current min-h-[46px] py-[1.125rem] resize-none':
-                  {},
-                outline: 'none',
-                textAlign: 'inherit',
-                transition: 'all .2s ease',
-
-                '&::placehoder': {
-                  '@apply text-zinc-400': {},
-                },
+              '&::placehoder': {
+                '@apply text-zinc-400': {},
               },
             },
           },
@@ -633,7 +663,8 @@ module.exports = {
           },
 
           '&__content': {
-            '@apply relative flex items-center gap-2 flex-1 text-current': {},
+            '@apply relative flex items-center justify-center gap-2 flex-1 text-current':
+              {},
           },
         },
 
