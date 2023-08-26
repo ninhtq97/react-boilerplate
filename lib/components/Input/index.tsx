@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   ) => {
     return (
       <div
-        className={`form-field ${className || ''}${error ? ' has-error' : ''}${
+        className={`form-field ${error ? ' has-error' : ''}${
           placeholder || prefix || props.value?.toString().length
             ? ' has-value'
             : ''
@@ -50,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           </span>
         )}
 
-        <div className="text-field">
+        <div className={`text-field ${className || ''}`}>
           {icon && iconPosition === 'start' && (
             <div className="icon-field">
               <Icon icon={icon} />

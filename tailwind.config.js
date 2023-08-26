@@ -355,8 +355,6 @@ module.exports = {
 
         '.form-field': {
           '@apply relative flex flex-col gap-2 w-full': {},
-          padding: `0 ${theme('spacing.3')}`,
-          transition: '.25s ease',
 
           '&.floating': {
             '.label-field': {
@@ -415,6 +413,8 @@ module.exports = {
           '.text-field': {
             '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100':
               {},
+            padding: `0 ${theme('spacing.3')}`,
+            transition: '.25s ease',
           },
 
           '.icon-field': {
@@ -711,34 +711,34 @@ module.exports = {
           },
         },
 
-        '.tabs': {
-          '@apply flex flex-col gap-5': {},
+        // '.tabs': {
+        //   '@apply flex flex-col gap-5': {},
 
-          '&-header': {
-            '@apply flex border-b overflow-auto': {},
-          },
+        //   '&-header': {
+        //     '@apply flex border-b overflow-auto': {},
+        //   },
 
-          '&-content': {},
+        //   '&-content': {},
 
-          '.tab': {
-            '&-btn': {
-              '@apply text-stone-800 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
-                {},
-              padding: '6px 8px',
-              transition: '.25s ease',
+        //   '.tab': {
+        //     '&-btn': {
+        //       '@apply text-stone-800 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
+        //         {},
+        //       padding: '6px 8px',
+        //       transition: '.25s ease',
 
-              '&.active': {
-                '@apply bg-emerald-50 text-emerald-500 border-emerald-500': {},
-              },
-            },
+        //       '&.active': {
+        //         '@apply bg-emerald-50 text-emerald-500 border-emerald-500': {},
+        //       },
+        //     },
 
-            '&-pane': {
-              '&:not(.active)': {
-                '@apply pointer-events-none': {},
-              },
-            },
-          },
-        },
+        //     '&-pane': {
+        //       '&:not(.active)': {
+        //         '@apply pointer-events-none': {},
+        //       },
+        //     },
+        //   },
+        // },
       });
     }),
   ],
