@@ -86,7 +86,7 @@ const Modal: React.FC<Props> = ({
                     animate={isOpen ? 'open' : 'close'}
                     variants={{
                       open: { scale: [0, 1.1, 1], opacity: [0, 1] },
-                      closed: { scale: [1, 1.1, 0], opacity: [1, 0] },
+                      close: { scale: [1, 1.1, 0], opacity: [1, 0] },
                     }}
                     exit={{ scale: [1, 1.1, 0], opacity: [1, 0] }}
                     transition={{ duration: 0.5 }}

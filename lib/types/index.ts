@@ -16,6 +16,11 @@ export type Placement =
   | Position
   | `${Position}-${End}`;
 
+export type TScreenDimension = {
+  width: number;
+  height: number;
+};
+
 export type TFilter = {
   page: number;
   take: number;
