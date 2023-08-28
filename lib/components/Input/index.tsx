@@ -41,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             : ''
         }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}${
           floating ? ' floating' : ''
-        }`}
+        }${Wrapper !== 'input' ? ' textarea' : ''}`}
       >
         {!floating && label && (
           <span className="label-field">

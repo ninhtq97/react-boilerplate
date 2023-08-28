@@ -101,20 +101,18 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       className={`select${isMultiple ? ' multiple' : ''}${
         isDisable ? ` disabled` : ''
       }${placeholder || selected.length ? ' has-value' : ''}${
-        !label ? ' no-label' : ''
-      }`}
+        error ? ' has-error' : ''
+      }${!label ? ' no-label' : ''}`}
       ref={$ref}
     >
       <Popover
-        className="!p-2 border rounded-lg"
+        className="!p-2 border-slate-400 rounded-xl"
         placement={placement}
         onClose={() => onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
           <>
             <div
-              className={`select-container ${
-                error ? 'text-rose-500 border-rose-500' : 'text-stone-800'
-              }${className ? ` ${className}` : ''}`}
+              className={`select-container${className ? ` ${className}` : ''}`}
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
             >
@@ -148,9 +146,9 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
                 </div>
               </div>
               <div className="flex gap-1">
-                <span className="border-l"></span>
+                {/* <span className="border-l"></span> */}
                 <Icon
-                  className="text-neutral-500 items-center justify-center text-base w-6 h-6"
+                  className="text-slate-400 items-center justify-center text-base w-6 h-6"
                   tag="div"
                   icon={<ChevronDown />}
                 />

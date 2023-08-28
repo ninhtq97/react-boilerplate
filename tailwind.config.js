@@ -105,7 +105,7 @@ module.exports = {
           '@apply w-full': {},
 
           'th, td': {
-            '@apply text-[15px] leading-[22px]': {},
+            '@apply text-[.9375rem] leading-[1.375rem]': {},
           },
 
           thead: {
@@ -189,7 +189,7 @@ module.exports = {
           },
 
           '&-item': {
-            '@apply relative flex items-center justify-center w-8 h-8 text-[15px] leading-[22px] bg-gray-100 rounded-lg duration-200 text-neutral-500 overflow-hidden z-0':
+            '@apply relative flex items-center justify-center w-8 h-8 text-[.9375rem] leading-[1.375rem] bg-gray-100 rounded-lg duration-200 text-neutral-500 overflow-hidden z-0':
               {},
 
             '&:not(&--active)': {
@@ -208,7 +208,8 @@ module.exports = {
         },
 
         '.popover': {
-          '@apply fixed p-2 bg-white rounded z-[999] shadow-md max-w-fit': {},
+          '@apply absolute p-2 bg-white rounded z-[999] shadow-md max-w-fit':
+            {},
         },
 
         '.select': {
@@ -244,7 +245,7 @@ module.exports = {
           '&:not(.has-value)': {
             '.select': {
               '&-values': {
-                padding: `${theme('spacing.5')} 0`,
+                '@apply py-7': {},
               },
             },
           },
@@ -253,7 +254,7 @@ module.exports = {
             '&.no-label': {
               '.select': {
                 '&-values': {
-                  padding: `9px 0`,
+                  '@apply py-[1.1335em]': {},
                 },
               },
             },
@@ -261,24 +262,29 @@ module.exports = {
             '&:not(.no-label)': {
               '.select': {
                 '&-label': {
-                  '@apply top-0 text-xs': {},
+                  '@apply top-[.375rem] text-xs': {},
                   transform: 'unset',
-                  lineHeight: '18px',
                 },
 
                 '&-values': {
-                  padding: `${theme('spacing.4')} 0 ${theme('spacing.[0.5]')}`,
+                  '@apply pt-6 pb-[.625rem]': {},
                 },
               },
             },
           },
 
+          '&.has-error': {
+            '.select': {
+              '&-container': {
+                '@apply text-rose-500': {},
+              },
+            },
+          },
+
           '&-label': {
-            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem]':
               {},
             transition: '.5s ease',
-            fontSize: '15px',
-            lineHeight: '22px',
           },
 
           '&-values': {
@@ -299,16 +305,14 @@ module.exports = {
           },
 
           '&-container': {
-            '@apply flex items-center justify-center gap-1.5 border rounded bg-white':
+            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3':
               {},
-            padding: `3px ${theme('spacing.2')}`,
             transition: '.5s ease',
           },
 
           '&-placeholder': {
-            '@apply text-zinc-400 whitespace-nowrap': {},
-            fontSize: '15px',
-            lineHeight: '22px',
+            '@apply text-slate-400 whitespace-nowrap text-[.9375rem] leading-[1.375rem]':
+              {},
           },
 
           '&-dropdown': {
@@ -319,23 +323,22 @@ module.exports = {
             },
 
             '.option': {
-              '@apply text-base rounded cursor-pointer bg-white': {},
+              '@apply text-base rounded-xl cursor-pointer bg-white': {},
               padding: `${theme('spacing.2')} ${theme('spacing.[1.5]')}`,
               transition: '.5s ease',
 
               '&:hover': {
-                '@apply bg-emerald-500/5': {},
+                '@apply bg-blue-500/5': {},
 
                 '.option': {
                   '&-value': {
-                    '@apply font-medium text-emerald-500': {},
+                    '@apply font-medium text-blue-500': {},
                   },
                 },
               },
 
               '&-value': {
-                fontSize: '15px',
-                lineHeight: '22px',
+                '@apply text-[.9375rem] leading-[1.375rem]': {},
               },
             },
           },
@@ -358,9 +361,21 @@ module.exports = {
 
           '&.floating': {
             '.label-field': {
-              '@apply absolute top-1/2 left-0 -translate-y-1/2 text-[15px] leading-[22px] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+              '@apply absolute left-0 text-[.9375rem] leading-[1.375rem] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
                 {},
               transition: 'all .25s ease',
+            },
+
+            '&.textarea': {
+              '.label-field': {
+                '@apply top-6': {},
+              },
+            },
+
+            '&:not(.textarea)': {
+              '.label-field': {
+                '@apply top-1/2 -translate-y-1/2': {},
+              },
             },
 
             '&.has-value': {
@@ -405,15 +420,14 @@ module.exports = {
           },
 
           '.label-field': {
-            '@apply text-[15px] leading-[22px] text-current pointer-events-none whitespace-nowrap max-w-full text-slate-400 text-ellipsis overflow-hidden':
+            '@apply text-[.9375rem] leading-[1.375rem] text-current pointer-events-none whitespace-nowrap max-w-full text-slate-400 text-ellipsis overflow-hidden':
               {},
             transition: '.25s ease',
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100':
+            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 px-3':
               {},
-            padding: `0 ${theme('spacing.3')}`,
             transition: '.25s ease',
           },
 
@@ -484,7 +498,7 @@ module.exports = {
           },
 
           '.label-file': {
-            '@apply text-[15px] leading-[22px] text-zinc-400': {},
+            '@apply text-[.9375rem] leading-[1.375rem] text-zinc-400': {},
           },
         },
 
@@ -499,24 +513,19 @@ module.exports = {
 
           '&.has-value': {
             '.label-picker': {
-              '@apply top-0 text-xs leading-[18px] opacity-100': {},
+              '@apply top-[.375rem] text-xs opacity-100': {},
               transform: 'unset',
             },
           },
 
           '.picker-field': {
-            '@apply relative flex border rounded cursor-pointer select-none':
+            '@apply relative flex border-transparent rounded-xl cursor-pointer select-none bg-slate-100 text-[.9375rem] leading-[1.375rem]':
               {},
-            padding: '3px 0',
             transition: '.25s ease',
-
-            '&:focus-within': {
-              '@apply border-emerald-500': {},
-            },
           },
 
           '.label-picker': {
-            '@apply absolute top-1/2 left-2 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[15px] leading-[22px]':
+            '@apply absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[.9375rem] leading-[1.375rem]':
               {},
             transition: '.5s ease',
           },
@@ -633,7 +642,7 @@ module.exports = {
         },
 
         '.btn': {
-          '@apply relative flex items-center justify-center font-medium text-[15px] leading-[22px] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px]':
+          '@apply relative flex items-center justify-center font-medium text-[.9375rem] leading-[1.375rem] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px]':
             {},
           transition: '.5s',
 
@@ -711,34 +720,27 @@ module.exports = {
           },
         },
 
-        // '.tabs': {
-        //   '@apply flex flex-col gap-5': {},
+        '.tabs': {
+          '@apply flex flex-col gap-5': {},
 
-        //   '&-header': {
-        //     '@apply flex border-b overflow-auto': {},
-        //   },
+          '&-header': {
+            '@apply flex border-b overflow-auto p-[.3125rem] bg-slate-100 rounded-xl':
+              {},
+          },
 
-        //   '&-content': {},
+          '&-content': {},
 
-        //   '.tab': {
-        //     '&-btn': {
-        //       '@apply text-stone-800 border-b border-transparent rounded-tl-lg rounded-tr-lg bg-transparent text-[15px] leading-[22px] whitespace-nowrap':
-        //         {},
-        //       padding: '6px 8px',
-        //       transition: '.25s ease',
+          '.tab': {
+            '&-btn': {
+              '@apply flex-grow p-3 text-stone-800  whitespace-nowrap': {},
+              transition: '.25s ease',
 
-        //       '&.active': {
-        //         '@apply bg-emerald-50 text-emerald-500 border-emerald-500': {},
-        //       },
-        //     },
-
-        //     '&-pane': {
-        //       '&:not(.active)': {
-        //         '@apply pointer-events-none': {},
-        //       },
-        //     },
-        //   },
-        // },
+              '&.active': {
+                '@apply bg-white rounded-lg': {},
+              },
+            },
+          },
+        },
       });
     }),
   ],
