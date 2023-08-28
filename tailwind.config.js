@@ -353,7 +353,7 @@ module.exports = {
         },
 
         '.ipt': {
-          '@apply w-full whitespace-nowrap': {},
+          '@apply w-full': {},
         },
 
         '.form-field': {
@@ -397,9 +397,7 @@ module.exports = {
             },
 
             '.ipt-field': {
-              '.ipt': {
-                '@apply pt-6 pb-[0.625rem]': {},
-              },
+              '@apply pt-6 pb-[0.625rem]': {},
             },
           },
 
@@ -436,7 +434,7 @@ module.exports = {
           },
 
           '.ipt-field': {
-            '@apply relative flex flex-1 items-center gap-0.5 h-full cursor-text':
+            '@apply relative flex flex-1 items-center gap-0.5 h-full cursor-text min-h-[calc(3.25rem_+_4px)] py-[1.0625rem]':
               {},
 
             '&__prefix': {
@@ -445,7 +443,7 @@ module.exports = {
             },
 
             '.ipt': {
-              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current min-h-[calc(3.25rem_+_4px)] py-[1.0625rem] resize-none':
+              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none':
                 {},
               outline: 'none',
               textAlign: 'inherit',
