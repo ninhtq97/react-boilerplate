@@ -1,7 +1,6 @@
 import { Eye, EyeOff } from 'components/Icon';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { End, Start } from 'types';
-import { Icon } from '../Icon';
 
 type Props = {
   floating?: boolean;
@@ -52,9 +51,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
         <div className={`text-field ${className || ''}`}>
           {icon && iconPosition === 'start' && (
-            <div className="icon-field">
-              <Icon icon={icon} />
-            </div>
+            <div className="icon-field">{icon}</div>
           )}
 
           <label className="ipt-field">
@@ -83,9 +80,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           </label>
 
           {icon && iconPosition === 'end' && (
-            <div className="icon-field">
-              <Icon icon={icon} />
-            </div>
+            <div className="icon-field">{icon}</div>
           )}
         </div>
         {error && <p className="text-xs text-rose-500 ml-2">{helperText}</p>}
