@@ -353,7 +353,7 @@ module.exports = {
         },
 
         '.ipt': {
-          '@apply w-full': {},
+          '@apply w-full break-all': {},
         },
 
         '.form-field': {
