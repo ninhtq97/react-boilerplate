@@ -9,15 +9,24 @@ type Props = {
 
 export const Icon = forwardRef<HTMLElement, Props>(
   (
-    { className, tag: Wrapper = 'span', badged, clickable, icon, ...props },
+    {
+      className,
+      tag: Wrapper = 'span',
+      badged,
+      clickable,
+      icon,
+      disabled,
+      ...props
+    },
     $ref,
   ) => {
     return (
       <Wrapper
         className={`icon${badged ? ' badged' : ''}${
-          clickable ? ' cursor-pointer select-none' : ''
+          !disabled && clickable ? ' cursor-pointer select-none' : ''
         }${className ? ` ${className}` : ''}`}
         ref={$ref}
+        disabled={disabled}
         {...props}
       >
         {icon}
