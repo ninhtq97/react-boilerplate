@@ -7,7 +7,7 @@ export const INIT_META: TMeta = {
   total: 0,
   totalPage: 0,
   hasPreviousPage: false,
-  hasNextPage: false,
+  hasNextPage: true,
 };
 
 export const INIT_FILTER: TFilter = {
