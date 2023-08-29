@@ -121,7 +121,7 @@ export const InputPassword = forwardRef<
 export const ContentEditable = forwardRef<
   HTMLElement,
   React.ComponentProps<typeof Input>
->((props, $ref) => {
+>(({ tag = 'span', ...props }, $ref) => {
   const $content = useRef<HTMLElement | null>(null);
 
   const replaceCaret = (el: HTMLElement) => {
@@ -156,6 +156,7 @@ export const ContentEditable = forwardRef<
           : $ref && ($ref.current = current);
         $content.current = current;
       }}
+      tag={tag}
       onInput={props.onChange}
       onBlur={props.onBlur || props.onChange}
       onKeyUp={props.onKeyUp || props.onChange}
