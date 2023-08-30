@@ -1,8 +1,8 @@
 import { PAGE } from 'constants/pagination';
 import { useEffect, useState } from 'react';
-import { TFilter } from 'types';
+import { Option, TFilter } from 'types';
 import { ArrowLeft, ArrowRight, Icon } from '../Icon';
-import Select, { Option } from '../Select';
+import Select from '../Select';
 import Item from './Item';
 
 const onLoadPageSize = (): Option[] => {

@@ -1,17 +1,10 @@
 import { useDebounce } from 'hooks';
 import { forwardRef, useEffect, useState } from 'react';
-import { Placement } from 'types';
+import { Option, Placement } from 'types';
 import { unique } from 'utils';
 import { ChevronDown, Icon, Times } from '../Icon';
 import Popover from '../Popover';
 import Dropdown from './Dropdown';
-
-export type Option = {
-  icon?: React.ReactNode;
-  label: string;
-  value: string | number;
-  suffix?: string;
-};
 
 type Props = {
   className?: string;

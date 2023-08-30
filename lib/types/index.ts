@@ -55,3 +55,10 @@ export type TTimestamp = {
   updatedAt: string;
   deletedAt: string | null;
 };
+
+export type Option = {
+  icon?: React.ReactNode;
+  label: string;
+  value: string | number;
+  suffix?: string;
+};

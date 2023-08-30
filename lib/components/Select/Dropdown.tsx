@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Option } from '.';
+import { Option } from 'types';
 import { Icon, Search, Spinner } from '../Icon';
 import { Input } from '../Input';
 
