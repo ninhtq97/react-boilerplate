@@ -229,7 +229,8 @@ module.exports = {
           '&.multiple': {
             '.select': {
               '&-value': {
-                '@apply cursor-pointer bg-slate-50 rounded': {},
+                '@apply cursor-pointer bg-slate-400 text-white py-0.5 px-1 rounded':
+                  {},
 
                 '&__content': {
                   '@apply text-sm': {},
