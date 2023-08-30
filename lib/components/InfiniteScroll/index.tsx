@@ -8,7 +8,13 @@ type Props = {
   loader?: React.ReactNode;
 } & PropsWithChildren;
 
-const InfiniteScroll = ({ isLoading, hasMore, onNext, loader, children }) => {
+const InfiniteScroll: React.FC<Props> = ({
+  isLoading,
+  hasMore,
+  onNext,
+  loader,
+  children,
+}) => {
   const observer = useRef<IntersectionObserver>();
   const $ref = useCallback(
     (node: HTMLAnchorElement) => {
