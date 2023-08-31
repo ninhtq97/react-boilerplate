@@ -1,5 +1,9 @@
 import slugify from 'slugify';
 
+export const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const toFixedNumber = (num: number, decimals = 2) => {
   return parseFloat(num.toFixed(decimals));
 };
