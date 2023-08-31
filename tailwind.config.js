@@ -720,14 +720,16 @@ module.exports = {
         },
 
         '.tabs': {
-          '@apply flex flex-col gap-5': {},
+          '@apply flex flex-col flex-1 gap-5': {},
 
           '&-header': {
             '@apply flex border-b overflow-auto p-[.3125rem] bg-slate-100 rounded-xl':
               {},
           },
 
-          '&-content': {},
+          '&-content': {
+            '@apply flex-1': {},
+          },
 
           '.tab': {
             '&-btn': {
@@ -737,6 +739,10 @@ module.exports = {
               '&.active': {
                 '@apply bg-white rounded-lg': {},
               },
+            },
+
+            '&-pane': {
+              '@apply flex flex-col h-full': {},
             },
           },
         },
