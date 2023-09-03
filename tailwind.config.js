@@ -129,8 +129,7 @@ module.exports = {
 
           tbody: {
             tr: {
-              '@apply relative z-0': {},
-              transition: '.5s',
+              '@apply relative z-0 duration-200 ease-in-out': {},
 
               '&:nth-child(even)': {
                 '&::after': {
@@ -213,9 +212,8 @@ module.exports = {
         },
 
         '.select': {
-          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer':
+          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer duration-200 ease-in-out':
             {},
-          transition: '.5s ease',
 
           '&:not(.multiple)': {
             '.select': {
@@ -283,9 +281,8 @@ module.exports = {
           },
 
           '&-label': {
-            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem]':
+            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
               {},
-            transition: '.5s ease',
           },
 
           '&-values': {
@@ -306,9 +303,8 @@ module.exports = {
           },
 
           '&-container': {
-            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3':
+            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3 duration-200 ease-in-out':
               {},
-            transition: '.5s ease',
           },
 
           '&-placeholder': {
@@ -324,9 +320,9 @@ module.exports = {
             },
 
             '.option': {
-              '@apply text-base rounded-xl cursor-pointer bg-white': {},
+              '@apply text-base rounded-xl cursor-pointer bg-white duration-200 ease-in-out':
+                {},
               padding: `${theme('spacing.2')} ${theme('spacing.[1.5]')}`,
-              transition: '.5s ease',
 
               '&:hover': {
                 '@apply bg-blue-500/5': {},
@@ -518,15 +514,13 @@ module.exports = {
           },
 
           '.picker-field': {
-            '@apply relative flex border-transparent rounded-xl cursor-pointer select-none bg-slate-100 text-[.9375rem] leading-[1.375rem]':
+            '@apply relative flex border-transparent rounded-xl cursor-pointer select-none bg-slate-100 text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
               {},
-            transition: '.25s ease',
           },
 
           '.label-picker': {
-            '@apply absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[.9375rem] leading-[1.375rem]':
+            '@apply absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
               {},
-            transition: '.5s ease',
           },
         },
 
@@ -641,9 +635,8 @@ module.exports = {
         },
 
         '.btn': {
-          '@apply relative flex items-center justify-center font-medium text-[.9375rem] leading-[1.375rem] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px]':
+          '@apply relative flex items-center justify-center font-medium text-[.9375rem] leading-[1.375rem] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px] duration-200 ease-in-out':
             {},
-          transition: '.5s',
 
           '&::before': {
             '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current opacity-5':
