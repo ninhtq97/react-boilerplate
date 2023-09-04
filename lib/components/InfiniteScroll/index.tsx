@@ -2,7 +2,7 @@ import { Icon, Spinner } from 'components/Icon';
 import { useCallback, useEffect, useRef } from 'react';
 
 type Props = {
-  inverse: boolean;
+  inverse?: boolean;
   isLoading: boolean;
   hasMore: boolean;
   onNext: () => void;
