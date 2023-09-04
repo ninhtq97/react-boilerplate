@@ -739,6 +739,10 @@ module.exports = {
             },
           },
         },
+
+        '.infinite-scroll': {
+          '@apply relative flex': {},
+        },
       });
     }),
   ],
