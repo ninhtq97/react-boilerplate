@@ -12,6 +12,7 @@ type TRenderContent = {
 };
 
 type Props = {
+  container?: string;
   width?: number;
   withCloseIcon?: boolean;
   disableClickBackdrop?: boolean;
@@ -25,6 +26,7 @@ type Props = {
 
 const Modal: React.FC<Props> = ({
   className,
+  container = 'body',
   width = 650,
   withCloseIcon = true,
   disableClickBackdrop = false,
@@ -118,7 +120,7 @@ const Modal: React.FC<Props> = ({
                   </motion.div>
                 </motion.div>
               </div>,
-              document.querySelector('body')!,
+              document.querySelector(container)!,
             )}
           </>
         )}

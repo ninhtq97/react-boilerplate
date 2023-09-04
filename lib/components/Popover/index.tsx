@@ -16,6 +16,7 @@ type RenderContentProps = {
 };
 
 type Props = {
+  container?: string;
   placement?: Placement;
   offset?: Offset;
   onClose?: () => void;
@@ -25,6 +26,7 @@ type Props = {
 
 const Popover: React.FC<Props> = ({
   className,
+  container = 'body',
   onClose: tellParentToClose,
   placement = 'bottom',
   offset = { top: 0, left: 0 },
@@ -98,7 +100,7 @@ const Popover: React.FC<Props> = ({
               >
                 {renderContent({ onClose })}
               </motion.div>,
-              document.querySelector('body')!,
+              document.querySelector(container)!,
             )}
           </>
         )}
