@@ -1,5 +1,5 @@
 import { Icon, Spinner } from 'components/Icon';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 type Props = {
   inverse?: boolean;
@@ -18,8 +18,6 @@ const InfiniteScroll: React.FC<Props> = ({
   loader,
   children,
 }) => {
-  const $container = useRef<HTMLDivElement>(null);
-
   const observer = useRef<IntersectionObserver>();
   const $ref = useCallback(
     (node: HTMLAnchorElement) => {
@@ -35,19 +33,12 @@ const InfiniteScroll: React.FC<Props> = ({
     [hasMore, isLoading],
   );
 
-  useEffect(() => {
-    if (inverse && $container.current) {
-      $container.current.scrollIntoView({ block: 'end', inline: 'nearest' });
-    }
-  }, [inverse, hasMore]);
-
   return (
     <>
       <div
         className={`infinite-scroll ${
           inverse ? 'flex-col-reverse' : 'flex-col'
         }${className ? ` ${className}` : ''}`}
-        ref={$container}
       >
         {children}
         {hasMore && (

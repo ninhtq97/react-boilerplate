@@ -741,7 +741,7 @@ module.exports = {
         },
 
         '.infinite-scroll': {
-          '@apply relative flex': {},
+          '@apply relative flex flex-1 overflow-x-hidden overflow-y-auto': {},
         },
       });
     }),
