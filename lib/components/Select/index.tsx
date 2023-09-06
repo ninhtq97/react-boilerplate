@@ -101,7 +101,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       <Popover
         className="!p-2 border-slate-400 rounded-xl"
         placement={placement}
-        onClose={() => onChangeKeyword('')}
+        onClose={() => keyword && onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
           <>
             <div
