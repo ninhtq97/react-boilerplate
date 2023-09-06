@@ -350,7 +350,7 @@ module.exports = {
         },
 
         '.ipt': {
-          '@apply w-full break-all': {},
+          '@apply w-full': {},
         },
 
         '.form-field': {
@@ -431,7 +431,7 @@ module.exports = {
           },
 
           '.ipt-field': {
-            '@apply relative flex flex-1 items-center gap-0.5 h-full cursor-text min-h-[calc(3.25rem_+_4px)] py-[1.0625rem]':
+            '@apply relative flex flex-1 items-center gap-0.5 w-full h-full cursor-text min-h-[calc(3.25rem_+_4px)] py-[1.0625rem]':
               {},
 
             '&__prefix': {
