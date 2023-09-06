@@ -741,7 +741,15 @@ module.exports = {
         },
 
         '.infinite-scroll': {
-          '@apply relative flex flex-1 overflow-x-hidden overflow-y-auto': {},
+          '@apply relative flex flex-1 overflow-x-hidden': {},
+
+          '&:not(.loading)': {
+            '@apply overflow-y-auto': {},
+          },
+
+          '&.loading': {
+            '@apply overflow-y-hidden': {},
+          },
         },
       });
     }),

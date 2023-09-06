@@ -38,7 +38,7 @@ const InfiniteScroll: React.FC<Props> = ({
       <div
         className={`infinite-scroll ${
           inverse ? 'flex-col-reverse' : 'flex-col'
-        }${className ? ` ${className}` : ''}`}
+        }${isLoading ? ' loading' : ''}${className ? ` ${className}` : ''}`}
       >
         {children}
         {hasMore && (
