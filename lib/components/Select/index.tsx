@@ -158,10 +158,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
             value={selected}
             options={propsOptions}
             onChange={selectOption}
-            deactivateDropdown={() => {
-              onClose();
-              keyword && onChangeKeyword('');
-            }}
+            deactivateDropdown={onClose}
             isLoading={isLoading}
             isFilterSearch={isFilterSearch}
             searchValue={keyword}
