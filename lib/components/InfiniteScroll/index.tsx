@@ -44,8 +44,8 @@ const InfiniteScroll: React.FC<Props> = ({
         {hasMore && (
           <Icon
             ref={$ref}
-            className="infinite-loading justify-center"
-            icon={hasMore && (loader || <Spinner className="animate-spin" />)}
+            className="infinite-loading"
+            icon={loader || <Spinner className="animate-spin" />}
           />
         )}
       </div>

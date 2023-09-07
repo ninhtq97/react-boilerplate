@@ -750,6 +750,10 @@ module.exports = {
           '&:not(.inverse)': {
             '@apply flex-col': {},
           },
+
+          '.infinite-loading': {
+            '@apply flex justify-center': {},
+          },
         },
       });
     }),
