@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: 'class',
   content: ['./lib/**/*.{js,jsx,ts,tsx}'],
   theme: {},
   plugins: [
