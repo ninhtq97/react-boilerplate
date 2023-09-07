@@ -419,7 +419,7 @@ module.exports = {
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 dark:bg-neutral-900 px-3 duration-200 ease-in-out':
+            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 px-3 duration-200 ease-in-out':
               {},
           },
 
