@@ -290,8 +290,8 @@ module.exports = {
           },
 
           '&-value': {
-            '@apply relative flex items-center gap-2': {},
-            transition: '.25s ease',
+            '@apply relative flex items-center gap-2 duration-200 ease-in-out':
+              {},
 
             '&__content': {
               '@apply flex items-center gap-2': {},
@@ -358,9 +358,8 @@ module.exports = {
 
           '&.floating': {
             '.label-field': {
-              '@apply absolute left-0 text-[.9375rem] leading-[1.375rem] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden':
+              '@apply absolute left-0 text-[.9375rem] leading-[1.375rem] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden duration-200 ease-in-out':
                 {},
-              transition: 'all .25s ease',
             },
 
             '&.textarea': {
@@ -415,15 +414,13 @@ module.exports = {
           },
 
           '.label-field': {
-            '@apply text-[.9375rem] leading-[1.375rem] text-current pointer-events-none whitespace-nowrap max-w-full text-slate-400 text-ellipsis overflow-hidden':
+            '@apply text-[.9375rem] leading-[1.375rem] text-current pointer-events-none whitespace-nowrap max-w-full text-slate-400 text-ellipsis overflow-hidden duration-200 ease-in-out':
               {},
-            transition: '.25s ease',
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 px-3':
+            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 dark:bg-neutral-900 px-3 duration-200 ease-in-out':
               {},
-            transition: '.25s ease',
           },
 
           '.icon-field': {
@@ -440,11 +437,10 @@ module.exports = {
             },
 
             '.ipt': {
-              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none':
+              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none duration-200 ease-in-out':
                 {},
               outline: 'none',
               textAlign: 'inherit',
-              transition: 'all .2s ease',
 
               '&::placehoder': {
                 '@apply text-zinc-400': {},
@@ -539,8 +535,8 @@ module.exports = {
           },
 
           '&__box': {
-            '@apply relative w-4 h-4 border-2 rounded cursor-pointer': {},
-            transition: '.25s ease',
+            '@apply relative w-4 h-4 border-2 rounded cursor-pointer duration-200 ease-in-out':
+              {},
           },
 
           '&__label': {
@@ -554,8 +550,8 @@ module.exports = {
         },
 
         '.switch': {
-          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-200': {},
-          transition: '.25s ease',
+          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-200 duration-200 ease-in-out':
+            {},
 
           '&.active': {
             '.switch': {
@@ -591,9 +587,8 @@ module.exports = {
           },
 
           '&__thumb': {
-            '@apply absolute top-1/2 left-0 -translate-y-1/2 w-[22px] h-full bg-white rounded-full':
+            '@apply absolute top-1/2 left-0 -translate-y-1/2 w-[22px] h-full bg-white rounded-full duration-200 ease-in-out':
               {},
-            transition: '.25s ease',
           },
         },
 
@@ -726,8 +721,8 @@ module.exports = {
 
           '.tab': {
             '&-btn': {
-              '@apply flex-grow p-3 text-stone-800  whitespace-nowrap': {},
-              transition: '.25s ease',
+              '@apply flex-grow p-3 text-stone-800  whitespace-nowrap duration-200 ease-in-out':
+                {},
 
               '&.active': {
                 '@apply bg-white rounded-lg': {},
