@@ -741,7 +741,7 @@ module.exports = {
         },
 
         '.infinite-scroll': {
-          '@apply relative flex flex-1 overflow-x-hidden': {},
+          '@apply relative flex overflow-hidden': {},
 
           '&.inverse': {
             '@apply flex-col-reverse': {},
@@ -749,14 +749,6 @@ module.exports = {
 
           '&:not(.inverse)': {
             '@apply flex-col': {},
-          },
-
-          '&.loading': {
-            '@apply overflow-y-hidden': {},
-          },
-
-          '&:not(.loading)': {
-            '@apply overflow-y-auto': {},
           },
         },
       });
