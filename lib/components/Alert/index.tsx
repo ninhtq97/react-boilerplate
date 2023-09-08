@@ -4,7 +4,7 @@ type Props = {
 } & Omit<React.HTMLProps<HTMLSpanElement>, 'size'>;
 
 const mapClassname = {
-  primary: 'text-blue-700',
+  primary: 'text-blue-500',
   secondary: 'text-gray-500',
   success: 'text-green-500',
   error: 'text-rose-600',
