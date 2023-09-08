@@ -711,7 +711,7 @@ module.exports = {
           '@apply flex flex-col flex-1 gap-5': {},
 
           '&-header': {
-            '@apply flex border-b overflow-auto p-[.3125rem] bg-slate-100 rounded-xl':
+            '@apply flex overflow-auto p-[.3125rem] bg-slate-100 rounded-xl':
               {},
           },
 
