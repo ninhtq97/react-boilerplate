@@ -67,7 +67,7 @@ const Modal: React.FC<Props> = ({
         {isOpen && (
           <>
             {createPortal(
-              <div className={`modal${className ? ` ${className}` : ''}`}>
+              <div className={`modal`}>
                 <motion.div
                   className="modal-overlay"
                   ref={$clickableOverlayRef}
@@ -78,7 +78,9 @@ const Modal: React.FC<Props> = ({
                   transition={{ duration: 0.65 }}
                 >
                   <motion.div
-                    className="modal-container"
+                    className={`modal-container${
+                      className ? ` ${className}` : ''
+                    }`}
                     style={{ maxWidth: `${width}px` }}
                     ref={$modalRef}
                     onClick={(e) => {
