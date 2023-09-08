@@ -212,7 +212,7 @@ module.exports = {
         },
 
         '.select': {
-          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer duration-200 ease-in-out':
+          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer':
             {},
 
           '&:not(.multiple)': {
@@ -303,7 +303,7 @@ module.exports = {
           },
 
           '&-container': {
-            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3 duration-200 ease-in-out':
+            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3':
               {},
           },
 
@@ -358,8 +358,7 @@ module.exports = {
 
           '&.floating': {
             '.label-field': {
-              '@apply absolute left-0 text-[.9375rem] leading-[1.375rem] text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden duration-200 ease-in-out':
-                {},
+              '@apply absolute left-0 text-zinc-400 pointer-events-none': {},
             },
 
             '&.textarea': {
@@ -419,7 +418,7 @@ module.exports = {
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 px-3 duration-200 ease-in-out':
+            '@apply relative flex items-center justify-between gap-3 w-full border-transparent rounded-xl overflow-hidden bg-slate-100 px-3':
               {},
           },
 
@@ -510,7 +509,7 @@ module.exports = {
           },
 
           '.picker-field': {
-            '@apply relative flex border-transparent rounded-xl cursor-pointer select-none bg-slate-100 text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
+            '@apply relative flex border-transparent rounded-xl cursor-pointer select-none bg-slate-100 text-[.9375rem] leading-[1.375rem]':
               {},
           },
 
@@ -664,27 +663,6 @@ module.exports = {
           },
         },
 
-        '.typography': {
-          '@apply relative rounded': {},
-
-          '&:hover': {
-            '@apply text-emerald-500': {},
-
-            '&::before': {
-              '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current rounded opacity-5':
-                {},
-            },
-
-            '.typography__text': {
-              '@apply font-medium': {},
-            },
-          },
-
-          '&__text': {
-            '@apply flex p-2 text-current': {},
-          },
-        },
-
         '.alert': {
           '@apply relative inline-flex justify-center border border-current rounded min-w-[80px]':
             {},
@@ -721,9 +699,8 @@ module.exports = {
 
           '.tab': {
             '&-btn': {
-              '@apply flex-grow p-3 text-stone-800  whitespace-nowrap duration-200 ease-in-out':
+              '@apply flex-grow p-3 text-stone-800 whitespace-nowrap rounded-lg':
                 {},
-
               '&.active': {
                 '@apply bg-white rounded-lg': {},
               },

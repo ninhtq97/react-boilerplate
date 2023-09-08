@@ -8,6 +8,7 @@ import Dropdown from './Dropdown';
 
 type Props = {
   className?: string;
+  popoverClassName?: string;
   isMultiple?: boolean;
   isDisable?: boolean;
   isFilterSearch?: boolean;
@@ -27,6 +28,7 @@ type Props = {
 const Select = forwardRef<HTMLDivElement, Props>(function Render(
   {
     className,
+    popoverClassName,
     isMultiple,
     isDisable,
     isLoading = false,
@@ -99,7 +101,9 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       ref={$ref}
     >
       <Popover
-        className="!p-2 border-slate-400 rounded-xl"
+        className={`!p-2 border-slate-400 rounded-xl ${
+          popoverClassName ? ` ${popoverClassName}` : ''
+        }`}
         placement={placement}
         onClose={() => keyword && onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
