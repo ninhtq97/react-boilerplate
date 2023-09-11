@@ -17,6 +17,7 @@ type RenderContentProps = {
 
 type Props = {
   container?: string;
+  scrollableTarget?: React.RefObject<HTMLElement>;
   placement?: Placement;
   offset?: Offset;
   onClose?: () => void;
@@ -27,6 +28,7 @@ type Props = {
 const Popover: React.FC<Props> = ({
   className,
   container = 'body',
+  scrollableTarget,
   onClose: tellParentToClose,
   placement = 'bottom',
   offset = { top: 0, left: 0 },
@@ -71,17 +73,19 @@ const Popover: React.FC<Props> = ({
       }
     };
 
+    const $listeningScroll = (scrollableTarget || {}).current || window;
+
     if (isOpen) {
       setPosition();
-      window.addEventListener('resize', setPosition);
-      window.addEventListener('scroll', setPosition);
+      $listeningScroll.addEventListener('resize', setPosition);
+      $listeningScroll.addEventListener('scroll', setPosition);
     }
 
     return () => {
-      window.removeEventListener('resize', setPosition);
-      window.removeEventListener('scroll', setPosition);
+      $listeningScroll.removeEventListener('resize', setPosition);
+      $listeningScroll.removeEventListener('scroll', setPosition);
     };
-  }, [isOpen, offset, placement]);
+  }, [isOpen, offset, placement, scrollableTarget]);
 
   return (
     <>
@@ -109,18 +113,31 @@ const Popover: React.FC<Props> = ({
   );
 };
 
-const placementOpposition: Record<string, string> = {
+const verticalOpposition: Record<string, string> = {
   top: 'bottom',
   bottom: 'top',
   start: 'end',
   end: 'start',
 };
 
-const reversePlacement = (placement: Placement): Placement => {
+const horizontalOpposition: Record<string, string> = {
+  left: 'right',
+  right: 'left',
+};
+
+const reverseVertical = (placement: Placement): Placement => {
   const splitPlacement = placement.split('-');
 
-  return `${placementOpposition[splitPlacement[0]] || splitPlacement[0]}${
-    splitPlacement[1] ? `-${placementOpposition[splitPlacement[1]]}` : ''
+  return `${verticalOpposition[splitPlacement[0]] || splitPlacement[0]}${
+    splitPlacement[1] ? `-${verticalOpposition[splitPlacement[1]]}` : ''
+  }` as Placement;
+};
+
+const reverseHorizontal = (placement: Placement): Placement => {
+  const splitPlacement = placement.split('-');
+
+  return `${horizontalOpposition[splitPlacement[0]] || splitPlacement[0]}${
+    splitPlacement[1] ? `-${splitPlacement[1]}` : ''
   }` as Placement;
 };
 
@@ -143,11 +160,11 @@ const calcPosition = (
     const placements = {
       'top-start': {
         top: popoverRect.height - margin + window.scrollY,
-        left: 0,
+        left: linkRect.left,
       },
       top: {
         top: linkRect.top - popoverRect.height - margin + window.scrollY,
-        left: 0,
+        left: linkCenterX - popoverRect.width / 2,
       },
       'top-end': {
         top: linkRect.top - popoverRect.height - margin + window.scrollY,
@@ -190,12 +207,25 @@ const calcPosition = (
         left: linkRect.right + margin,
       },
     };
+
     const position = placements[placement];
     let top = position.top + (finalOffset.top ?? 0),
       left = position.left + (finalOffset.left ?? 0);
 
     if (window.innerHeight - linkRect.bottom - margin < popoverRect.height) {
-      top = placements[reversePlacement(placement)].top;
+      console.log('Vertical reverse:', reverseVertical(placement));
+
+      const reversePosition = placements[reverseVertical(placement)];
+
+      top = reversePosition.top;
+    }
+
+    if (
+      linkRect.left < popoverRect.width ||
+      window.innerWidth - linkRect.right - margin < popoverRect.width
+    ) {
+      const reversePosition = placements[reverseHorizontal(placement)];
+      left = reversePosition.left;
     }
 
     return { top, left };
