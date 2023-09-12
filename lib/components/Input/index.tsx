@@ -4,6 +4,7 @@ import { End, Start } from 'types';
 
 type Props = {
   floating?: boolean;
+  containerClassName?: string;
   inputClassName?: string;
   tag?: React.ElementType;
   error?: boolean;
@@ -17,8 +18,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       className,
-      floating,
+      containerClassName,
       inputClassName,
+      floating,
       tag: Wrapper = 'input',
       label,
       icon,
@@ -54,7 +56,11 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             <div className="icon-field">{icon}</div>
           )}
 
-          <label className="ipt-field">
+          <label
+            className={`ipt-field ${
+              containerClassName ? ` ${containerClassName}` : ''
+            }`}
+          >
             {prefix && <div className="ipt-field__prefix">{prefix}</div>}
             {disabled ? (
               <p className="ipt" ref={$ref}>
