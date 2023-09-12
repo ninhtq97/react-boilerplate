@@ -16,11 +16,11 @@ module.exports = {
           },
 
           '&::-webkit-scrollbar-thumb': {
-            '@apply bg-[#AAA] rounded-lg': {},
+            '@apply bg-zinc-400 rounded-lg': {},
           },
 
           '&::-webkit-scrollbar-track': {
-            '@apply bg-[#EEE] rounded-lg': {},
+            '@apply bg-zinc-50 rounded-lg': {},
           },
 
           '&::-webkit-scrollbar-thumb:hover': {
