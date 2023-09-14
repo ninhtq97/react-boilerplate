@@ -212,14 +212,19 @@ const calcPosition = (
     let top = position.top + (finalOffset.top ?? 0),
       left = position.left + (finalOffset.left ?? 0);
 
-    if (window.innerHeight - linkRect.bottom - margin < popoverRect.height) {
+    if (
+      (placement.startsWith('top') &&
+        linkRect.top - margin < popoverRect.height) ||
+      (placement.startsWith('bottom') &&
+        window.innerHeight - linkRect.bottom - margin < popoverRect.height)
+    ) {
       const reversePosition = placements[reverseVertical(placement)];
 
       top = reversePosition.top;
     }
 
     if (
-      linkRect.left < popoverRect.width ||
+      linkRect.left - margin < popoverRect.width ||
       window.innerWidth - linkRect.right - margin < popoverRect.width
     ) {
       const reversePosition = placements[reverseHorizontal(placement)];
