@@ -147,7 +147,7 @@ export const ContentEditable = forwardRef<
   useEffect(() => {
     if (!$content.current) return;
     replaceCaret($content.current);
-  }, [props.value]);
+  }, [props.value, props.error, props.helperText]);
 
   return (
     <Input
