@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from 'components/Icon';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { End, Start } from 'types';
 
 type Props = {
@@ -120,48 +120,15 @@ export const InputPassword = forwardRef<
 });
 
 export const ContentEditable = forwardRef<
-  HTMLElement,
+  HTMLInputElement,
   React.ComponentProps<typeof Input>
 >(({ tag = 'span', ...props }, $ref) => {
-  const $content = useRef<HTMLElement | null>(null);
-
-  const replaceCaret = (el: HTMLElement) => {
-    // Place the caret at the end of the element
-    const target = document.createTextNode('');
-    el.appendChild(target);
-    // do not move caret if element was not focused
-    const isTargetFocused = document.activeElement === el;
-    if (target !== null && target.nodeValue !== null && isTargetFocused) {
-      var sel = window.getSelection();
-      if (sel !== null) {
-        var range = document.createRange();
-        range.setStart(target, target.nodeValue.length);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-      if (el instanceof HTMLElement) el.focus();
-    }
-  };
-
-  useEffect(() => {
-    if (!$content.current) return;
-    replaceCaret($content.current);
-  }, [props.value, props.error, props.helperText]);
-
   return (
     <Input
-      ref={(current) => {
-        typeof $ref === 'function'
-          ? $ref(current)
-          : $ref && ($ref.current = current);
-        $content.current = current;
-      }}
+      ref={$ref}
       tag={tag}
-      onInput={props.onChange}
       onBlur={props.onBlur || props.onChange}
-      onKeyUp={props.onKeyUp || props.onChange}
-      onKeyDown={props.onKeyDown || props.onChange}
+      contentEditable={!props.disabled}
       dangerouslySetInnerHTML={{ __html: (props.value || '').toString() }}
       {...props}
     />
