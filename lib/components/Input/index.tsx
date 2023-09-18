@@ -119,21 +119,21 @@ export const InputPassword = forwardRef<
   );
 });
 
-export const ContentEditable = forwardRef<
-  HTMLInputElement,
-  React.ComponentProps<typeof Input>
->(({ tag = 'span', ...props }, $ref) => {
-  return (
-    <Input
-      ref={$ref}
-      tag={tag}
-      onBlur={props.onBlur || props.onChange}
-      contentEditable={!props.disabled}
-      dangerouslySetInnerHTML={{ __html: (props.value || '').toString() }}
-      {...props}
-    />
-  );
-});
+// export const ContentEditable = forwardRef<
+//   HTMLInputElement,
+//   React.ComponentProps<typeof Input>
+// >(({ tag = 'span', ...props }, $ref) => {
+//   return (
+//     <Input
+//       ref={$ref}
+//       tag={tag}
+//       onBlur={props.onBlur || props.onChange}
+//       contentEditable={!props.disabled}
+//       dangerouslySetInnerHTML={{ __html: (props.value || '').toString() }}
+//       {...props}
+//     />
+//   );
+// });
 
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
