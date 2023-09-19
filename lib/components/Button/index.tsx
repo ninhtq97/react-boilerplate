@@ -25,12 +25,12 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     $ref,
   ) => {
     const mapClassname = {
-      primary: 'text-blue-400 hover:hover:text-opacity-80',
-      secondary: 'text-gray-400 hover:hover:text-opacity-80',
-      success: 'text-emerald-400 hover:hover:text-opacity-80',
-      error: 'text-rose-500 hover:hover:text-opacity-80',
-      info: 'text-blue-500 hover:hover:text-opacity-80',
-      warning: 'text-orange-400 hover:hover:text-opacity-80',
+      primary: 'text-blue-400 hover:text-opacity-80',
+      secondary: 'text-gray-400 hover:text-opacity-80',
+      success: 'text-emerald-400 hover:text-opacity-80',
+      error: 'text-rose-500 hover:text-opacity-80',
+      info: 'text-blue-500 hover:text-opacity-80',
+      warning: 'text-orange-400 hover:text-opacity-80',
     };
 
     return (
