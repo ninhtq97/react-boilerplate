@@ -436,7 +436,7 @@ module.exports = {
             },
 
             '.ipt': {
-              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none duration-200 ease-in-out':
+              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none':
                 {},
               outline: 'none',
               textAlign: 'inherit',
