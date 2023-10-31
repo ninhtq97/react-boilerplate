@@ -122,14 +122,17 @@ export const InputPassword = forwardRef<
 
 type TextareaAutosizeProps = {
   container?: string;
-  minRows: number;
-  maxRows: number;
+  minRows?: number;
+  maxRows?: number;
 } & Omit<React.ComponentProps<typeof Input>, 'tag'>;
 
 export const TextareaAutosize = forwardRef<
   HTMLTextAreaElement,
   TextareaAutosizeProps
->(function Render({ minRows, maxRows, container = 'body', ...props }, $ref) {
+>(function Render(
+  { minRows = 1, maxRows = Infinity, container = 'body', ...props },
+  $ref,
+) {
   const $content = useRef<HTMLTextAreaElement | null>(null);
   const $hiddenTextarea = useRef<HTMLTextAreaElement | null>(null);
   const $heightRef = useRef(0);
@@ -175,7 +178,7 @@ export const TextareaAutosize = forwardRef<
 
       {createPortal(
         <textarea
-          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
+          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !leading-snug !invisible !overflow-hidden !-z-[1000]"
           ref={$hiddenTextarea}
           defaultValue={props.value || props.placeholder || 'x'}
         />,
