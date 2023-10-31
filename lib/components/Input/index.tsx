@@ -1,5 +1,6 @@
 import { Eye, EyeOff } from 'components/Icon';
-import { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { End, Start } from 'types';
 
 type Props = {
@@ -119,21 +120,71 @@ export const InputPassword = forwardRef<
   );
 });
 
-// export const ContentEditable = forwardRef<
-//   HTMLInputElement,
-//   React.ComponentProps<typeof Input>
-// >(({ tag = 'span', ...props }, $ref) => {
-//   return (
-//     <Input
-//       ref={$ref}
-//       tag={tag}
-//       onBlur={props.onBlur || props.onChange}
-//       contentEditable={!props.disabled}
-//       dangerouslySetInnerHTML={{ __html: (props.value || '').toString() }}
-//       {...props}
-//     />
-//   );
-// });
+type TextareaAutosizeProps = {
+  container?: string;
+  minRows: number;
+  maxRows: number;
+} & Omit<React.ComponentProps<typeof Input>, 'tag'>;
+
+export const TextareaAutosize = forwardRef<
+  HTMLTextAreaElement,
+  TextareaAutosizeProps
+>(({ minRows, maxRows, container = 'body', ...props }, $ref) => {
+  const [isClient, setIsClient] = useState(false);
+
+  const $content = useRef<HTMLTextAreaElement | null>(null);
+  const $innerRef = useMemo(
+    () => (typeof $ref === 'function' ? { current: null } : $content),
+    [$ref],
+  );
+  const $hiddenTextarea = React.useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const node = $innerRef.current;
+    if (!node) return;
+
+    const hiddenNode = $hiddenTextarea.current;
+    if (!hiddenNode) return;
+
+    const rowHeight = hiddenNode.scrollHeight;
+    const maxHeight = maxRows * rowHeight;
+    const height =
+      maxHeight > node.scrollHeight ? node.scrollHeight : maxHeight;
+
+    node.style.setProperty('height', `${height}px`, 'important');
+  }, [$innerRef, maxRows, props.value]);
+
+  return (
+    <>
+      <Input
+        ref={
+          typeof $ref === 'function'
+            ? (current) => {
+                $ref(current as typeof $content.current);
+                $content.current = current as typeof $content.current;
+              }
+            : (($ref || $content) as React.RefObject<HTMLInputElement>)
+        }
+        tag={'textarea'}
+        rows={minRows}
+        {...props}
+      />
+
+      {isClient &&
+        createPortal(
+          <textarea
+            className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
+            ref={$hiddenTextarea}
+          />,
+          document.querySelector(container)!,
+        )}
+    </>
+  );
+});
 
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
