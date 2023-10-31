@@ -130,18 +130,12 @@ export const TextareaAutosize = forwardRef<
   HTMLTextAreaElement,
   TextareaAutosizeProps
 >(({ minRows, maxRows, container = 'body', ...props }, $ref) => {
-  const [isClient, setIsClient] = useState(false);
-
   const $content = useRef<HTMLTextAreaElement | null>(null);
   const $innerRef = useMemo(
     () => (typeof $ref === 'function' ? { current: null } : $content),
     [$ref],
   );
   const $hiddenTextarea = React.useRef<HTMLTextAreaElement | null>(null);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     const node = $innerRef.current;
@@ -174,14 +168,13 @@ export const TextareaAutosize = forwardRef<
         {...props}
       />
 
-      {isClient &&
-        createPortal(
-          <textarea
-            className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
-            ref={$hiddenTextarea}
-          />,
-          document.querySelector(container)!,
-        )}
+      {createPortal(
+        <textarea
+          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
+          ref={$hiddenTextarea}
+        />,
+        document.querySelector(container)!,
+      )}
     </>
   );
 });
