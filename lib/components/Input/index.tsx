@@ -1,6 +1,5 @@
 import { Eye, EyeOff } from 'components/Icon';
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { forwardRef, useState } from 'react';
 import { End, Start } from 'types';
 
 type Props = {
@@ -125,55 +124,6 @@ type TextareaAutosizeProps = {
   minRows: number;
   maxRows: number;
 } & Omit<React.ComponentProps<typeof Input>, 'tag'>;
-
-export const TextareaAutosize = forwardRef<
-  HTMLTextAreaElement,
-  TextareaAutosizeProps
->(({ minRows, maxRows, container = 'body', ...props }, $ref) => {
-  const $content = useRef<HTMLTextAreaElement | null>(null);
-  const $hiddenTextarea = React.useRef<HTMLTextAreaElement | null>(null);
-
-  useEffect(() => {
-    const node = $content.current;
-    if (!node) return;
-
-    const hiddenNode = $hiddenTextarea.current;
-    if (!hiddenNode) return;
-
-    const rowHeight = hiddenNode.scrollHeight;
-    const maxHeight = maxRows * rowHeight;
-    const height =
-      maxHeight > node.scrollHeight ? node.scrollHeight : maxHeight;
-
-    node.style.setProperty('height', `${height}px`, 'important');
-  }, [maxRows, props.value]);
-
-  return (
-    <>
-      <Input
-        ref={
-          typeof $ref === 'function'
-            ? (current) => {
-                $ref(current as typeof $content.current);
-                $content.current = current as typeof $content.current;
-              }
-            : (($ref || $content) as React.RefObject<HTMLInputElement>)
-        }
-        tag={'textarea'}
-        rows={minRows}
-        {...props}
-      />
-
-      {createPortal(
-        <textarea
-          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
-          ref={$hiddenTextarea}
-        />,
-        document.querySelector(container)!,
-      )}
-    </>
-  );
-});
 
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
