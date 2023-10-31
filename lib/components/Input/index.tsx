@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from 'components/Icon';
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { End, Start } from 'types';
 
@@ -131,14 +131,10 @@ export const TextareaAutosize = forwardRef<
   TextareaAutosizeProps
 >(({ minRows, maxRows, container = 'body', ...props }, $ref) => {
   const $content = useRef<HTMLTextAreaElement | null>(null);
-  const $innerRef = useMemo(
-    () => (typeof $ref === 'function' ? { current: null } : $content),
-    [$ref],
-  );
   const $hiddenTextarea = React.useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    const node = $innerRef.current;
+    const node = $content.current;
     if (!node) return;
 
     const hiddenNode = $hiddenTextarea.current;
@@ -150,7 +146,7 @@ export const TextareaAutosize = forwardRef<
       maxHeight > node.scrollHeight ? node.scrollHeight : maxHeight;
 
     node.style.setProperty('height', `${height}px`, 'important');
-  }, [$innerRef, maxRows, props.value]);
+  }, [maxRows, props.value]);
 
   return (
     <>
