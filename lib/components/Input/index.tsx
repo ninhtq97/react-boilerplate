@@ -1,5 +1,6 @@
 import { Eye, EyeOff } from 'components/Icon';
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { End, Start } from 'types';
 
 type Props = {
@@ -124,6 +125,65 @@ type TextareaAutosizeProps = {
   minRows: number;
   maxRows: number;
 } & Omit<React.ComponentProps<typeof Input>, 'tag'>;
+
+export const TextareaAutosize = forwardRef<
+  HTMLTextAreaElement,
+  TextareaAutosizeProps
+>(function Render({ minRows, maxRows, container = 'body', ...props }, $ref) {
+  const $content = useRef<HTMLTextAreaElement | null>(null);
+  const $hiddenTextarea = useRef<HTMLTextAreaElement | null>(null);
+  const $heightRef = useRef(0);
+
+  useEffect(() => {
+    const node = $content.current;
+    if (!node) return;
+
+    const hiddenNode = $hiddenTextarea.current;
+    if (!hiddenNode) return;
+
+    const rows = 1 + (node.value.match(/\n/g) || []).length;
+    const rowHeight = hiddenNode.scrollHeight;
+    const realHeight = rows * rowHeight;
+
+    const minHeight = minRows * rowHeight;
+    let height = Math.max(minHeight, realHeight);
+
+    const maxHeight = maxRows * rowHeight;
+    height = Math.min(maxHeight, height);
+
+    if ($heightRef.current !== height) {
+      $heightRef.current = height;
+      node.style.setProperty('height', `${height}px`, 'important');
+    }
+  }, [maxRows, minRows, props.value]);
+
+  return (
+    <>
+      <Input
+        ref={
+          typeof $ref === 'function'
+            ? (current) => {
+                $ref(current as typeof $content.current);
+                $content.current = current as typeof $content.current;
+              }
+            : (($ref || $content) as React.RefObject<HTMLInputElement>)
+        }
+        tag={'textarea'}
+        rows={minRows}
+        {...props}
+      />
+
+      {createPortal(
+        <textarea
+          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !invisible !overflow-hidden !-z-[1000]"
+          ref={$hiddenTextarea}
+          defaultValue={props.value || props.placeholder || 'x'}
+        />,
+        document.querySelector(container)!,
+      )}
+    </>
+  );
+});
 
 export { default as Checkbox } from './Checkbox';
 export { default as File } from './File';
