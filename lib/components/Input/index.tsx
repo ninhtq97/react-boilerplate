@@ -137,6 +137,26 @@ export const TextareaAutosize = forwardRef<
   const $hiddenTextarea = useRef<HTMLTextAreaElement | null>(null);
   const $heightRef = useRef(0);
 
+  const getSizing = (node: HTMLElement) => {
+    const style = window.getComputedStyle(node);
+    if (!style) return;
+
+    const widthSize =
+      parseFloat(style.width!) +
+      parseFloat(style.borderRightWidth!) +
+      parseFloat(style.borderLeftWidth!) +
+      parseFloat(style.paddingRight!) +
+      parseFloat(style.paddingLeft!) +
+      'px';
+
+    const paddingSize =
+      parseFloat(style.paddingBottom) + parseFloat(style.paddingTop);
+    const borderSize =
+      parseFloat(style.borderBottomWidth) + parseFloat(style.borderTopWidth);
+
+    return { style, widthSize, paddingSize, borderSize };
+  };
+
   useEffect(() => {
     const node = $content.current;
     if (!node) return;
@@ -144,14 +164,21 @@ export const TextareaAutosize = forwardRef<
     const hiddenNode = $hiddenTextarea.current;
     if (!hiddenNode) return;
 
-    const rows = 1 + (node.value.match(/\n/g) || []).length;
-    const rowHeight = hiddenNode.scrollHeight;
-    const realHeight = rows * rowHeight;
+    const nodeSizing = getSizing(node);
+    if (!nodeSizing) return;
 
-    const minHeight = minRows * rowHeight;
-    let height = Math.max(minHeight, realHeight);
+    const { widthSize, paddingSize, borderSize } = nodeSizing;
 
-    const maxHeight = maxRows * rowHeight;
+    hiddenNode.style.setProperty('width', widthSize, 'important');
+    hiddenNode.value = node.value || node.placeholder || 'x';
+    let height = hiddenNode.scrollHeight;
+
+    hiddenNode.value = 'x';
+    const rowHeight = hiddenNode.scrollHeight - paddingSize;
+
+    const minHeight = minRows * rowHeight + paddingSize + borderSize;
+    height = Math.max(minHeight, height);
+    const maxHeight = maxRows * rowHeight + paddingSize + borderSize;
     height = Math.min(maxHeight, height);
 
     if ($heightRef.current !== height) {
@@ -178,7 +205,7 @@ export const TextareaAutosize = forwardRef<
 
       {createPortal(
         <textarea
-          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !leading-snug !invisible !overflow-hidden !-z-[1000]"
+          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !leading-snug !invisible !overflow-hidden !pointer-events-none !-z-[1000]"
           ref={$hiddenTextarea}
           defaultValue={props.value || props.placeholder || 'x'}
         />,
