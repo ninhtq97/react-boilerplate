@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { twMerge } from 'tailwind-merge';
 import { Icon, Times } from '../Icon';
 
 type TRenderLink = {
@@ -78,9 +79,7 @@ const Modal: React.FC<Props> = ({
                   transition={{ duration: 0.65 }}
                 >
                   <motion.div
-                    className={`modal-container${
-                      className ? ` ${className}` : ''
-                    }`}
+                    className={twMerge('modal-container', className)}
                     style={{ maxWidth: `${width}px` }}
                     ref={$modalRef}
                     onClick={(e) => {

@@ -1,6 +1,7 @@
 import { Eye, EyeOff } from 'components/Icon';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { twMerge } from 'tailwind-merge';
 import { End, Start } from 'types';
 
 type Props = {
@@ -37,13 +38,16 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   ) => {
     return (
       <div
-        className={`form-field ${error ? ' has-error' : ''}${
-          placeholder || prefix || props.value?.toString().length
-            ? ' has-value'
-            : ''
-        }${disabled ? ' disabled' : ''}${!label ? ' no-label' : ''}${
-          floating ? ' floating' : ''
-        }${Wrapper !== 'input' ? ' textarea' : ''}`}
+        className={twMerge(
+          'form-field',
+          error && 'has-error',
+          (placeholder || prefix || props.value?.toString().length) &&
+            'has-value',
+          disabled && 'disabled',
+          !label && 'no-label',
+          floating && 'floating',
+          Wrapper !== 'input' && 'textarea',
+        )}
       >
         {!floating && label && (
           <span className="label-field">
@@ -57,11 +61,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             <div className="icon-field">{icon}</div>
           )}
 
-          <label
-            className={`ipt-field ${
-              containerClassName ? ` ${containerClassName}` : ''
-            }`}
-          >
+          <label className={twMerge('ipt-field', containerClassName)}>
             {prefix && <div className="ipt-field__prefix">{prefix}</div>}
             {disabled ? (
               <p className="ipt" ref={$ref}>
@@ -70,7 +70,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             ) : (
               <Wrapper
                 type="text"
-                className={`ipt${inputClassName ? ` ${inputClassName}` : ''}`}
+                className={twMerge('ipt', inputClassName)}
                 ref={$ref}
                 autoComplete="off"
                 placeholder={placeholder}
@@ -90,7 +90,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             <div className="icon-field">{icon}</div>
           )}
         </div>
-        {error && <p className="text-xs text-rose-500 ml-2">{helperText}</p>}
+        {error && <p className="ml-2 text-xs text-rose-500">{helperText}</p>}
       </div>
     );
   },
@@ -206,7 +206,7 @@ export const TextareaAutosize = forwardRef<
 
       {createPortal(
         <textarea
-          className="!absolute !top-0 !right-0 !min-h-0 !max-h-none !h-0 !leading-snug !invisible !overflow-hidden !pointer-events-none !-z-[1000]"
+          className="!pointer-events-none !invisible !absolute !right-0 !top-0 !-z-[1000] !h-0 !max-h-none !min-h-0 !overflow-hidden !leading-snug"
           ref={$hiddenTextarea}
           defaultValue={props.value || props.placeholder || 'x'}
         />,

@@ -1,5 +1,6 @@
 import { useApi } from 'hooks';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
+import { twJoin, twMerge } from 'tailwind-merge';
 import { Icon, Plus } from '../Icon';
 
 type Props = {
@@ -81,21 +82,24 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <div className={`form-file${disabled ? ' disabled' : ''}`}>
+      <div className={twMerge('form-file', disabled && ' disabled')}>
         {label && <span className="label-file">{label}</span>}
         <label
-          className={`file-container ${className || ''} ${
-            error ? '!border-rose-500 text-rose-500' : 'text-stone-800'
-          }`}
+          className={twMerge(
+            'file-container',
+            className,
+            error ? '!border-rose-500 text-rose-500' : 'text-stone-800',
+          )}
         >
           {!disabled && (
-            <div className={`file-field`}>
+            <div className="file-field">
               <Icon
-                className={`items-center justify-center border rounded bg-opacity-10 p-1 max-w-[32px] max-h-8 ${
+                className={twJoin(
+                  'max-h-8 max-w-[32px] items-center justify-center rounded border bg-opacity-10 p-1',
                   error
                     ? 'border-rose-500 bg-rose-500 text-rose-500'
-                    : 'border-emerald-500 bg-emerald-500 text-emerald-500'
-                }`}
+                    : 'border-emerald-500 bg-emerald-500 text-emerald-500',
+                )}
                 icon={<Plus />}
               />
 
@@ -118,7 +122,7 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
             </div>
           )}
         </label>
-        {error && <p className="text-xs text-rose-500 ml-2">{helperText}</p>}
+        {error && <p className="ml-2 text-xs text-rose-500">{helperText}</p>}
       </div>
     );
   },

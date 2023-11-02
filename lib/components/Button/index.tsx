@@ -1,13 +1,25 @@
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { Center, End, Start } from 'types';
 import { Icon, Spinner } from '../Icon';
+
+type ButtonLoadingPosition = Start | End | Center;
+type ButtonVariant = 'filled' | 'outlined';
+type ButtonColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning';
 
 type Props = {
   loading?: boolean;
-  loadingPosition?: 'start' | 'end' | 'center';
+  loadingPosition?: ButtonLoadingPosition;
   loadingIndicator?: string;
-  variant?: 'contained' | 'outlined';
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
-} & ComponentProps<'button'>;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+} & React.ComponentProps<'button'>;
 
 const Button = forwardRef<HTMLButtonElement, Props>(
   (
@@ -17,7 +29,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       loadingPosition = 'start',
       loadingIndicator,
       children,
-      variant = 'contained',
+      variant = 'filled',
       color = 'primary',
       onClick,
       ...props
@@ -35,9 +47,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 
     return (
       <button
-        className={`btn${variant === 'outlined' ? ` ${variant}` : ''}${
-          className ? ` ${className}` : ''
-        } ${mapClassname[color]}`}
+        className={twMerge('btn', variant, className, mapClassname[color])}
         disabled={loading}
         onClick={loading ? undefined : onClick}
         {...props}

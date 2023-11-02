@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 export type HeadCell = {
   id: string;
   label: string | React.ReactNode;
@@ -10,7 +12,7 @@ type Props = {
 const Table: React.FC<Props> = ({ className, columns, children }) => {
   return (
     <div className="tbl-wrapper">
-      <table className={`tbl${className ? ` ${className}` : ''}`}>
+      <table className={twMerge('tbl', className)}>
         {columns && (
           <thead>
             <tr>

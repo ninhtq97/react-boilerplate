@@ -595,7 +595,7 @@ module.exports = {
           '@apply relative flex': {},
 
           '[type="range"]': {
-            '@apply appearance-none rounded': {},
+            '@apply w-full appearance-none rounded': {},
 
             '&::-webkit-slider-thumb': {
               '@apply appearance-none w-2.5 h-2.5 -mt-[1.55px] bg-orange-400 border-0 rounded-full':

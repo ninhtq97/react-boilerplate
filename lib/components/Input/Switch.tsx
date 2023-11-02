@@ -1,4 +1,5 @@
 import { forwardRef, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   onChange?: (isChecked: boolean) => void;
@@ -32,12 +33,15 @@ const Switch = forwardRef<HTMLInputElement, Props>(
 
     return (
       <label
-        className={`switch${checked ? ' active' : ''}${
-          disabled ? ' disabled' : ''
-        } ${className || ''}`}
+        className={twMerge(
+          'switch',
+          checked && 'active',
+          disabled && 'disabled',
+          className,
+        )}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="switch__container bg">
+        <div className="switch__container">
           <input
             type="checkbox"
             className="switch__ipt"

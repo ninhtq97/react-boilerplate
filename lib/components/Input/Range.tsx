@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   min?: number;
@@ -8,6 +9,7 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Range: React.FC<Props> = ({
+  className,
   defaultValue,
   onChange: onChangeProps,
   min = 0,
@@ -57,14 +59,13 @@ const Range: React.FC<Props> = ({
       <div className="range">
         <input
           type="range"
-          className="ipt"
+          className={twMerge(className)}
           value={value}
           onChange={onChange}
           onInput={onInput}
           min={min}
           max={max}
           ref={$range}
-          style={{ backgroundColor: '#1E2540' }}
           {...props}
         />
         <div className="range__bubble" ref={$bubble}>
@@ -74,7 +75,7 @@ const Range: React.FC<Props> = ({
         </div>
       </div>
       {withRangeText && (
-        <div className="flex justify-between gap-2 text-base text-white mt-3">
+        <div className="mt-3 flex justify-between gap-2 text-base text-white">
           <p>{min}</p>
           <p>{max}</p>
         </div>

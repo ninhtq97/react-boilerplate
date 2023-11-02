@@ -31,7 +31,7 @@ const CustomDatePicker: React.FC<Props> = ({ error, helperText, ...props }) => {
         />
         <span className="label-picker">{props.placeholder}</span>
       </label>
-      {error && <p className="text-xs text-rose-500 ml-2">{helperText}</p>}
+      {error && <p className="ml-2 text-xs text-rose-500">{helperText}</p>}
     </div>
   );
 };

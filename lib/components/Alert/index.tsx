@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 type Props = {
   size?: keyof typeof mapSize;
   variant?: keyof typeof mapClassname;
@@ -27,9 +29,12 @@ const Alert: React.FC<Props> = ({
 }) => {
   return (
     <span
-      className={`alert${className ? ` ${className}` : ''} ${
-        mapClassname[variant]
-      } ${mapSize[size]}`}
+      className={twMerge(
+        'alert',
+        className,
+        mapClassname[variant],
+        mapSize[size],
+      )}
       {...props}
     >
       {children}

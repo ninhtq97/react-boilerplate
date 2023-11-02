@@ -1,4 +1,5 @@
 import { forwardRef, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import { Check, Icon } from '../Icon';
 
 type Props = {
@@ -34,7 +35,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
 
     return (
       <label className="checkbox" onClick={(e) => e.stopPropagation()}>
-        <div className={`checkbox__container ${className || ''}`}>
+        <div className={twMerge('checkbox__container', className)}>
           <input
             type="checkbox"
             className="checkbox__ipt"
@@ -46,8 +47,8 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
           <div
             className={`checkbox__box ${
               checked
-                ? 'bg-emerald-500 border-emerald-500'
-                : 'bg-white border-gray-7'
+                ? 'border-emerald-500 bg-emerald-500'
+                : 'border-gray-7 bg-white'
             }`}
           >
             <Icon

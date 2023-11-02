@@ -1,5 +1,6 @@
 import { useDebounce } from 'hooks';
 import { forwardRef, useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import { Option, Placement } from 'types';
 import { unique } from 'utils';
 import { ChevronDown, Icon, Times } from '../Icon';
@@ -93,27 +94,31 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
 
   return (
     <div
-      className={`select${isMultiple ? ' multiple' : ''}${
-        isDisable ? ` disabled` : ''
-      }${placeholder || selected.length ? ' has-value' : ''}${
-        error ? ' has-error' : ''
-      }${!label ? ' no-label' : ''}`}
+      className={twMerge(
+        'select',
+        isMultiple && 'multiple',
+        isDisable && 'disabled',
+        placeholder || (selected.length && 'has-value'),
+        error && 'has-error',
+        !label && 'no-label',
+      )}
       ref={$ref}
     >
       <Popover
-        className={`!p-2 border-slate-400 rounded-xl ${
-          popoverClassName ? ` ${popoverClassName}` : ''
-        }`}
+        className={twMerge(
+          'rounded-xl border-slate-400 !p-2',
+          popoverClassName,
+        )}
         placement={placement}
         onClose={() => keyword && onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
           <>
             <div
-              className={`select-container${className ? ` ${className}` : ''}`}
+              className={twMerge('select-container', className)}
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
             >
-              <div className="relative flex flex-col justify-center flex-1">
+              <div className="relative flex flex-1 flex-col justify-center">
                 {label && <div className="select-label">{label}</div>}
 
                 <div className="select-values">
@@ -145,14 +150,14 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
               <div className="flex gap-1">
                 {/* <span className="border-l"></span> */}
                 <Icon
-                  className="text-slate-400 items-center justify-center text-base w-6 h-6"
+                  className="h-6 w-6 items-center justify-center text-base text-slate-400"
                   tag="div"
                   icon={<ChevronDown />}
                 />
               </div>
             </div>
             {helperText && (
-              <p className="text-xs text-rose-500 ml-2">{helperText}</p>
+              <p className="ml-2 text-xs text-rose-500">{helperText}</p>
             )}
           </>
         )}

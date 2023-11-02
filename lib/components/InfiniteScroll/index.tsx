@@ -1,5 +1,6 @@
 import { Icon, Spinner } from 'components/Icon';
 import { useCallback, useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   inverse?: boolean;
@@ -36,9 +37,7 @@ const InfiniteScroll: React.FC<Props> = ({
   return (
     <>
       <div
-        className={`infinite-scroll${inverse ? ' inverse' : ''}${
-          className ? ` ${className}` : ''
-        }`}
+        className={twMerge('infinite-scroll', inverse && ' inverse', className)}
       >
         {children}
         {hasMore && (

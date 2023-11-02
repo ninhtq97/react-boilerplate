@@ -9,6 +9,7 @@ export type Status = 'FAILED' | 'IDLE' | 'LOADING';
 export type Position = 'top' | 'bottom' | 'left' | 'right';
 
 export type Start = 'start';
+export type Center = 'center';
 export type End = 'end';
 
 export type Placement =
