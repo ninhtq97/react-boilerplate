@@ -629,7 +629,7 @@ module.exports = {
         },
 
         '.btn': {
-          '@apply relative flex items-center justify-center font-medium text-[.9375rem] leading-[1.375rem] z-0 p-4 border rounded-xl border-current overflow-hidden min-h-[48px] duration-200 ease-in-out':
+          '@apply relative flex items-center justify-center font-medium z-0 border rounded-lg border-current overflow-hidden duration-200 ease-in-out':
             {},
 
           '&::before': {
@@ -643,17 +643,13 @@ module.exports = {
             '&::before': {
               '@apply opacity-100': {},
             },
-
-            '.btn__content': {
-              '@apply text-white': {},
-            },
           },
 
           '&:disabled': {
             '@apply pointer-events-none': {},
 
             '&::before': {
-              '@apply bg-zinc-400': {},
+              '@apply bg-slate-300': {},
             },
           },
 

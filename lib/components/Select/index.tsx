@@ -123,7 +123,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
 
                 <div className="select-values">
                   {selected.length > 0
-                    ? selected.map((s, i) => (
+                    ? selected.map((s) => (
                         <div className="select-value" key={s.value}>
                           <div className="select-value__content">
                             {s.icon}

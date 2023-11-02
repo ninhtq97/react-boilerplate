@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Center, End, Start } from 'types';
 import { Icon, Spinner } from '../Icon';
 
-type ButtonLoadingPosition = Start | End | Center;
 type ButtonVariant = 'filled' | 'outlined';
 type ButtonColor =
   | 'primary'
@@ -12,13 +10,14 @@ type ButtonColor =
   | 'error'
   | 'info'
   | 'warning';
+type ButtonSize = 'sm' | 'md' | 'lg';
 
 type Props = {
   loading?: boolean;
-  loadingPosition?: ButtonLoadingPosition;
   loadingIndicator?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
+  size?: ButtonSize;
 } & React.ComponentProps<'button'>;
 
 const Button = forwardRef<HTMLButtonElement, Props>(
@@ -26,28 +25,40 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     {
       className,
       loading = false,
-      loadingPosition = 'start',
       loadingIndicator,
       children,
       variant = 'filled',
       color = 'primary',
+      size = 'md',
       onClick,
       ...props
     },
     $ref,
   ) => {
-    const mapClassname = {
-      primary: 'text-blue-400 hover:text-opacity-80',
-      secondary: 'text-gray-400 hover:text-opacity-80',
+    const mapColor = {
+      primary: 'text-blue-500 hover:text-opacity-80',
+      secondary: 'text-stone-300 hover:text-opacity-80',
       success: 'text-emerald-400 hover:text-opacity-80',
-      error: 'text-rose-500 hover:text-opacity-80',
-      info: 'text-blue-500 hover:text-opacity-80',
-      warning: 'text-orange-400 hover:text-opacity-80',
+      error: 'text-red-500 hover:text-opacity-80',
+      info: 'text-sky-500 hover:text-opacity-80',
+      warning: 'text-amber-500 hover:text-opacity-80',
+    };
+
+    const mapSize = {
+      sm: 'py-1 px-2 text-sm',
+      md: 'py-2 px-4',
+      lg: 'py-3 px-6 text-lg',
     };
 
     return (
       <button
-        className={twMerge('btn', variant, className, mapClassname[color])}
+        className={twMerge(
+          'btn',
+          variant,
+          className,
+          mapColor[color],
+          mapSize[size],
+        )}
         disabled={loading}
         onClick={loading ? undefined : onClick}
         {...props}
@@ -55,19 +66,27 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       >
         {loading ? (
           <div
-            className={`flex items-center gap-2 ${
-              loading && variant === 'outlined'
-                ? mapClassname[color]
-                : color === 'secondary'
-                ? 'text-stone-800'
-                : 'text-white'
-            }`}
+            className={twMerge(
+              'flex items-center gap-2',
+              variant === 'outlined'
+                ? mapColor[color]
+                : [color === 'secondary' ? 'text-stone-800' : 'text-white'],
+            )}
           >
             <Icon icon={<Spinner className="animate-spin" />} />
             {loadingIndicator}
           </div>
         ) : (
-          <span className="btn__content">{children}</span>
+          <span
+            className={twMerge(
+              'btn__content',
+              color === 'secondary'
+                ? 'text-stone-800'
+                : [variant === 'outlined' ? 'text-current' : 'text-white'],
+            )}
+          >
+            {children}
+          </span>
         )}
       </button>
     );
