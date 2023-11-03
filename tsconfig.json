@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "strict": true,
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "baseUrl": "./lib",
+    "baseUrl": "./src",
     "declaration": true,
     "inlineSources": true,
     "sourceMap": true,
     "outDir": "./build/dist",
-    "rootDir": "./lib",
+    "rootDir": "./src",
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
@@ -23,6 +24,6 @@
     "isolatedModules": true,
     "noImplicitAny": false
   },
-  "include": ["lib/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "src/stories"]
 }

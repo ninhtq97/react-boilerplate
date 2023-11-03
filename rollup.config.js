@@ -8,7 +8,7 @@ const packageJson = require('./package.json');
 const options = require('./tsconfig.json');
 
 module.exports = {
-  input: 'lib/index.ts',
+  input: 'src/index.ts',
   output: [
     {
       file: packageJson.main,
