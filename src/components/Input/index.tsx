@@ -56,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           </span>
         )}
 
-        <div className={`text-field ${className || ''}`}>
+        <div className={twMerge('text-field', className)}>
           {icon && iconPosition === 'start' && (
             <div className="icon-field">{icon}</div>
           )}

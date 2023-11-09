@@ -82,7 +82,7 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <div className={twMerge('form-file', disabled && ' disabled')}>
+      <div className={twMerge('form-file', disabled && 'disabled')}>
         {label && <span className="label-file">{label}</span>}
         <label
           className={twMerge(

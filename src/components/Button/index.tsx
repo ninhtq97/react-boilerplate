@@ -55,9 +55,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         className={twMerge(
           'btn',
           variant,
-          className,
           mapColor[color],
           mapSize[size],
+          className,
         )}
         disabled={loading}
         onClick={loading ? undefined : onClick}

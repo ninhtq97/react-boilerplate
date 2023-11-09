@@ -31,9 +31,9 @@ const Alert: React.FC<Props> = ({
     <span
       className={twMerge(
         'alert',
-        className,
         mapClassname[variant],
         mapSize[size],
+        className,
       )}
       {...props}
     >
