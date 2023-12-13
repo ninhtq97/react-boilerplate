@@ -36,9 +36,7 @@ const createAxiosApi: CreateAxiosApiFn = (method, url, variables, config) =>
 
     axios(axiosConfig).then(
       (response) => resolve(response.data),
-      (error) => {
-        reject(error.response ? error.response.data : defaults.error);
-      },
+      (error) => reject(error.response ? error.response.data : defaults.error),
     );
   });
 
