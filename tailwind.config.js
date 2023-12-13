@@ -629,26 +629,19 @@ module.exports = {
         },
 
         '.btn': {
-          '@apply relative flex items-center justify-center font-medium z-0 border rounded-lg border-current overflow-hidden duration-200 ease-in-out':
+          '@apply relative flex items-center justify-center font-medium rounded-lg overflow-hidden duration-200 ease-in-out':
             {},
 
-          '&::before': {
-            '@apply content-[""] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-current opacity-5':
-              {},
-          },
-
           '&:not(.outlined)': {
-            '@apply border-transparent': {},
-
-            '&::before': {
-              '@apply opacity-100': {},
-            },
+            '@apply bg-current': {},
 
             '&:disabled': {
-              '&::before': {
-                '@apply bg-slate-300': {},
-              },
+              '@apply bg-slate-300': {},
             },
+          },
+
+          '&.outlined': {
+            '@apply border border-current': {},
           },
 
           '&:disabled': {
