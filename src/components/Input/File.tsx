@@ -1,4 +1,3 @@
-import { useApi } from 'hooks';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { twJoin, twMerge } from 'tailwind-merge';
 import { Icon, Plus } from '../Icon';
@@ -30,8 +29,6 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
     },
     $ref,
   ) => {
-    const { onCallWithCatchError } = useApi();
-
     const [base64, setBase64] = useState('');
 
     const fetchStream = useCallback(async () => {
@@ -63,9 +60,9 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
       const file = e.currentTarget.files?.[0];
 
       if (value && merchantId) {
-        onCallWithCatchError(async () => {
-          // await deleteUpload(merchantId, value);
-        });
+        // onCallWithCatchError(async () => {
+        // await deleteUpload(merchantId, value);
+        // });
       }
 
       if (file) {

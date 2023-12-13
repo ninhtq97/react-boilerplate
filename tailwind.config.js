@@ -643,14 +643,16 @@ module.exports = {
             '&::before': {
               '@apply opacity-100': {},
             },
+
+            '&:disabled': {
+              '&::before': {
+                '@apply bg-slate-300': {},
+              },
+            },
           },
 
           '&:disabled': {
             '@apply pointer-events-none': {},
-
-            '&::before': {
-              '@apply bg-slate-300': {},
-            },
           },
 
           '&__content': {
