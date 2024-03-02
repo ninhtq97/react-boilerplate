@@ -18,7 +18,10 @@ export const recursiveRoutes = (
 ) => {
   for (let key in routes) {
     if (typeof routes[key] === 'object') {
-      recursiveRoutes(routes[key], parentPath + routes[key].SELF + '/');
+      recursiveRoutes(
+        routes[key],
+        parentPath + (routes[key].SELF ? `${routes[key].SELF}/` : ''),
+      );
     } else {
       if (key !== 'SELF') {
         routes[key] = parentPath + routes[key];
