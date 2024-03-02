@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { HeadCell } from '../components/Table';
+import { HeadCell } from 'types';
 
 const useExport = <T>(COLUMNS: HeadCell[], excelData: T[]) => {
   const HEADING = COLUMNS.filter((x) => x.label).reduce(
