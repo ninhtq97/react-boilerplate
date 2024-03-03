@@ -5,16 +5,10 @@ import { ArrowLeft, ArrowRight, Icon } from '../Icon';
 import Select from '../Select';
 import Item from './Item';
 
-const onLoadPageSize = (): Option[] => {
-  const options: Option[] = [100, 50, 25, 10].map((size) => ({
-    label: size.toString(),
-    value: size,
-  }));
-
-  return options;
-};
-
-const SIZE_OPTIONS = onLoadPageSize();
+const SIZE_OPTIONS: Option[] = [10, 25, 50, 100].map((size) => ({
+  label: size.toString(),
+  value: size,
+}));
 
 type Props = {
   current: number;

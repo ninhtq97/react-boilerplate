@@ -98,7 +98,7 @@ module.exports = {
         },
 
         '.tbl-wrapper': {
-          '@apply relative w-full border rounded-lg overflow-x-auto': {},
+          '@apply relative w-full overflow-x-auto': {},
         },
 
         'table.tbl': {
@@ -130,20 +130,10 @@ module.exports = {
           tbody: {
             tr: {
               '@apply relative z-0 duration-200 ease-in-out': {},
-
-              '&:nth-child(even)': {
-                '&::after': {
-                  '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full bg-slate-50 rounded -z-[1]':
-                    {},
-                  content: '""',
-                  width: 'calc(100% - 16px)',
-                },
-              },
             },
 
             td: {
-              '@apply whitespace-nowrap select-text': {},
-              padding: `10.5px ${theme('spacing.4')}`,
+              '@apply whitespace-nowrap select-text px-4 py-2.5': {},
             },
           },
         },
