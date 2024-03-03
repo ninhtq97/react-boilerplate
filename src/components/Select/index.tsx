@@ -98,7 +98,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
         'select',
         isMultiple && 'multiple',
         isDisable && 'disabled',
-        placeholder || (selected.length && 'has-value'),
+        (placeholder || selected.length) && 'has-value',
         error && 'has-error',
         !label && 'no-label',
       )}
