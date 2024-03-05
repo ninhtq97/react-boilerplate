@@ -160,7 +160,7 @@ const calcPosition = (
 
     const placements = {
       'top-start': {
-        top: popoverRect.height - margin + window.scrollY,
+        top: linkRect.top - popoverRect.height - margin + window.scrollY,
         left: linkRect.left,
       },
       top: {
