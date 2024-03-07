@@ -395,7 +395,9 @@ module.exports = {
           },
 
           '&.disabled': {
-            '@apply bg-gray-100': {},
+            '.text-field': {
+              '@apply bg-gray-100': {},
+            },
 
             '.ipt': {
               '@apply cursor-default': {},
