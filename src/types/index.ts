@@ -69,5 +69,6 @@ export type Option = {
 };
 
 export type HeadCell = {
+  id: string;
   label: string | React.ReactNode;
 } & React.ThHTMLAttributes<HTMLTableCellElement>;
