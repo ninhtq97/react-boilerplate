@@ -33,6 +33,7 @@ module.exports = {
     'react-tailwindcss-datepicker',
     'slugify',
     'sweetalert2',
+    'clsx',
     'tailwind-merge',
   ],
   plugins: [

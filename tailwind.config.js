@@ -399,7 +399,7 @@ module.exports = {
               '@apply bg-gray-100': {},
             },
 
-            '.ipt': {
+            '.ipt-field': {
               '@apply cursor-default': {},
             },
           },
