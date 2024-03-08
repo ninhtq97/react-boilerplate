@@ -310,7 +310,7 @@ module.exports = {
             },
 
             '.option': {
-              '@apply text-base rounded-xl cursor-pointer bg-white duration-200 ease-in-out':
+              '@apply flex items-center gap-2 text-base rounded-xl cursor-pointer bg-white duration-200 ease-in-out':
                 {},
               padding: `${theme('spacing.2')} ${theme('spacing.[1.5]')}`,
 

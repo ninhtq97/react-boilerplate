@@ -82,13 +82,13 @@ const Dropdown: React.FC<Props> = ({
               onClick={() => selectOptionValue(option)}
               key={option.value}
             >
-              <div className="flex items-center gap-2">
-                {option.icon}
+              {option.icon}
+              <div className="flex flex-col">
                 <span className="option-value">{option.label}</span>
+                {option.suffix && (
+                  <span className="text-xs text-zinc-400">{option.suffix}</span>
+                )}
               </div>
-              {option.suffix && (
-                <span className="text-xs text-zinc-400">{option.suffix}</span>
-              )}
             </div>
           ))
         ) : (
