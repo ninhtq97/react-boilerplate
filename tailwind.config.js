@@ -662,9 +662,8 @@ module.exports = {
           '&__link': {},
 
           '&__popper': {
-            '@apply absolute top-0 left-0 flex bg-neutral-500 rounded text-white text-xs leading-[18px] z-[1]':
+            '@apply absolute top-0 left-0 flex bg-neutral-500 rounded text-white text-xs leading-[18px] z-[999] py-0.5 px-3':
               {},
-            padding: '2px 12px',
           },
         },
 
