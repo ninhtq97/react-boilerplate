@@ -63,7 +63,6 @@ const Pagination: React.FC<Props> = ({
           <div className="pagination-size__select">
             <Select
               isFilterSearch={false}
-              placement="top-start"
               value={currentSize}
               onChange={(selected) =>
                 onChangeSize(Array.isArray(selected) ? +selected[0] : +selected)
