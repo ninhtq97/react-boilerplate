@@ -33,7 +33,11 @@ export const toSlug = (
 export const toIntlNumber = (
   amount: string | number,
   locales: string = 'de-DE',
-) => `${+amount ? new Intl.NumberFormat(locales).format(+amount) : amount}`;
+  options?: Intl.NumberFormatOptions,
+) =>
+  `${
+    +amount ? new Intl.NumberFormat(locales, options).format(+amount) : amount
+  }`;
 
 export const toCurrency = (amount: string | number, currency: string = 'đ') =>
   `${toIntlNumber(amount)}${currency}`;

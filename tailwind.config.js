@@ -63,17 +63,15 @@ module.exports = {
       });
       addComponents({
         '.modal': {
-          '@apply fixed overflow-auto z-[999] inset-0': {},
+          '@apply fixed z-[999] inset-0': {},
 
           '&-overlay': {
-            '@apply flex items-center justify-center min-h-full bg-black/20':
+            '@apply flex items-center justify-center min-h-full bg-black/20 overflow-auto':
               {},
-            padding: `0 ${theme('spacing.3')}`,
           },
 
           '&-container': {
-            '@apply relative w-full bg-white rounded-lg': {},
-            margin: `${theme('spacing.8')} auto`,
+            '@apply relative w-full bg-white rounded-lg my-8 mx-auto': {},
           },
 
           '&-close': {
@@ -84,7 +82,7 @@ module.exports = {
             '@apply relative p-3': {},
 
             '@screen md': {
-              padding: `${theme('spacing.4')} ${theme('spacing.5')}`,
+              '@apply py-4 px-5': {},
             },
           },
 

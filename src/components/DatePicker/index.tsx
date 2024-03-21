@@ -18,6 +18,7 @@ const CustomDatePicker: React.FC<Props> = ({ error, helperText, ...props }) => {
     >
       <label className={cn('picker-field', error && 'text-rose-500')}>
         <Datepicker
+          containerClassName={cn('relative w-full text-gray-700 flex')}
           inputClassName={cn(
             'placeholder:text-[.9375rem] placeholder:leading-[1.375rem] !pl-3 focus:ring-0',
             error && 'placeholder:text-rose-500',
