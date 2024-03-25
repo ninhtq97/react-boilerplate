@@ -232,7 +232,7 @@ module.exports = {
           '&:not(.has-value)': {
             '.select': {
               '&-values': {
-                '@apply py-7': {},
+                '@apply py-[1.625rem]': {},
               },
             },
           },
@@ -241,7 +241,7 @@ module.exports = {
             '&.no-label': {
               '.select': {
                 '&-values': {
-                  '@apply py-[1.1335em]': {},
+                  '@apply py-4': {},
                 },
               },
             },
