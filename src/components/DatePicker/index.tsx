@@ -3,34 +3,44 @@ import Datepicker from 'react-tailwindcss-datepicker';
 import { cn } from 'utils';
 
 type Props = {
+  floating?: boolean;
   error?: boolean;
   helperText?: string;
 } & React.ComponentProps<typeof Datepicker>;
 
-const CustomDatePicker: React.FC<Props> = ({ error, helperText, ...props }) => {
+const CustomDatePicker: React.FC<Props> = ({
+  floating,
+  error,
+  helperText,
+  ...props
+}) => {
   return (
     <div
       className={cn(
         'form-picker',
+        floating && 'floating',
         props.value?.startDate && 'has-value',
         props.disabled && 'disabled',
       )}
     >
+      <div className="label-picker">{props.placeholder}</div>
+
       <label className={cn('picker-field', error && 'text-rose-500')}>
         <Datepicker
           inputClassName={cn(
-            'relative transition-all duration-300 pr-14 w-full rounded-lg font-light text-sm placeholder-gray-400 placeholder:text-[.9375rem] placeholder:leading-[1.375rem] !pl-3 focus:ring-0',
+            'relative transition-all duration-300 pr-14 w-full rounded-lg font-light text-sm placeholder-gray-400 placeholder:text-[.9375rem] placeholder:leading-[1.375rem] pl-3 focus:ring-0',
             error && 'placeholder:text-rose-500',
-            props.placeholder && props.value?.startDate
-              ? '!pb-[.625rem] pt-6'
-              : 'py-[1.063rem]',
+            floating
+              ? props.placeholder && props.value?.startDate
+                ? 'pb-[.625rem] pt-6'
+                : 'py-[1.063rem]'
+              : 'py-4',
             props.disabled &&
               'disabled:!opacity-100 font-normal text-stone-800',
           )}
           displayFormat={DATE_FORMAT.PICKER}
           {...props}
         />
-        <span className="label-picker">{props.placeholder}</span>
       </label>
       {error && <p className="ml-2 text-xs text-rose-500">{helperText}</p>}
     </div>

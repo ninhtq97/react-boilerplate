@@ -515,7 +515,7 @@ module.exports = {
         },
 
         '.form-picker': {
-          '@apply flex flex-col gap-1': {},
+          '@apply relative flex flex-col gap-1': {},
 
           '&.disabled': {
             '.picker-field': {
@@ -523,10 +523,17 @@ module.exports = {
             },
           },
 
-          '&.has-value': {
+          '&.floating': {
             '.label-picker': {
-              '@apply top-[.375rem] text-xs opacity-100': {},
-              transform: 'unset',
+              '@apply absolute top-1/2 left-3 -translate-y-1/2 pointer-events-none opacity-0 duration-200 ease-in-out':
+                {},
+
+              '&.has-value': {
+                '.label-picker': {
+                  '@apply top-[.375rem] text-xs opacity-100': {},
+                  transform: 'unset',
+                },
+              },
             },
           },
 
@@ -536,8 +543,7 @@ module.exports = {
           },
 
           '.label-picker': {
-            '@apply absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400 pointer-events-none opacity-0 text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
-              {},
+            '@apply text-zinc-400 text-[.9375rem] leading-[1.375rem]': {},
           },
         },
 
