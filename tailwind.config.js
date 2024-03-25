@@ -248,13 +248,8 @@ module.exports = {
 
             '&:not(.no-label)': {
               '.select': {
-                '&-label': {
-                  '@apply top-[.375rem] text-xs': {},
-                  transform: 'unset',
-                },
-
                 '&-values': {
-                  '@apply pt-6 pb-[.625rem]': {},
+                  '@apply py-4': {},
                 },
               },
             },
@@ -268,13 +263,37 @@ module.exports = {
             },
           },
 
+          '&.floating': {
+            '&.has-value': {
+              '&:not(.no-label)': {
+                '.select': {
+                  '&-label': {
+                    '@apply top-[.375rem] text-xs': {},
+                    transform: 'unset',
+                  },
+
+                  '&-values': {
+                    '@apply pt-6 pb-[.625rem]': {},
+                  },
+                },
+              },
+            },
+
+            '.select': {
+              '&-label': {
+                '@apply absolute top-1/2 -translate-y-1/2 left-3 duration-200 ease-in-out':
+                  {},
+              },
+            },
+          },
+
           '&-label': {
-            '@apply absolute top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem] duration-200 ease-in-out':
+            '@apply pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem]':
               {},
           },
 
           '&-values': {
-            '@apply flex flex-wrap gap-1': {},
+            '@apply flex flex-1 flex-wrap gap-1': {},
           },
 
           '&-value': {
@@ -291,12 +310,25 @@ module.exports = {
           },
 
           '&-container': {
-            '@apply flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3':
+            '@apply flex items-center gap-1.5 rounded-xl bg-slate-100 text-slate-400 px-3':
               {},
           },
 
           '&-placeholder': {
             '@apply text-slate-400 whitespace-nowrap text-[.9375rem] leading-[1.375rem]':
+              {},
+          },
+
+          '&-icon': {
+            '@apply flex gap-1': {},
+          },
+
+          '&-divider': {
+            '@apply border-l': {},
+          },
+
+          '&-arrow': {
+            '@apply h-6 w-6 items-center justify-center text-base text-slate-400':
               {},
           },
 

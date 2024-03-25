@@ -8,6 +8,7 @@ import Popover from '../Popover';
 import Dropdown from './Dropdown';
 
 type Props = {
+  floating?: boolean;
   className?: string;
   popoverClassName?: string;
   isMultiple?: boolean;
@@ -28,6 +29,7 @@ type Props = {
 
 const Select = forwardRef<HTMLDivElement, Props>(function Render(
   {
+    floating,
     className,
     popoverClassName,
     isMultiple,
@@ -96,6 +98,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     <div
       className={twMerge(
         'select',
+        floating && 'floating',
         isMultiple && 'multiple',
         isDisable && 'disabled',
         (placeholder || selected.length) && 'has-value',
@@ -104,6 +107,8 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       )}
       ref={$ref}
     >
+      {label && <div className="select-label">{label}</div>}
+
       <Popover
         className={twMerge(
           'rounded-xl border-slate-400 !p-2',
@@ -118,39 +123,33 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
             >
-              <div className="relative flex flex-1 flex-col justify-center">
-                {label && <div className="select-label">{label}</div>}
-
-                <div className="select-values">
-                  {selected.length > 0
-                    ? selected.map((s) => (
-                        <div className="select-value" key={s.value}>
-                          <div className="select-value__content">
-                            {s.icon}
-                            <span className="">{s.label}</span>
-                          </div>
-
-                          {isMultiple && (
-                            <Icon
-                              className="select-value__remove"
-                              tag="div"
-                              icon={<Times />}
-                              onClick={(e) => removeSelected(e, s)}
-                            />
-                          )}
+              <div className="select-values">
+                {selected.length > 0
+                  ? selected.map((s) => (
+                      <div className="select-value" key={s.value}>
+                        <div className="select-value__content">
+                          {s.icon}
+                          <span className="">{s.label}</span>
                         </div>
-                      ))
-                    : placeholder && (
-                        <span className="select-placeholder">
-                          {placeholder}
-                        </span>
-                      )}
-                </div>
+
+                        {isMultiple && (
+                          <Icon
+                            className="select-value__remove"
+                            tag="div"
+                            icon={<Times />}
+                            onClick={(e) => removeSelected(e, s)}
+                          />
+                        )}
+                      </div>
+                    ))
+                  : placeholder && (
+                      <span className="select-placeholder">{placeholder}</span>
+                    )}
               </div>
-              <div className="flex gap-1">
-                {/* <span className="border-l"></span> */}
+              <div className="select-icon">
+                <span className="select-divider" />
                 <Icon
-                  className="h-6 w-6 items-center justify-center text-base text-slate-400"
+                  className="select-arrow"
                   tag="div"
                   icon={<ChevronDown />}
                 />
