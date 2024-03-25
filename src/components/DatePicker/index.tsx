@@ -4,12 +4,14 @@ import { cn } from 'utils';
 
 type Props = {
   floating?: boolean;
+  label?: string;
   error?: boolean;
   helperText?: string;
 } & React.ComponentProps<typeof Datepicker>;
 
 const CustomDatePicker: React.FC<Props> = ({
   floating,
+  label,
   error,
   helperText,
   ...props
@@ -23,7 +25,7 @@ const CustomDatePicker: React.FC<Props> = ({
         props.disabled && 'disabled',
       )}
     >
-      <div className="label-picker">{props.placeholder}</div>
+      {label && <div className="label-picker">{label}</div>}
 
       <label className={cn('picker-field', error && 'text-rose-500')}>
         <Datepicker
@@ -31,7 +33,7 @@ const CustomDatePicker: React.FC<Props> = ({
             'relative transition-all duration-300 pr-14 w-full rounded-lg font-light text-sm placeholder-gray-400 placeholder:text-[.9375rem] placeholder:leading-[1.375rem] pl-3 focus:ring-0',
             error && 'placeholder:text-rose-500',
             floating
-              ? props.placeholder && props.value?.startDate
+              ? label && props.value?.startDate
                 ? 'pb-[.625rem] pt-6'
                 : 'py-[1.063rem]'
               : 'py-4',
