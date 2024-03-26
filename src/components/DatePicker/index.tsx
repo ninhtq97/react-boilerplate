@@ -36,7 +36,7 @@ const CustomDatePicker: React.FC<Props> = ({
               ? label && props.value?.startDate
                 ? 'pb-[.625rem] pt-6'
                 : 'py-[1.063rem]'
-              : 'py-4',
+              : 'py-[1.0625rem]',
             props.disabled &&
               'disabled:!opacity-100 font-normal text-stone-800',
           )}
