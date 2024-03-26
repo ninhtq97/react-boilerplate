@@ -63,10 +63,10 @@ module.exports = {
       });
       addComponents({
         '.modal': {
-          '@apply fixed z-[999] inset-0': {},
+          '@apply fixed z-[999] inset-0 h-screen overflow-auto': {},
 
           '&-overlay': {
-            '@apply flex items-center justify-center min-h-full bg-black/20 overflow-auto':
+            '@apply flex items-center justify-center min-h-full bg-black/20':
               {},
           },
 
