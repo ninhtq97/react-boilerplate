@@ -562,7 +562,7 @@ module.exports = {
           },
 
           '&__box': {
-            '@apply relative w-4 h-4 border-2 rounded cursor-pointer duration-200 ease-in-out':
+            '@apply relative w-4 h-4 border-current bg-current border-2 rounded cursor-pointer duration-200 ease-in-out':
               {},
           },
 
