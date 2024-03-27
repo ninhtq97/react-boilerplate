@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from 'utils';
 import { Check, Icon } from '../Icon';
 
 type Props = {
@@ -35,7 +35,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
 
     return (
       <label className="checkbox" onClick={(e) => e.stopPropagation()}>
-        <div className={twMerge('checkbox__container', className)}>
+        <div className="checkbox__container">
           <input
             type="checkbox"
             className="checkbox__ipt"
@@ -44,7 +44,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
             ref={$ref}
             {...props}
           />
-          <div className="checkbox__box">
+          <div className={cn('checkbox__box', className)}>
             <Icon
               className={`checkbox__icon ${checked ? '' : 'invisible'}`}
               icon={<Check />}
