@@ -257,7 +257,7 @@ module.exports = {
 
           '&.has-error': {
             '.select': {
-              '&-container': {
+              '&-label, &-container': {
                 '@apply text-rose-500': {},
               },
             },
