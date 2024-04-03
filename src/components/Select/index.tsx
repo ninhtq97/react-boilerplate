@@ -12,13 +12,14 @@ type Props = {
   className?: string;
   popoverClassName?: string;
   isMultiple?: boolean;
-  isDisable?: boolean;
+  disabled?: boolean;
   isFilterSearch?: boolean;
   label?: string;
   value?: string | number | (string | number)[];
   placement?: Placement;
   options: Option[];
   isLoading?: boolean;
+  required?: boolean;
   placeholder?: string;
   error?: boolean;
   helperText?: string;
@@ -33,7 +34,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     className,
     popoverClassName,
     isMultiple,
-    isDisable,
+    disabled,
     isLoading = false,
     isFilterSearch = true,
     label,
@@ -43,6 +44,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     placement = 'bottom-start',
     error,
     helperText,
+    required,
     onChange,
     keyword: propsKeyword = '',
     onSearch,
@@ -100,14 +102,19 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
         'select',
         floating && 'floating',
         isMultiple && 'multiple',
-        isDisable && 'disabled',
+        disabled && 'disabled',
         (placeholder || selected.length) && 'has-value',
         error && 'has-error',
         !label && 'no-label',
       )}
       ref={$ref}
     >
-      {label && <div className="select-label">{label}</div>}
+      {label && (
+        <div className="select-label">
+          {label}
+          {required && <span className="text-rose-500">*</span>}
+        </div>
+      )}
 
       <Popover
         className={twMerge(
