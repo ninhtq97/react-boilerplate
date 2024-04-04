@@ -69,7 +69,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
             className={twMerge(
               'flex items-center gap-2',
               variant === 'outlined'
-                ? mapColor[color]
+                ? 'text-current'
                 : [color === 'secondary' ? 'text-stone-800' : 'text-white'],
             )}
           >
