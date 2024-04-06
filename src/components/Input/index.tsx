@@ -28,6 +28,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
       icon,
       iconPosition = 'start',
       prefix,
+      required,
       disabled,
       error,
       helperText,
@@ -52,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         {!floating && label && (
           <span className="label-field">
             {label}
-            {props.required && <span className="text-rose-500">*</span>}
+            {required && <span className="text-rose-500">*</span>}
           </span>
         )}
 
@@ -81,7 +82,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             {floating && label && (
               <span className="label-field">
                 {label}
-                {props.required && <span className="text-rose-500">*</span>}
+                {required && <span className="text-rose-500">*</span>}
               </span>
             )}
           </label>

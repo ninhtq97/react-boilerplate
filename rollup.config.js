@@ -8,7 +8,7 @@ const packageJson = require('./package.json');
 const options = require('./tsconfig.json');
 
 module.exports = {
-  input: 'src/index.ts',
+  input: 'src/build.ts',
   output: [
     {
       file: packageJson.main,
@@ -37,7 +37,10 @@ module.exports = {
     'tailwind-merge',
   ],
   plugins: [
-    typescript(options.compilerOptions),
+    typescript({
+      compilerOptions: options.compilerOptions,
+      exclude: ['index.tsx', 'App.tsx', 'stories'],
+    }),
     json(),
     resolve(),
     commonjs(),

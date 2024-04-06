@@ -4,8 +4,9 @@
   "private": true,
   "main": "build/dist/index.cjs.js",
   "module": "build/dist/index.esm.js",
-  "types": "build/dist/index.d.ts",
+  "types": "build/dist/build.d.ts",
   "devDependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -33,6 +34,7 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.2",
     "react-tailwindcss-datepicker": "^1.6.6",
     "rimraf": "^5.0.1",
     "rollup": "^2.79.1",
@@ -43,17 +45,18 @@
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.3.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "yup": "^1.4.0"
   },
   "peerDependencies": {
     "axios": "^1.4.0",
+    "clsx": "^2.1.0",
     "date-fns": "^2.0.0 || ^3.0.0",
     "framer-motion": "^10.0.0 || ^11.0.0",
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
     "react-tailwindcss-datepicker": "^1.6.6",
     "slugify": "^1.6.6",
     "sweetalert2": "^11.7.20",
-    "clsx": "^2.1.0",
     "tailwind-merge": "^2.0.0"
   },
   "scripts": {
@@ -62,7 +65,20 @@
     "build": "rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src}/**/*.ts\" --fix",
+    "dev": "react-scripts start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
