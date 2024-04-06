@@ -2,7 +2,7 @@ import { forwardRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
-  onChange?: (isChecked: boolean) => void;
+  onChange?: (checked: boolean) => void;
 } & Omit<React.HTMLProps<HTMLInputElement>, 'onChange'>;
 
 const Switch = forwardRef<HTMLInputElement, Props>(

@@ -44,7 +44,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
             ref={$ref}
             {...props}
           />
-          <div className={cn('checkbox__box', className)}>
+          <div className={cn('checkbox__box', checked && 'checked', className)}>
             <Icon
               className={`checkbox__icon ${checked ? '' : 'invisible'}`}
               icon={<Check />}

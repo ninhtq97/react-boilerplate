@@ -436,7 +436,7 @@ module.exports = {
               {},
 
             '&__prefix': {
-              '@apply py-0.5 px-1.5 bg-white rounded text-xs pointer-events-none':
+              '@apply py-0.5 px-1.5 bg-black/10 rounded text-xs pointer-events-none':
                 {},
             },
 
@@ -545,8 +545,12 @@ module.exports = {
           },
 
           '&__box': {
-            '@apply relative w-4 h-4 border-2 rounded cursor-pointer duration-200 ease-in-out':
+            '@apply relative w-5 h-5 border-2 border-current rounded cursor-pointer duration-200 ease-in-out':
               {},
+
+            '&.checked': {
+              '@apply bg-current': {},
+            },
           },
 
           '&__label': {
@@ -560,7 +564,7 @@ module.exports = {
         },
 
         '.switch': {
-          '@apply inline-flex rounded-3xl w-[38px] h-6 p-px bg-gray-200 duration-200 ease-in-out':
+          '@apply inline-flex rounded-3xl w-10 h-6 p-px bg-neutral-200 duration-200 ease-in-out':
             {},
 
           '&.active': {
@@ -581,7 +585,7 @@ module.exports = {
 
           '&.disabled': {
             '&.active': {
-              '@apply bg-stone-400': {},
+              '@apply bg-neutral-400': {},
             },
           },
 

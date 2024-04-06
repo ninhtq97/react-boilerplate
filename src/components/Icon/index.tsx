@@ -219,20 +219,18 @@ export const ArrowRight: React.FC<IconProps> = (props) => {
 export const Check: React.FC<IconProps> = (props) => {
   return (
     <svg
-      width="8"
-      height="7"
-      viewBox="0 0 8 7"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       {...props}
     >
-      <path
-        d="M1.16663 3.50022L3.05551 5.38911L6.83329 1.61133"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 };

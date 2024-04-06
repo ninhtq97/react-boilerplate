@@ -5,6 +5,7 @@ import {
   Input,
   Modal,
   Select,
+  Switch,
   TextareaAutosize,
 } from 'components';
 import { useDebounce } from 'hooks';
@@ -92,6 +93,7 @@ function App() {
         render={({ field }) => (
           <Input
             label="Name"
+            prefix="TD_"
             required
             floating
             {...field}
@@ -191,7 +193,11 @@ function App() {
         )}
       />
 
-      <Checkbox label="Terms" className="border-black-7" checked />
+      <Checkbox label="Terms" className="text-blue-400" />
+
+      <Switch label="Terms" className="text-blue-400" />
+      <Switch label="Terms" disabled className="text-blue-400" />
+      <Switch label="Terms" disabled checked className="text-blue-400" />
 
       <Button className="" onClick={() => handleSubmit(onSubmit)()}>
         Submit
