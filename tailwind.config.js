@@ -221,7 +221,7 @@ module.exports = {
           },
 
           '&.disabled': {
-            pointerEvents: 'none',
+            '@apply pointer-events-none': {},
           },
 
           '&:not(.has-value)': {
@@ -249,12 +249,12 @@ module.exports = {
               '&:not(.no-label)': {
                 '.select': {
                   '&-label': {
-                    '@apply top-[.375rem] text-xs': {},
+                    '@apply top-1 text-xs': {},
                     transform: 'unset',
                   },
 
                   '&-values': {
-                    '@apply pt-6 pb-[.625rem]': {},
+                    '@apply pt-5 pb-1': {},
                   },
                 },
               },
@@ -292,21 +292,15 @@ module.exports = {
           },
 
           '&-placeholder': {
-            '@apply text-slate-400 whitespace-nowrap text-[.9375rem] leading-[1.375rem]':
-              {},
+            '@apply whitespace-nowrap': {},
           },
 
           '&-icon': {
             '@apply flex gap-1': {},
           },
 
-          '&-divider': {
-            '@apply border-l': {},
-          },
-
           '&-arrow': {
-            '@apply h-6 w-6 items-center justify-center text-base text-slate-400':
-              {},
+            '@apply h-6 w-6 items-center justify-center': {},
           },
 
           '&-dropdown': {
@@ -317,9 +311,8 @@ module.exports = {
             },
 
             '.option': {
-              '@apply flex items-center gap-2 text-base rounded-lg cursor-pointer bg-white duration-200 ease-in-out':
+              '@apply flex items-center gap-2 text-base rounded-lg cursor-pointer bg-white duration-200 ease-in-out py-2 px-1.5':
                 {},
-              padding: `${theme('spacing.2')} ${theme('spacing.[1.5]')}`,
 
               '&:hover': {
                 '@apply bg-blue-500/5': {},
@@ -389,7 +382,7 @@ module.exports = {
             },
 
             '.ipt-field': {
-              '@apply pt-5 pb-1.5': {},
+              '@apply pt-5 pb-1': {},
             },
           },
 
@@ -441,7 +434,7 @@ module.exports = {
             },
 
             '.ipt': {
-              '@apply text-[0.9375rem] leading-[1.375rem] border-none bg-transparent text-current resize-none text-ellipsis':
+              '@apply border-none bg-transparent text-current resize-none text-ellipsis':
                 {},
               outline: 'none',
               textAlign: 'inherit',

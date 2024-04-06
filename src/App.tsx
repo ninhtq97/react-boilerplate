@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
+  Alert,
   Button,
   Checkbox,
   Input,
@@ -62,6 +63,10 @@ function App() {
 
   return (
     <div className="m-10 flex flex-col gap-4">
+      <Alert>Success</Alert>
+      <Alert className="text-blue-500">Success</Alert>
+      <Alert className="text-rose-500">Success</Alert>
+
       <Modal
         renderLink={({ onOpen }) => (
           <div className="" onClick={onOpen}>
@@ -139,6 +144,7 @@ function App() {
           />
         )}
       />
+
       <Controller
         name="status"
         control={control}
@@ -159,8 +165,44 @@ function App() {
         control={control}
         render={({ field }) => (
           <Select
+            label="Trạng thái"
+            multiple
+            floating
+            placeholder="Chọn trạng thái"
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            {...field}
+          />
+        )}
+      />
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            label="Trạng thái"
+            floating
+            placeholder="Chọn trạng thái"
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            {...field}
+          />
+        )}
+      />
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
             multiple
             label="Trạng thái"
+            required
             options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
@@ -182,6 +224,7 @@ function App() {
         render={({ field }) => (
           <Select
             label="Trạng thái"
+            required
             options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
@@ -199,7 +242,24 @@ function App() {
       <Switch label="Terms" disabled className="text-blue-400" />
       <Switch label="Terms" disabled checked className="text-blue-400" />
 
-      <Button className="" onClick={() => handleSubmit(onSubmit)()}>
+      <Button className="">Submit</Button>
+      <Button className="text-rose-500">Submit</Button>
+
+      <Button className="text-neutral-200" asChild>
+        <div className="text-black">Submit</div>
+      </Button>
+
+      <Button className="" loading>
+        Submit
+      </Button>
+      <Button className="text-rose-500" loading>
+        Submit
+      </Button>
+
+      <Button className="" variant="outlined">
+        Submit
+      </Button>
+      <Button className="text-rose-500" variant="outlined">
         Submit
       </Button>
     </div>

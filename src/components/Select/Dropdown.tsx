@@ -9,8 +9,8 @@ type Props = {
   options: Option[];
   onChange: (selected: Option) => void;
   deactivateDropdown: () => void;
-  isLoading: boolean;
-  isFilterSearch: boolean;
+  loading: boolean;
+  filterSearch: boolean;
   searchValue: string;
   setSearchValue: (keyword: string) => void;
 };
@@ -21,8 +21,8 @@ const Dropdown: React.FC<Props> = ({
   options,
   onChange,
   deactivateDropdown,
-  isLoading,
-  isFilterSearch,
+  loading,
+  filterSearch,
   searchValue,
   setSearchValue,
 }) => {
@@ -57,7 +57,7 @@ const Dropdown: React.FC<Props> = ({
 
   return (
     <div className="select-dropdown">
-      {isFilterSearch && (
+      {filterSearch && (
         <Input
           placeholder="Tìm kiếm..."
           value={searchValue}
@@ -70,7 +70,7 @@ const Dropdown: React.FC<Props> = ({
       )}
 
       <div className="options">
-        {isLoading ? (
+        {loading ? (
           <div className="flex items-center justify-center gap-2 py-2 text-neutral-500">
             <Icon icon={<Spinner className="animate-spin" />} />
             <span className="text-sm">Loading...</span>

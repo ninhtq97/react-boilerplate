@@ -1,8 +1,7 @@
 import { useDebounce } from 'hooks';
 import { forwardRef, useEffect, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { Option, Placement } from 'types';
-import { unique } from 'utils';
+import { cn, unique } from 'utils';
 import { ChevronDown, Icon, Times } from '../Icon';
 import Popover from '../Popover';
 import Dropdown from './Dropdown';
@@ -13,12 +12,12 @@ type Props = {
   popoverClassName?: string;
   multiple?: boolean;
   disabled?: boolean;
-  isFilterSearch?: boolean;
+  filterSearch?: boolean;
   label?: string;
   value?: string | number | (string | number)[];
   placement?: Placement;
   options: Option[];
-  isLoading?: boolean;
+  loading?: boolean;
   required?: boolean;
   placeholder?: string;
   error?: boolean;
@@ -35,8 +34,8 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     popoverClassName,
     multiple,
     disabled,
-    isLoading = false,
-    isFilterSearch = true,
+    loading = false,
+    filterSearch = false,
     label,
     value,
     options: propsOptions,
@@ -98,7 +97,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
 
   return (
     <div
-      className={twMerge(
+      className={cn(
         'select',
         floating && 'floating',
         multiple && 'multiple',
@@ -117,16 +116,13 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       )}
 
       <Popover
-        className={twMerge(
-          'rounded-xl border-slate-400 !p-2',
-          popoverClassName,
-        )}
+        className={cn('rounded-xl border-slate-400 !p-2', popoverClassName)}
         placement={placement}
         onClose={() => keyword && onChangeKeyword('')}
         renderLink={({ onClick, ref }) => (
           <>
             <div
-              className={twMerge('select-container', className)}
+              className={cn('select-container', className)}
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
             >
@@ -173,8 +169,8 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
             options={propsOptions}
             onChange={selectOption}
             deactivateDropdown={onClose}
-            isLoading={isLoading}
-            isFilterSearch={isFilterSearch}
+            loading={loading}
+            filterSearch={filterSearch}
             searchValue={keyword}
             setSearchValue={onChangeKeyword}
           />

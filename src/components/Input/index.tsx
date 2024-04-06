@@ -1,8 +1,8 @@
 import { Eye, EyeOff } from 'components/Icon';
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { twMerge } from 'tailwind-merge';
 import { End, Start } from 'types';
+import { cn } from 'utils';
 
 type Props = {
   floating?: boolean;
@@ -39,7 +39,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
   ) => {
     return (
       <div
-        className={twMerge(
+        className={cn(
           'form-field',
           error && 'has-error',
           (placeholder || prefix || props.value?.toString().length) &&
@@ -57,12 +57,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           </span>
         )}
 
-        <div className={twMerge('text-field', className)}>
+        <div className={cn('text-field', className)}>
           {icon && iconPosition === 'start' && (
             <div className="icon-field">{icon}</div>
           )}
 
-          <label className={twMerge('ipt-field', containerClassName)}>
+          <label className={cn('ipt-field', containerClassName)}>
             {prefix && <div className="ipt-field__prefix">{prefix}</div>}
             {disabled ? (
               <p className="ipt" ref={$ref}>
@@ -71,7 +71,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             ) : (
               <Wrapper
                 type="text"
-                className={twMerge('ipt', inputClassName)}
+                className={cn('ipt', inputClassName)}
                 ref={$ref}
                 autoComplete="off"
                 placeholder={placeholder}

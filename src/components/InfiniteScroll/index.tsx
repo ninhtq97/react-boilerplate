@@ -1,10 +1,10 @@
 import { Icon, Spinner } from 'components/Icon';
 import { useCallback, useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from 'utils';
 
 type Props = {
   inverse?: boolean;
-  isLoading: boolean;
+  loading: boolean;
   hasMore: boolean;
   onNext: () => void;
   loader?: React.ReactNode;
@@ -13,7 +13,7 @@ type Props = {
 const InfiniteScroll: React.FC<Props> = ({
   className,
   inverse,
-  isLoading,
+  loading,
   hasMore,
   onNext,
   loader,
@@ -22,7 +22,7 @@ const InfiniteScroll: React.FC<Props> = ({
   const observer = useRef<IntersectionObserver>();
   const $ref = useCallback(
     (node: HTMLAnchorElement) => {
-      if (isLoading) return;
+      if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
@@ -31,14 +31,12 @@ const InfiniteScroll: React.FC<Props> = ({
       });
       if (node) observer.current.observe(node);
     },
-    [hasMore, isLoading],
+    [hasMore, loading],
   );
 
   return (
     <>
-      <div
-        className={twMerge('infinite-scroll', inverse && ' inverse', className)}
-      >
+      <div className={cn('infinite-scroll', inverse && ' inverse', className)}>
         {children}
         {hasMore && (
           <Icon

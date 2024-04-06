@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from 'utils';
 
 type Props = {
   tag?: React.ElementType;
@@ -23,7 +23,7 @@ export const Icon = forwardRef<HTMLElement, Props>(
   ) => {
     return (
       <Wrapper
-        className={twMerge(
+        className={cn(
           'icon',
           badged && 'badged',
           !disabled && clickable && 'cursor-pointer select-none',

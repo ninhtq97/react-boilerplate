@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useOutsideClick } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { twMerge } from 'tailwind-merge';
 import { Placement, Position } from 'types';
+import { cn } from 'utils';
 
 type Offset = Partial<Record<Position, number>>;
 
@@ -97,7 +97,7 @@ const Popover: React.FC<Props> = ({
           <>
             {createPortal(
               <motion.div
-                className={twMerge('popover', className)}
+                className={cn('popover', className)}
                 ref={$popoverRef}
                 initial={{ y: 8, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
