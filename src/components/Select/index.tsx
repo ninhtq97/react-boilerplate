@@ -11,7 +11,7 @@ type Props = {
   floating?: boolean;
   className?: string;
   popoverClassName?: string;
-  isMultiple?: boolean;
+  multiple?: boolean;
   disabled?: boolean;
   isFilterSearch?: boolean;
   label?: string;
@@ -33,7 +33,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
     floating,
     className,
     popoverClassName,
-    isMultiple,
+    multiple,
     disabled,
     isLoading = false,
     isFilterSearch = true,
@@ -75,11 +75,11 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
 
   const selectOption = (option: Option) => {
     onChange(
-      isMultiple
+      multiple
         ? unique([...selected.map((e) => e.value), option.value])
         : option.value,
     );
-    setSelected((prev) => (isMultiple ? unique([...prev, option]) : [option]));
+    setSelected((prev) => (multiple ? unique([...prev, option]) : [option]));
     debounceValue && setSearchValue('');
   };
 
@@ -101,7 +101,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       className={twMerge(
         'select',
         floating && 'floating',
-        isMultiple && 'multiple',
+        multiple && 'multiple',
         disabled && 'disabled',
         (placeholder || selected.length) && 'has-value',
         error && 'has-error',
@@ -139,7 +139,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
                           <span className="">{s.label}</span>
                         </div>
 
-                        {isMultiple && (
+                        {multiple && (
                           <Icon
                             className="select-value__remove"
                             tag="div"
@@ -154,9 +154,8 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
                     )}
               </div>
               <div className="select-icon">
-                <span className="select-divider" />
                 <Icon
-                  className="select-arrow"
+                  className="select-icon"
                   tag="div"
                   icon={<ChevronDown />}
                 />

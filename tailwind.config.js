@@ -200,26 +200,21 @@ module.exports = {
         },
 
         '.select': {
-          '@apply relative flex flex-col gap-1 w-full select-none cursor-pointer':
-            {},
-
-          '&:not(.multiple)': {
-            '.select': {
-              '&-value': {
-                fontSize: '15px',
-                lineHeight: '22px',
-              },
-            },
-          },
+          '@apply relative flex flex-col gap-1 w-full select-none': {},
 
           '&.multiple': {
             '.select': {
               '&-value': {
-                '@apply cursor-pointer bg-slate-400 text-white py-0.5 px-1 rounded':
+                '@apply cursor-default bg-black/10 text-black py-0.5 px-1.5 rounded-md':
                   {},
 
                 '&__content': {
                   '@apply text-sm': {},
+                },
+
+                '&__remove': {
+                  '@apply cursor-pointer items-center justify-center w-3 h-3 hover:text-rose-500':
+                    {},
                 },
               },
             },
@@ -232,35 +227,21 @@ module.exports = {
           '&:not(.has-value)': {
             '.select': {
               '&-values': {
-                '@apply py-[1.625rem]': {},
+                '@apply py-[1.1875rem]': {},
               },
             },
           },
 
           '&.has-value': {
-            '&.no-label': {
-              '.select': {
-                '&-values': {
-                  '@apply py-4': {},
-                },
-              },
-            },
-
-            '&:not(.no-label)': {
-              '.select': {
-                '&-values': {
-                  '@apply py-4': {},
-                },
+            '.select': {
+              '&-values': {
+                '@apply py-[0.4375rem]': {},
               },
             },
           },
 
           '&.has-error': {
-            '.select': {
-              '&-label, &-container': {
-                '@apply text-rose-500': {},
-              },
-            },
+            '@apply text-rose-500': {},
           },
 
           '&.floating': {
@@ -288,7 +269,12 @@ module.exports = {
           },
 
           '&-label': {
-            '@apply pointer-events-none whitespace-nowrap max-w-full text-ellipsis overflow-hidden text-[.9375rem] leading-[1.375rem]':
+            '@apply pointer-events-none whitespace-nowrap text-current max-w-full text-ellipsis overflow-hidden text-sm':
+              {},
+          },
+
+          '&-container': {
+            '@apply flex items-center gap-2 cursor-pointer border border-current rounded-lg px-2':
               {},
           },
 
@@ -303,15 +289,6 @@ module.exports = {
             '&__content': {
               '@apply flex items-center gap-2': {},
             },
-
-            '&__remove': {
-              '@apply items-center justify-center w-3 h-3': {},
-            },
-          },
-
-          '&-container': {
-            '@apply flex items-center gap-1.5 rounded-lg bg-slate-100 text-slate-400 px-3':
-              {},
           },
 
           '&-placeholder': {
@@ -383,7 +360,7 @@ module.exports = {
 
             '&.textarea': {
               '.label-field': {
-                '@apply top-6': {},
+                '@apply top-3.5': {},
               },
             },
 
@@ -404,7 +381,7 @@ module.exports = {
                 '.ipt': {
                   '&:focus': {
                     '& ~ .label-field': {
-                      '@apply text-xs top-1.5 translate-y-0': {},
+                      '@apply text-xs top-1 translate-y-0': {},
                     },
                   },
                 },
@@ -412,7 +389,7 @@ module.exports = {
             },
 
             '.ipt-field': {
-              '@apply pt-5 pb-2': {},
+              '@apply pt-5 pb-1.5': {},
             },
           },
 
@@ -446,7 +423,7 @@ module.exports = {
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-3 w-full border rounded-lg overflow-hidden bg-white px-3':
+            '@apply relative flex items-center justify-between gap-2 w-full border rounded-lg overflow-hidden bg-white px-2':
               {},
           },
 
