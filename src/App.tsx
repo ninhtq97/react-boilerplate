@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Input } from 'components';
+import { Alert, Button, Input, Modal } from 'components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -28,6 +28,21 @@ function App() {
 
   return (
     <div className="m-10 flex flex-col gap-4">
+      <Alert className="" variant="primary">
+        Success
+      </Alert>
+
+      <Modal
+        renderLink={({ onOpen }) => (
+          <div className="" onClick={onOpen}>
+            Open Modal
+          </div>
+        )}
+        renderHeader={() => <h4>Title</h4>}
+        renderContent={() => <div>Content</div>}
+        renderFooter={() => <div>Footer</div>}
+      />
+
       <Controller
         name="keyword"
         control={control}
