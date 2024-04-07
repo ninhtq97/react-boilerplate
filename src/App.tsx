@@ -10,7 +10,7 @@ import {
   TextareaAutosize,
 } from 'components';
 import InputOtp from 'components/Input/Otp';
-import { useDebounce, useExport } from 'hooks';
+import { useDebounce } from 'hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { api } from 'utils';
@@ -61,11 +61,6 @@ function App() {
   useEffect(() => {
     fetchTodos({ q: debounceValue });
   }, [debounceValue]);
-
-  const { onExport } = useExport([
-    { id: '1', label: 'Collumn 1' },
-    { id: '2', label: 'Collumn 2' },
-  ]);
 
   return (
     <div className="m-10 flex flex-col gap-4">
@@ -421,6 +416,47 @@ function App() {
             {...field}
             error
             helperText="Oops"
+          />
+        )}
+      />
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            multiple
+            label="Trạng thái"
+            floating
+            required
+            disabled
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            keyword={keyword}
+            onSearch={(keyword) => {
+              setKeyword(keyword);
+            }}
+            {...field}
+          />
+        )}
+      />
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            label="Trạng thái"
+            floating
+            required
+            disabled
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            {...field}
           />
         )}
       />

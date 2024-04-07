@@ -222,6 +222,12 @@ module.exports = {
 
           '&.disabled': {
             '@apply pointer-events-none': {},
+
+            '.select': {
+              '&-container': {
+                '@apply bg-gray-100': {},
+              },
+            },
           },
 
           '&.has-value': {
@@ -595,7 +601,7 @@ module.exports = {
         },
 
         '.switch': {
-          '@apply inline-flex rounded-3xl w-10 h-6 p-px bg-neutral-200 duration-200 ease-in-out':
+          '@apply inline-flex rounded-3xl w-10 h-6 p-0.5 bg-neutral-200 duration-200 ease-in-out':
             {},
 
           '&.active': {
@@ -632,7 +638,7 @@ module.exports = {
           },
 
           '&__thumb': {
-            '@apply absolute top-1/2 left-0 -translate-y-1/2 w-[22px] h-full bg-white rounded-full duration-200 ease-in-out':
+            '@apply absolute top-1/2 left-0 -translate-y-1/2 w-5 h-full bg-white rounded-full duration-200 ease-in-out':
               {},
           },
         },

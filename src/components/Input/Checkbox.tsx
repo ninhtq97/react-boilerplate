@@ -43,7 +43,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
             type="checkbox"
             className="checkbox__ipt"
             checked={checked}
-            onChange={!disabled ? onChange : undefined}
+            onChange={!disabled ? onChange : () => {}}
             ref={$ref}
             {...props}
           />
