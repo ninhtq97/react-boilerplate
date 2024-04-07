@@ -224,14 +224,6 @@ module.exports = {
             '@apply pointer-events-none': {},
           },
 
-          '&:not(.has-value)': {
-            '.select': {
-              '&-values': {
-                '@apply py-[1.1875rem]': {},
-              },
-            },
-          },
-
           '&.has-value': {
             '.select': {
               '&-values': {
@@ -260,10 +252,28 @@ module.exports = {
               },
             },
 
+            '&:not(.has-value)': {
+              '.select': {
+                '&-values': {
+                  '@apply py-6': {},
+                },
+              },
+            },
+
             '.select': {
               '&-label': {
                 '@apply absolute top-1/2 -translate-y-1/2 left-3 duration-200 ease-in-out':
                   {},
+              },
+            },
+          },
+
+          '&:not(.floating)': {
+            '&:not(.has-value)': {
+              '.select': {
+                '&-values': {
+                  '@apply py-[1.1875rem]': {},
+                },
               },
             },
           },
@@ -274,7 +284,7 @@ module.exports = {
           },
 
           '&-container': {
-            '@apply flex items-center gap-2 cursor-pointer border border-current rounded-lg px-2':
+            '@apply relative flex items-center gap-2 cursor-pointer border border-current rounded-lg px-2':
               {},
           },
 
@@ -292,7 +302,7 @@ module.exports = {
           },
 
           '&-placeholder': {
-            '@apply whitespace-nowrap': {},
+            '@apply whitespace-nowrap text-neutral-300': {},
           },
 
           '&-icon': {
@@ -341,6 +351,10 @@ module.exports = {
 
         '.ipt': {
           '@apply w-full': {},
+
+          '&__placeholder': {
+            '@apply text-neutral-300': {},
+          },
         },
 
         '.form-field': {
@@ -348,7 +362,17 @@ module.exports = {
 
           '&.floating': {
             '.label-field': {
-              '@apply absolute left-0 text-zinc-400 pointer-events-none': {},
+              '@apply absolute left-0 pointer-events-none': {},
+            },
+
+            '&.disabled': {
+              '&:not(.has-value)': {
+                '&:not(.textarea)': {
+                  '.ipt-field': {
+                    '@apply pb-7': {},
+                  },
+                },
+              },
             },
 
             '&.textarea': {
@@ -387,8 +411,18 @@ module.exports = {
           },
 
           '&:not(.floating)': {
+            '&.disabled': {
+              '&:not(.has-value)': {
+                '&:not(.textarea)': {
+                  '.ipt-field': {
+                    '@apply py-[1.1875rem]': {},
+                  },
+                },
+              },
+            },
+
             '.ipt-field': {
-              '@apply py-2': {},
+              '@apply py-[0.4375rem]': {},
             },
           },
 
@@ -416,7 +450,7 @@ module.exports = {
           },
 
           '.text-field': {
-            '@apply relative flex items-center justify-between gap-2 w-full border rounded-lg overflow-hidden bg-white px-2':
+            '@apply relative flex items-center justify-between gap-2 w-full border border-current rounded-lg overflow-hidden bg-white px-2':
               {},
           },
 
@@ -429,7 +463,7 @@ module.exports = {
               {},
 
             '&__prefix': {
-              '@apply py-0.5 px-1.5 bg-black/10 rounded text-xs pointer-events-none':
+              '@apply my-0.5 py-0.5 px-1.5 bg-black/10 rounded text-xs pointer-events-none':
                 {},
             },
 
@@ -439,8 +473,8 @@ module.exports = {
               outline: 'none',
               textAlign: 'inherit',
 
-              '&::placehoder': {
-                '@apply text-zinc-400': {},
+              '&::placeholder': {
+                '@apply text-neutral-300': {},
               },
             },
           },
@@ -524,7 +558,11 @@ module.exports = {
         },
 
         '.checkbox': {
-          '@apply inline-flex items-center gap-2 cursor-pointer': {},
+          '@apply inline-flex items-center gap-2': {},
+
+          '&:not(.disabled)': {
+            '@apply cursor-pointer': {},
+          },
 
           '&__container': {
             '@apply inline-block align-middle': {},
@@ -538,7 +576,7 @@ module.exports = {
           },
 
           '&__box': {
-            '@apply relative w-5 h-5 border-2 border-current rounded cursor-pointer duration-200 ease-in-out':
+            '@apply relative w-5 h-5 border-2 border-current rounded duration-200 ease-in-out':
               {},
 
             '&.checked': {
@@ -547,7 +585,7 @@ module.exports = {
           },
 
           '&__label': {
-            '@apply text-sm text-neutral-500': {},
+            '@apply text-sm': {},
           },
 
           '&__icon': {
@@ -642,10 +680,6 @@ module.exports = {
 
           '&:not(.outlined)': {
             '@apply bg-current': {},
-
-            '&:disabled': {
-              '@apply bg-slate-300': {},
-            },
           },
 
           '&.outlined': {
@@ -653,7 +687,7 @@ module.exports = {
           },
 
           '&:disabled': {
-            '@apply pointer-events-none': {},
+            '@apply pointer-events-none bg-black/5': {},
           },
 
           '&__content': {

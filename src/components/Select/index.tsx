@@ -108,7 +108,7 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
       )}
       ref={$ref}
     >
-      {label && (
+      {!floating && label && (
         <div className="select-label">
           {label}
           {required && <span className="text-rose-500">*</span>}
@@ -126,6 +126,13 @@ const Select = forwardRef<HTMLDivElement, Props>(function Render(
               onClick={onClick}
               ref={ref as React.RefObject<HTMLDivElement>}
             >
+              {floating && label && (
+                <div className="select-label">
+                  {label}
+                  {required && <span className="text-rose-500">*</span>}
+                </div>
+              )}
+
               <div className="select-values">
                 {selected.length > 0
                   ? selected.map((s) => (

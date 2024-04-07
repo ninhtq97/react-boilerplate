@@ -9,7 +9,8 @@ import {
   Switch,
   TextareaAutosize,
 } from 'components';
-import { useDebounce } from 'hooks';
+import InputOtp from 'components/Input/Otp';
+import { useDebounce, useExport } from 'hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { api } from 'utils';
@@ -60,6 +61,11 @@ function App() {
   useEffect(() => {
     fetchTodos({ q: debounceValue });
   }, [debounceValue]);
+
+  const { onExport } = useExport([
+    { id: '1', label: 'Collumn 1' },
+    { id: '2', label: 'Collumn 2' },
+  ]);
 
   return (
     <div className="m-10 flex flex-col gap-4">
@@ -112,6 +118,102 @@ function App() {
         name="keyword"
         control={control}
         render={({ field }) => (
+          <Input
+            label="Name"
+            required
+            floating
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Name"
+            prefix="TD_"
+            required
+            floating
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Name"
+            required
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Name"
+            prefix="TD_"
+            required
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Name"
+            required
+            floating
+            placeholder="Enter Name"
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <TextareaAutosize
+            label="Name"
+            required
+            minRows={5}
+            maxRows={8}
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
           <TextareaAutosize
             label="Name"
             required
@@ -126,12 +228,56 @@ function App() {
       />
 
       <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <TextareaAutosize
+            label="Name"
+            required
+            minRows={5}
+            maxRows={8}
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => (
+          <TextareaAutosize
+            label="Name"
+            required
+            minRows={5}
+            maxRows={8}
+            floating
+            disabled
+            {...field}
+            error={!!errors.keyword}
+            helperText={errors.keyword?.message}
+          />
+        )}
+      />
+
+      <InputOtp
+        value="123456"
+        valueLength={6}
+        onChange={(val) => {
+          console.log('Val:', val);
+        }}
+      />
+
+      <Controller
         name="status"
         control={control}
         render={({ field }) => (
           <Select
             multiple
             label="Trạng thái"
+            placeholder="Chọn trạng thái"
             options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
@@ -151,6 +297,7 @@ function App() {
         render={({ field }) => (
           <Select
             label="Trạng thái"
+            placeholder="Chọn trạng thái"
             options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
@@ -168,7 +315,6 @@ function App() {
             label="Trạng thái"
             multiple
             floating
-            placeholder="Chọn trạng thái"
             options={todos.map((e) => ({
               label: `${e.id} - ${e.name}`,
               value: e.id,
@@ -236,6 +382,50 @@ function App() {
         )}
       />
 
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            multiple
+            label="Trạng thái"
+            floating
+            required
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            keyword={keyword}
+            onSearch={(keyword) => {
+              setKeyword(keyword);
+            }}
+            {...field}
+            error
+            helperText="Oops"
+          />
+        )}
+      />
+
+      <Controller
+        name="status"
+        control={control}
+        render={({ field }) => (
+          <Select
+            label="Trạng thái"
+            floating
+            required
+            options={todos.map((e) => ({
+              label: `${e.id} - ${e.name}`,
+              value: e.id,
+            }))}
+            {...field}
+            error
+            helperText="Oops"
+          />
+        )}
+      />
+
+      <Checkbox label="Terms" className="text-neutral-200" disabled />
       <Checkbox label="Terms" className="text-blue-400" />
 
       <Switch label="Terms" className="text-blue-400" />
@@ -245,8 +435,15 @@ function App() {
       <Button className="">Submit</Button>
       <Button className="text-rose-500">Submit</Button>
 
-      <Button className="text-neutral-200" asChild>
-        <div className="text-black">Submit</div>
+      <Button className="text-neutral-200" contentClassName="text-black">
+        Submit
+      </Button>
+
+      <Button className="" disabled>
+        Submit
+      </Button>
+      <Button className="text-rose-500" contentClassName="text-black" disabled>
+        Submit
       </Button>
 
       <Button className="" loading>
@@ -260,6 +457,13 @@ function App() {
         Submit
       </Button>
       <Button className="text-rose-500" variant="outlined">
+        Submit
+      </Button>
+
+      <Button className="" variant="outlined" disabled>
+        Submit
+      </Button>
+      <Button className="text-rose-500" variant="outlined" disabled>
         Submit
       </Button>
     </div>

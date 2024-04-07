@@ -34,7 +34,10 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <label className="checkbox" onClick={(e) => e.stopPropagation()}>
+      <label
+        className={cn('checkbox', disabled && 'disabled')}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="checkbox__container">
           <input
             type="checkbox"

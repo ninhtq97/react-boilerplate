@@ -5,7 +5,7 @@ import { Icon, Spinner } from '../Icon';
 type ButtonVariant = 'filled' | 'outlined';
 
 type Props = {
-  asChild?: boolean;
+  contentClassName?: React.ComponentProps<'button'>['className'];
   loading?: boolean;
   loadingIndicator?: string;
   variant?: ButtonVariant;
@@ -15,9 +15,10 @@ const Button = forwardRef<HTMLButtonElement, Props>(
   (
     {
       className,
+      contentClassName,
       loading = false,
       loadingIndicator,
-      asChild,
+      disabled,
       children,
       variant = 'filled',
       onClick,
@@ -28,7 +29,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     return (
       <button
         className={cn('btn px-4 py-2', variant, className)}
-        disabled={loading}
+        disabled={loading || disabled}
         onClick={loading ? undefined : onClick}
         {...props}
         ref={$ref}
@@ -38,11 +39,13 @@ const Button = forwardRef<HTMLButtonElement, Props>(
             <Icon icon={<Spinner className="animate-spin" />} />
             {loadingIndicator}
           </div>
-        ) : asChild ? (
-          children
         ) : (
           <span
-            className={cn('btn__content', variant === 'filled' && 'text-white')}
+            className={cn(
+              'btn__content',
+              variant === 'filled' && 'text-white',
+              contentClassName,
+            )}
           >
             {children}
           </span>

@@ -3,12 +3,12 @@ import { useCallback, useState } from 'react';
 import { TFilter } from 'types';
 import { excludeEmptyValue } from 'utils';
 
-const useFilter = (state?: Partial<TFilter>) => {
+const useFilter = <T extends Object>(state: Partial<T> = {}) => {
   const [filter, setFilter] = useState<TFilter>(
     excludeEmptyValue({ ...INIT_FILTER, ...state }),
   );
 
-  const onChangeFilter = useCallback((data: Partial<TFilter>) => {
+  const onChangeFilter = useCallback((data: Partial<typeof filter>) => {
     setFilter((prev) => excludeEmptyValue({ ...prev, ...data }));
   }, []);
 

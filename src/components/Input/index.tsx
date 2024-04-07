@@ -66,7 +66,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             {prefix && <div className="ipt-field__prefix">{prefix}</div>}
             {disabled ? (
               <p className="ipt" ref={$ref}>
-                {props.value}
+                {props.value || (
+                  <span className="ipt__placeholder">{placeholder}</span>
+                )}
               </p>
             ) : (
               <Wrapper
