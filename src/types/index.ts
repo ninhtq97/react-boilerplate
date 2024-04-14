@@ -72,3 +72,5 @@ export type HeadCell = {
   id: string;
   label: string | React.ReactNode;
 } & React.ThHTMLAttributes<HTMLTableCellElement>;
+
+export type TAttachment = { name: string; path: string };

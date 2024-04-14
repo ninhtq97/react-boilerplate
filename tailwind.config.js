@@ -489,31 +489,41 @@ module.exports = {
         '.form-file': {
           '@apply flex flex-col gap-1 w-full h-full': {},
 
+          '&.has-error': {
+            '@apply text-rose-500': {},
+
+            '.file-field': {
+              '@apply border-current': {},
+            },
+          },
+
           '&:not(.disabled)': {
-            '.file-container': {
-              '@apply border border-dashed border-emerald-500 cursor-pointer':
-                {},
+            '.file-field': {
+              '@apply border border-2 border-dashed cursor-pointer': {},
             },
           },
 
           '.file-container': {
-            '@apply relative flex items-center justify-center rounded overflow-hidden h-full':
-              {},
-            padding: '14px 18px',
-          },
-
-          '.file-field': {
-            '@apply flex flex-col items-center justify-center gap-1 pointer-events-none':
-              {},
+            '@apply relative flex gap-2 rounded overflow-hidden': {},
           },
 
           '.file-preview': {
-            '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full':
+            '@apply relative flex items-center overflow-hidden rounded-lg text-sky-500 before:absolute before:inset-0 before:bg-current before:opacity-5':
               {},
 
             '.preview-img': {
               '@apply w-full h-full object-cover': {},
             },
+
+            '.preview-file': {
+              '@apply flex items-center h-full w-full px-2 py-3 underline underline-offset-4':
+                {},
+            },
+          },
+
+          '.file-field': {
+            '@apply flex flex-col items-center justify-center gap-1 rounded-lg py-3.5 px-5':
+              {},
           },
 
           '.ipt-file': {
@@ -521,12 +531,12 @@ module.exports = {
               {},
           },
 
-          '.placeholder-file': {
-            '@apply text-xs leading-[18px] text-zinc-400 text-center': {},
+          '.file-placeholder': {
+            '@apply text-xs text-center': {},
           },
 
-          '.label-file': {
-            '@apply text-[.9375rem] leading-[1.375rem] text-zinc-400': {},
+          '.file-label': {
+            '@apply text-sm text-current': {},
           },
         },
 

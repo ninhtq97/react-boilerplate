@@ -1,4 +1,4 @@
-import { PAGE } from 'constants/pagination';
+import { PAGE } from 'constants/common';
 import { useEffect, useState } from 'react';
 import { Option, TFilter } from 'types';
 import { ArrowLeft, ArrowRight, Icon } from '../Icon';

@@ -9,6 +9,7 @@ import {
   Switch,
   TextareaAutosize,
 } from 'components';
+import InputFile from 'components/Input/File';
 import InputOtp from 'components/Input/Otp';
 import { useDebounce } from 'hooks';
 import { useCallback, useEffect, useState } from 'react';
@@ -62,6 +63,12 @@ function App() {
     fetchTodos({ q: debounceValue });
   }, [debounceValue]);
 
+  const [uploadFile, setUploadFile] = useState<File[]>();
+
+  const onChangeFile = (files: File[]) => {
+    setUploadFile(files);
+  };
+
   return (
     <div className="m-10 flex flex-col gap-4">
       <Alert>Success</Alert>
@@ -77,6 +84,35 @@ function App() {
         renderHeader={() => <h4>Title</h4>}
         renderContent={() => <div>Content</div>}
         renderFooter={() => <div>Footer</div>}
+      />
+
+      <InputFile
+        label="Uploader"
+        placeholder="Uploader placeholder"
+        value={uploadFile}
+        onChange={onChangeFile}
+      />
+
+      <InputFile
+        label="Uploader"
+        className="h-20 w-20"
+        multiple
+        maxFiles={3}
+        placeholder="Uploader placeholder"
+        value={uploadFile}
+        onChange={onChangeFile}
+      />
+
+      <InputFile
+        label="Uploader"
+        className="h-20 w-20"
+        multiple
+        maxFiles={3}
+        placeholder="Uploader placeholder"
+        value={uploadFile}
+        onChange={onChangeFile}
+        error
+        helperText="Oops"
       />
 
       <Controller
@@ -461,8 +497,8 @@ function App() {
         )}
       />
 
-      <Checkbox label="Terms" className="text-neutral-200" disabled />
       <Checkbox label="Terms" className="text-blue-400" />
+      <Checkbox label="Terms" className="text-neutral-200" disabled />
 
       <Switch label="Terms" className="text-blue-400" />
       <Switch label="Terms" disabled className="text-blue-400" />

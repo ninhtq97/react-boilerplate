@@ -1,4 +1,4 @@
-import { INIT_META } from 'constants/state';
+import { INIT_META } from 'constants/common';
 import { useCallback, useState } from 'react';
 import { TMeta } from 'types';
 import { excludeEmptyValue } from 'utils';

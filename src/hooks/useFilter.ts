@@ -1,4 +1,4 @@
-import { INIT_FILTER } from 'constants/state';
+import { INIT_FILTER } from 'constants/common';
 import { useCallback, useState } from 'react';
 import { TFilter } from 'types';
 import { excludeEmptyValue } from 'utils';

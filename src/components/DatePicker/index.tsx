@@ -1,4 +1,4 @@
-import { DATE_FORMAT } from 'constants/date';
+import { DATE_FORMAT } from 'constants/common';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { cn } from 'utils';
 
