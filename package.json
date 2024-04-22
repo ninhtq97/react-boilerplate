@@ -2,6 +2,8 @@
   "name": "react-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "main": "build/dist/index.cjs.js",
+  "module": "build/dist/index.esm.js",
   "devDependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@rollup/plugin-commonjs": "^25.0.7",
