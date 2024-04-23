@@ -77,9 +77,9 @@ function App() {
 
       <Modal
         renderLink={({ onOpen }) => (
-          <div className="" onClick={onOpen}>
+          <Button className="" onClick={onOpen}>
             Open Modal
-          </div>
+          </Button>
         )}
         renderHeader={() => <h4>Title</h4>}
         renderContent={() => <div>Content</div>}
@@ -87,15 +87,15 @@ function App() {
       />
 
       <InputFile
-        label="Uploader"
+        label="Uploader Single"
         placeholder="Uploader placeholder"
         value={uploadFile}
         onChange={onChangeFile}
       />
 
       <InputFile
-        label="Uploader"
-        className="h-20 w-20"
+        label="Uploader Multiple"
+        className="h-20 !w-20"
         multiple
         maxFiles={3}
         placeholder="Uploader placeholder"
@@ -104,8 +104,8 @@ function App() {
       />
 
       <InputFile
-        label="Uploader"
-        className="h-20 w-20"
+        label="Uploader Multiple"
+        className="h-20 !w-20"
         multiple
         maxFiles={3}
         placeholder="Uploader placeholder"

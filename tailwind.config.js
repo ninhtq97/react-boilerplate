@@ -33,7 +33,7 @@ module.exports = {
         },
 
         body: {
-          '@apply overflow-x-hidden text-stone-800 min-h-screen': {},
+          '@apply overflow-x-hidden min-h-screen': {},
         },
 
         input: {
@@ -504,11 +504,11 @@ module.exports = {
           },
 
           '.file-container': {
-            '@apply relative flex gap-2 rounded overflow-hidden': {},
+            '@apply relative flex gap-3 rounded overflow-hidden': {},
           },
 
           '.file-preview': {
-            '@apply relative flex items-center overflow-hidden rounded-lg text-sky-500 before:absolute before:inset-0 before:bg-current before:opacity-5':
+            '@apply relative flex items-center overflow-hidden w-full rounded-lg text-sky-500 before:absolute before:inset-0 before:bg-current before:opacity-5':
               {},
 
             '.preview-img': {
@@ -522,7 +522,7 @@ module.exports = {
           },
 
           '.file-field': {
-            '@apply flex flex-col items-center justify-center gap-1 rounded-lg py-3.5 px-5':
+            '@apply relative flex flex-col items-center justify-center gap-1 w-full rounded-lg py-3.5 px-5':
               {},
           },
 
