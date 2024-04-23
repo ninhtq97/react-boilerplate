@@ -3,6 +3,6 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   tailwindConfig: './tailwind.config.js',
-  tailwindFunctions: ['twMerge'],
+  tailwindFunctions: ['cn'],
   plugins: ['prettier-plugin-tailwindcss'],
 };
