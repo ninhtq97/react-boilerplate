@@ -10,7 +10,7 @@ const Switch = forwardRef<HTMLInputElement, Props>(
     {
       className,
       checked: propsIsChecked,
-      onChange: onChangeProps,
+      onChange: propsOnChange,
       disabled,
       ...props
     },
@@ -27,7 +27,7 @@ const Switch = forwardRef<HTMLInputElement, Props>(
       if (!isControlled) {
         setIsChecked(!isChecked);
       } else {
-        onChangeProps?.(el.checked);
+        propsOnChange?.(el.checked);
       }
     };
 

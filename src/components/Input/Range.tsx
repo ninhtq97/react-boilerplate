@@ -11,7 +11,7 @@ type Props = {
 const Range: React.FC<Props> = ({
   className,
   defaultValue,
-  onChange: onChangeProps,
+  onChange: propsOnChange,
   min = 0,
   max = 100,
   format = 'value',
@@ -20,7 +20,7 @@ const Range: React.FC<Props> = ({
 }) => {
   const [stateValue, setStateValue] = useState(defaultValue || 0);
 
-  const isControlled = Boolean(defaultValue?.toString() && !!onChangeProps);
+  const isControlled = Boolean(defaultValue?.toString() && !!propsOnChange);
   const value = isControlled ? defaultValue : stateValue;
 
   const $range = useRef<HTMLInputElement>(null);
@@ -30,7 +30,7 @@ const Range: React.FC<Props> = ({
     if (!isControlled) {
       setStateValue(e.currentTarget.value);
     } else {
-      onChangeProps?.(e);
+      propsOnChange?.(e);
     }
   };
 

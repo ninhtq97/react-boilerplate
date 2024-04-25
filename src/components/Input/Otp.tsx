@@ -14,7 +14,7 @@ const InputOtp: React.FC<Props> = ({
   className,
   value,
   valueLength,
-  onChange: onChangeProps,
+  onChange: propsOnChange,
 }) => {
   const valueItems = useMemo(() => {
     const valueArray = value.split('');
@@ -74,7 +74,7 @@ const InputOtp: React.FC<Props> = ({
       const newValue =
         value.substring(0, idx) + targetValue + value.substring(idx + 1);
 
-      onChangeProps(newValue);
+      propsOnChange(newValue);
 
       if (!isTargetValueDigit) {
         return;
@@ -82,7 +82,7 @@ const InputOtp: React.FC<Props> = ({
 
       focusToNextInput(target);
     } else if (targetValueLength === valueLength) {
-      onChangeProps(targetValue);
+      propsOnChange(targetValue);
 
       target.blur();
     }

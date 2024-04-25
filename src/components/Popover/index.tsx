@@ -30,7 +30,7 @@ const Popover: React.FC<Props> = ({
   className,
   container = 'body',
   scrollableTarget,
-  onClose: tellParentToClose,
+  onClose: propsOnClose,
   placement = 'bottom',
   offset = { top: 0, left: 0 },
   renderLink,
@@ -44,7 +44,7 @@ const Popover: React.FC<Props> = ({
   const onOpen = () => setStateOpen(true);
   const onClose = () => {
     setStateOpen(false);
-    tellParentToClose?.();
+    propsOnClose?.();
   };
 
   useOutsideClick([$popoverRef, $linkRef], isOpen, onClose);

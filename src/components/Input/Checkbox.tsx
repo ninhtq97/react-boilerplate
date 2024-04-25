@@ -12,16 +12,16 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
       className,
       label,
       disabled,
-      checked: propsIsChecked,
-      onChange: onChangeProps,
+      checked: propsChecked,
+      onChange: propsOnChange,
       ...props
     },
     $ref,
   ) => {
-    const [isChecked, setIsChecked] = useState(!!propsIsChecked);
+    const [isChecked, setIsChecked] = useState(!!propsChecked);
 
-    const isControlled = typeof propsIsChecked === 'boolean';
-    const checked = isControlled ? propsIsChecked : isChecked;
+    const isControlled = typeof propsChecked === 'boolean';
+    const checked = isControlled ? propsChecked : isChecked;
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const el = e.currentTarget;
@@ -29,7 +29,7 @@ const Checkbox = forwardRef<HTMLInputElement, Props>(
       if (!isControlled) {
         setIsChecked(!isChecked);
       } else {
-        onChangeProps?.(el.checked);
+        propsOnChange?.(el.checked);
       }
     };
 

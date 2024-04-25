@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 export const useOutsideClick = (
   $refs: React.RefObject<HTMLElement>[],
   isListening: boolean,
-  onOutsideClick: () => void,
-  $listeningElementRef?: React.RefObject<HTMLElement>,
+  onClick: () => void,
+  $listeningRef?: React.RefObject<HTMLElement>,
 ) => {
   const $mouseDownTargetRef = useRef(null);
 
@@ -23,21 +23,21 @@ export const useOutsideClick = (
       });
 
       if (e.button === 0 && !isAnyIgnoredElementAncestorOfTarget) {
-        onOutsideClick();
+        onClick();
       }
     };
 
-    const $listeningElement = ($listeningElementRef || {}).current || document;
+    const $listeningEl = ($listeningRef || {}).current || document;
 
     if (isListening) {
-      $listeningElement.addEventListener('mousedown', onMouseDown);
-      $listeningElement.addEventListener('mouseup', onMouseUp);
+      $listeningEl.addEventListener('mousedown', onMouseDown);
+      $listeningEl.addEventListener('mouseup', onMouseUp);
     }
     return () => {
-      $listeningElement.removeEventListener('mousedown', onMouseDown);
-      $listeningElement.removeEventListener('mouseup', onMouseUp);
+      $listeningEl.removeEventListener('mousedown', onMouseDown);
+      $listeningEl.removeEventListener('mouseup', onMouseUp);
     };
-  }, [$refs, isListening, onOutsideClick, $listeningElementRef]);
+  }, [$refs, isListening, onClick, $listeningRef]);
 };
 
 export default useOutsideClick;

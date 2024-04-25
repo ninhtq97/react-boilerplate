@@ -29,8 +29,8 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
       helperText,
       maxFiles = 1,
       value,
-      onChange: onChangeProps,
-      onRemove: onRemoveProps,
+      onChange: propsOnChange,
+      onRemove: propsOnRemove,
       ...props
     },
     $ref,
@@ -63,7 +63,7 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
           ...Object.values(files).slice(0, maxFiles - displayUrls.length),
         ]);
 
-        onChangeProps?.([
+        propsOnChange?.([
           ...(value || []),
           ...Object.values(files).slice(0, maxFiles - displayUrls.length),
         ]);
@@ -124,13 +124,13 @@ const InputFile = forwardRef<HTMLInputElement, Props>(
 
                       e.path.startsWith('blob:') || base64.length > 0
                         ? value &&
-                          onChangeProps?.([
+                          propsOnChange?.([
                             ...value.slice(0, preview ? i - preview.length : i),
                             ...value.slice(
                               (preview ? i - preview.length : i) + 1,
                             ),
                           ])
-                        : preview && onRemoveProps?.(preview[i].path);
+                        : preview && propsOnRemove?.(preview[i].path);
                     }}
                   />
                 )}

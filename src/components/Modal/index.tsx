@@ -16,7 +16,7 @@ type Props = {
   container?: string;
   width?: number;
   withCloseIcon?: boolean;
-  disableClickBackdrop?: boolean;
+  backdropDisabled?: boolean;
   isOpen?: boolean;
   onClose?: () => void;
   renderLink?: React.FC<TRenderLink>;
@@ -30,9 +30,9 @@ const Modal: React.FC<Props> = ({
   container = 'body',
   width = 650,
   withCloseIcon = true,
-  disableClickBackdrop = false,
+  backdropDisabled = false,
   isOpen: propsIsOpen,
-  onClose: tellParentToClose,
+  onClose: propsOnClose,
   renderLink,
   renderHeader,
   renderContent,
@@ -50,10 +50,10 @@ const Modal: React.FC<Props> = ({
     if (!isControlled) {
       setStateOpen(false);
     } else {
-      tellParentToClose?.();
+      propsOnClose?.();
     }
     document.body.style.overflow = 'visible';
-  }, [isControlled, tellParentToClose]);
+  }, [isControlled, propsOnClose]);
 
   useEffect(() => {
     $clickableOverlayRef?.current?.scrollIntoView();
@@ -68,11 +68,11 @@ const Modal: React.FC<Props> = ({
         {isOpen && (
           <>
             {createPortal(
-              <div className={`modal`}>
+              <div className="modal">
                 <motion.div
                   className="modal-overlay"
                   ref={$clickableOverlayRef}
-                  onClick={!disableClickBackdrop ? onClose : undefined}
+                  onClick={!backdropDisabled ? onClose : undefined}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -82,9 +82,7 @@ const Modal: React.FC<Props> = ({
                     className={cn('modal-container', className)}
                     style={{ maxWidth: `${width}px` }}
                     ref={$modalRef}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
+                    onClick={(e) => e.stopPropagation()}
                     initial={{ scale: 0, opacity: 0 }}
                     animate={isOpen ? 'open' : 'close'}
                     variants={{
