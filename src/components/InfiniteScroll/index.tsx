@@ -25,9 +25,8 @@ const InfiniteScroll: React.FC<Props> = ({
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          onNext?.();
-        }
+        const [entry] = entries;
+        if (entry.isIntersecting && hasMore) onNext?.();
       });
       if (node) observer.current.observe(node);
     },

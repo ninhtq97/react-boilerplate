@@ -9,7 +9,7 @@ module.exports = {
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         '*': {
-          '@apply outline-none select-none': {},
+          '@apply outline-none': {},
 
           '&::-webkit-scrollbar': {
             '@apply w-1.5 h-1.5 bg-neutral-100 rounded-lg': {},
